@@ -31,6 +31,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Physics;
 
 namespace Content.Shared.Movement.Pulling.Systems;
 
@@ -83,9 +84,31 @@ public sealed class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, StrappedEvent>(OnBuckled);
         SubscribeLocalEvent<PullableComponent, BuckledEvent>(OnGotBuckled);
 
+        SubscribeLocalEvent<PullableComponent, PreventCollideEvent>(OnPreventCollision);
+
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ReleasePulledObject, InputCmdHandler.FromDelegate(OnReleasePulledObject, handle: false))
             .Register<PullingSystem>();
+    }
+
+    private void OnPreventCollision(EntityUid uid, PullableComponent component, ref PreventCollideEvent args)
+    {
+        // Если этот ящик/объект сейчас вообще никто не тащит — коллизия работает штатно
+        if (component.Puller == null)
+            return;
+
+        // Проверяем, кто тащит ящик. Если у пуллера (транспорта) отключена нужда в руках (NeedsHands == false)
+        if (TryComp<PullerComponent>(component.Puller.Value, out var pullerComp) && !pullerComp.NeedsHands)
+        {
+            // Проверяем, с кем именно пытается столкнуться ящик.
+            // Если он пытается врезаться в сам транспорт (component.Puller) ИЛИ в любого человека/моба (HasComp<HandsComponent>)
+            if (args.OtherEntity == component.Puller.Value || HasComp<HandsComponent>(args.OtherEntity))
+            {
+                // Принудительно приказываем физическому движку отменить это конкретное столкновение!
+                // ИСПРАВЛЕНО: используем нативный метод отмены физического контакта в Robust
+                args.Cancelled = true;
+            }
+        }
     }
 
     private void HandlePullStarted(EntityUid uid, HandsComponent component, PullStartedMessage args)
@@ -407,16 +430,33 @@ public sealed class PullingSystem : EntitySystem
 
     public bool CanPull(EntityUid puller, EntityUid pullableUid, PullerComponent? pullerComp = null)
     {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ДЛЯ ТРАНСПОРТА ---
+        // Перехватываем проверку CanPull, если её вызывает пристёгнутый к транспорту игрок
+        if (HasComp<HandsComponent>(puller))
+        {
+            var xform = Transform(puller);
+            var parentUid = xform.ParentUid;
+
+            if (parentUid.Valid && TryComp<PullerComponent>(parentUid, out var parentPuller) && !parentPuller.NeedsHands)
+            {
+                puller = parentUid;
+                pullerComp = parentPuller;
+            }
+        }
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ДЛЯ ТРАНСПОРТА ---
+
         if (!Resolve(puller, ref pullerComp, false))
         {
             return false;
         }
 
-        if (pullerComp.NeedsHands
-            && !_handsSystem.TryGetEmptyHand(puller, out _)
-            && pullerComp.Pulling == null)
+        // Исправлено: Проверяем руки только если они действительноруют требуются пуллеру
+        if (pullerComp.NeedsHands)
         {
-            return false;
+            if (!_handsSystem.TryGetEmptyHand(puller, out _) && pullerComp.Pulling == null)
+            {
+                return false;
+            }
         }
 
         if (!_blocker.CanInteract(puller, pullableUid))
@@ -475,6 +515,23 @@ public sealed class PullingSystem : EntitySystem
     public bool TryStartPull(EntityUid pullerUid, EntityUid pullableUid,
         PullerComponent? pullerComp = null, PullableComponent? pullableComp = null)
     {
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ДЛЯ ТРАНСПОРТА ---
+        if (HasComp<HandsComponent>(pullerUid))
+        {
+            var xform = Transform(pullerUid);
+            var parentUid = xform.ParentUid;
+
+            if (parentUid.Valid)
+            {
+                if (TryComp<PullerComponent>(parentUid, out var parentPuller) && !parentPuller.NeedsHands)
+                {
+                    pullerUid = parentUid;
+                    pullerComp = parentPuller;
+                }
+            }
+        }
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ДЛЯ ТРАНСПОРТА ---
+
         if (!Resolve(pullerUid, ref pullerComp, false) ||
             !Resolve(pullableUid, ref pullableComp, false))
         {
@@ -551,7 +608,6 @@ public sealed class PullingSystem : EntitySystem
             _physics.SetFixedRotation(pullableUid, pullableComp.FixedRotationOnPull, body: pullablePhysics);
         }
 
-        // Messaging
         var message = new PullStartedMessage(pullerUid, pullableUid);
         _modifierSystem.RefreshMovementSpeedModifiers(pullerUid);
         _alertsSystem.ShowAlert(pullerUid, pullerComp.PullingAlert);
