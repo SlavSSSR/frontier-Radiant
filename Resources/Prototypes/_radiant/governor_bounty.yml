@@ -102,7 +102,7 @@
     name: некрозол
 
 - type: governorBounty
-  id: GovernorBountyVestine
+  id: GovernorBountyCorgiJuice
   reward: 20000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 2
@@ -218,54 +218,54 @@
 
 - type: governorBounty
   id: GovernorBountyOrePlasma
-  reward: 22000
+  reward: 10000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 2
   description: governor-bounty-desc-ore-plasma
   entries:
   - id: PlasmaOre
     amount: 100
-    name: плазма
+    name: плазменная руда
 
 - type: governorBounty
   id: GovernorBountyOreUranium
-  reward: 22000
+  reward: 10000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 2
   description: governor-bounty-desc-ore-uranium
   entries:
-  - id: OreUranium
+  - id: UraniumOre
     amount: 100
-    name: уран
+    name: урановая руда
 
 - type: governorBounty
   id: GovernorBountyOreSilver
-  reward: 22000
+  reward: 8500
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 2
   description: governor-bounty-desc-ore-silver
   entries:
-  - id: OreSilver
+  - id: SilverOre
     amount: 100
-    name: серебро
+    name: серебренная руда
 
 - type: governorBounty
   id: GovernorBountyOreGold
-  reward: 22000
+  reward: 10000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 2
-  description: governor-bounty-desc-steel-ore
+  description: governor-bounty-desc-ore-gold
   entries:
   - id: GoldOre
     amount: 100
-    name: золото
+    name: золотая руда
 
 - type: governorBounty
   id: GovernorBountySteelOre
-  reward: 8000
+  reward: 6500
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 1
-  description: governor-bounty-desc-bananium
+  description: governor-bounty-desc-steel-ore
   entries:
   - id: SteelOre
     amount: 100
@@ -276,10 +276,10 @@
   reward: 11000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 1
-  description: governor-bounty-desc-diamond
+  description: governor-bounty-desc-bananium
   entries:
   - id: AnyBananium
-    prefix: MaterialBananium
+    prefix: Bananium
     amount: 10
     name: бананиум
 
@@ -288,10 +288,10 @@
   reward: 31500
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 3
-  description: governor-bounty-desc-bluespace
+  description: governor-bounty-desc-diamond
   entries:
   - id: AnyDiamond
-    prefix: MaterialDiamond
+    prefix: Diamond
     amount: 10
     name: алмазы
 
@@ -300,12 +300,12 @@
   reward: 31000
   tokenReward: GovernorUplinkCoin
   tokenRewardCount: 3
-  description: governor-bounty-desc-generic
+  description: governor-bounty-desc-bluespace
   entries:
   - id: AnyBluespace
-    prefix: MaterialBluespace
+    prefix: Bluespace
     amount: 5
-    name: блюспейс руда
+    name: блюспейс кристалы
 
 - type: governorBounty
   id: GovernorBountyScaf
