@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Chat;
 using Content.Shared.Electrocution;
+using Content.Server.Emp;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
@@ -31,6 +32,8 @@ public sealed class FunctionalOrganSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<FunctionalOrganComponent, SurgeryOrganImplantationCompleted>(OnImplanted);
         SubscribeLocalEvent<FunctionalOrganComponent, SurgeryOrganExtracted>(OnExtracted);
+        SubscribeLocalEvent<FunctionalOrganComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<FunctionalOrganComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved);
         // Radiant sector: keep a surgically installed communications implant synchronized with its keys.
         SubscribeLocalEvent<SurgicalCommsImplantComponent, EncryptionChannelsChangedEvent>(OnEncryptionChannelsChanged);
         SubscribeLocalEvent<SurgicalCommsImplantComponent, GetDefaultRadioChannelEvent>(OnGetDefaultRadioChannel);
@@ -39,6 +42,10 @@ public sealed class FunctionalOrganSystem : EntitySystem
 
     private void OnImplanted(Entity<FunctionalOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
+        var empState = EnsureComp<EmpDisabledSurgicalOrganComponent>(ent);
+        empState.Body = args.Body;
+        empState.Disabled = false;
+        empState.Installed.Clear();
         foreach (var registration in (ent.Comp.Components ?? []).Values)
         {
             var type = registration.Component.GetType();
@@ -52,6 +59,7 @@ public sealed class FunctionalOrganSystem : EntitySystem
             if (component is InsulatedComponent insulated)
                 _electrocution.SetInsulatedSiemensCoefficient(args.Body, insulated.Coefficient);
             _surgery.AddInstalledComponent(ent.Owner, type);
+            empState.Installed.Add(type);
         }
 
         // Radiant sector: encryption keys belong to the installed body while the implant is active.
@@ -71,6 +79,49 @@ public sealed class FunctionalOrganSystem : EntitySystem
         }
 
         _surgery.ClearInstalledComponents(ent.Owner);
+        RemComp<EmpDisabledSurgicalOrganComponent>(ent);
+    }
+
+    private void OnEmpPulse(Entity<FunctionalOrganComponent> ent, ref EmpPulseEvent args)
+    {
+        if (!ent.Comp.IsCybernetic || !TryComp<EmpDisabledSurgicalOrganComponent>(ent, out var state))
+            return;
+
+        args.Affected = true;
+        args.Disabled = true;
+
+        if (state.Disabled)
+            return;
+
+        state.Disabled = true;
+        foreach (var type in state.Installed)
+        {
+            if (EntityManager.TryGetComponent(state.Body, type, out var component))
+                RemComp(state.Body, component);
+        }
+    }
+
+    private void OnEmpDisabledRemoved(Entity<FunctionalOrganComponent> ent, ref EmpDisabledRemoved args)
+    {
+        if (!TryComp<EmpDisabledSurgicalOrganComponent>(ent, out var state) || !state.Disabled)
+            return;
+
+        foreach (var registration in (ent.Comp.Components ?? []).Values)
+        {
+            var type = registration.Component.GetType();
+            if (!state.Installed.Contains(type) || HasComp(state.Body, type))
+                continue;
+
+            var component = _serialization.CreateCopy(registration.Component, notNullableOverride: true);
+            AddComp(state.Body, component);
+            if (component is InsulatedComponent insulated)
+                _electrocution.SetInsulatedSiemensCoefficient(state.Body, insulated.Coefficient);
+        }
+
+        // Components such as the communications implant rebuild their runtime
+        // channel lists after being restored.
+        SyncRadioChannels(state.Body);
+        state.Disabled = false;
     }
 
     private void OnEncryptionChannelsChanged(

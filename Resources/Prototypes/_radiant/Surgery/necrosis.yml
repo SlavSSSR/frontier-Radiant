@@ -1,0 +1,141 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDebrideSurface
+  name: Excise necrotic tissue
+  components:
+  - type: Surgery
+    priority: -104
+    steps: [SurgeryStepExciseNecrosis, SurgeryStepControlNecrosisBleeding, SurgeryStepDebride]
+  - type: SurgerySiteTreatment
+    site: Surface
+    treatment: Debride
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDebrideRibcage
+  name: Excise necrotic tissue
+  components:
+  - type: Surgery
+    priority: -104
+    steps: [SurgeryStepExciseNecrosis, SurgeryStepControlNecrosisBleeding, SurgeryStepDebride]
+  - type: SurgerySiteTreatment
+    site: Ribcage
+    treatment: Debride
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDebrideAbdomen
+  name: Excise necrotic tissue
+  components:
+  - type: Surgery
+    priority: -104
+    steps: [SurgeryStepExciseNecrosis, SurgeryStepControlNecrosisBleeding, SurgeryStepDebride]
+  - type: SurgerySiteTreatment
+    site: Abdomen
+    treatment: Debride
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDebrideGroin
+  name: Excise necrotic tissue
+  components:
+  - type: Surgery
+    priority: -104
+    steps: [SurgeryStepExciseNecrosis, SurgeryStepControlNecrosisBleeding, SurgeryStepDebride]
+  - type: SurgerySiteTreatment
+    site: Groin
+    treatment: Debride
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRestoreNecroticHeart
+  name: Reconstruct damaged heart
+  components:
+  - type: Surgery
+    steps: [SurgeryStepExciseNecrosis, SurgeryStepControlNecrosisBleeding, SurgeryStepRestoreHeart]
+  - type: SurgerySiteTreatment
+    site: Ribcage
+    treatment: RestoreHeart
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExciseNecrosis
+  name: Excise nonviable tissue
+  components:
+  - type: SurgeryStep
+    duration: 15
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepControlNecrosisBleeding
+  name: Ligate bleeding vessels
+  components:
+  - type: SurgeryStep
+    duration: 12
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDebride
+  name: Irrigate and finish debridement
+  components:
+  - type: SurgeryStep
+    duration: 12
+    tools:
+    - type: SurgicalLavage
+    reagentId: Saline
+    reagentQuantity: 10
+  - type: SurgerySiteTreatment
+    treatment: Debride
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRestoreHeart
+  name: Reconstruct cardiac tissue
+  components:
+  - type: SurgeryStep
+    duration: 30
+    tools:
+    - type: Hemostat
+  - type: SurgerySiteTreatment
+    treatment: RestoreHeart
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+

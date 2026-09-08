@@ -1,8 +1,10 @@
+using System.Linq;
 using Content.Client.Humanoid;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs;
@@ -154,17 +156,83 @@ public sealed partial class BodyScannerWindow : FancyWindow
             _previewDummy = dummy;
         }
 
-        _appearance.CloneAppearance(patient, dummy, source);
-        if (_entities.TryGetComponent<HumanoidAppearanceComponent>(dummy, out var preview))
+        if (_entities.TryGetComponent<HumanoidAppearanceComponent>(dummy, out var preview)
+            && !PreviewMatchesSource(preview, source))
         {
+            _appearance.CloneAppearance(patient, dummy, source, preview);
             preview.Height = source.Height;
             preview.Width = source.Width;
             preview.PermanentlyHidden = new(source.PermanentlyHidden);
+            preview.HairColoringMode = source.HairColoringMode;
+            preview.HairGradientColor = source.HairGradientColor;
+            preview.HairGradientDirection = source.HairGradientDirection;
+            preview.FacialHairColoringMode = source.FacialHairColoringMode;
+            preview.FacialHairGradientColor = source.FacialHairGradientColor;
+            preview.FacialHairGradientDirection = source.FacialHairGradientDirection;
+            _appearance.RefreshAppearance(dummy);
         }
 
-        _appearance.RefreshAppearance(dummy);
         PatientSprite.SetEntity(dummy);
         ApplyPatientDirection();
+    }
+
+    /// <summary>
+    /// The scanner receives a fresh state every second. Rebuilding an unchanged
+    /// preview on every update restarts animated markings, so long tail
+    /// animations never reach their later frames.
+    /// </summary>
+    private static bool PreviewMatchesSource(HumanoidAppearanceComponent preview, HumanoidAppearanceComponent source)
+    {
+        return preview.Species == source.Species
+               && preview.SkinColor == source.SkinColor
+               && preview.EyeColor == source.EyeColor
+               && preview.Age == source.Age
+               && preview.Sex == source.Sex
+               && preview.Gender == source.Gender
+               && preview.Height.Equals(source.Height)
+               && preview.Width.Equals(source.Width)
+               && preview.HairColoringMode == source.HairColoringMode
+               && preview.HairGradientColor == source.HairGradientColor
+               && preview.HairGradientDirection == source.HairGradientDirection
+               && preview.FacialHairColoringMode == source.FacialHairColoringMode
+               && preview.FacialHairGradientColor == source.FacialHairGradientColor
+               && preview.FacialHairGradientDirection == source.FacialHairGradientDirection
+               && preview.PermanentlyHidden.SetEquals(source.PermanentlyHidden)
+               && DictionariesEqual(preview.CustomBaseLayers, source.CustomBaseLayers)
+               && MarkingsEqual(preview.MarkingSet, source.MarkingSet);
+    }
+
+    private static bool DictionariesEqual<TKey, TValue>(
+        IReadOnlyDictionary<TKey, TValue> first,
+        IReadOnlyDictionary<TKey, TValue> second)
+        where TKey : notnull
+    {
+        if (first.Count != second.Count)
+            return false;
+
+        var comparer = EqualityComparer<TValue>.Default;
+        foreach (var (key, value) in first)
+        {
+            if (!second.TryGetValue(key, out var other) || !comparer.Equals(value, other))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static bool MarkingsEqual(MarkingSet first, MarkingSet second)
+    {
+        if (first.Markings.Count != second.Markings.Count)
+            return false;
+
+        foreach (var (category, markings) in first.Markings)
+        {
+            if (!second.Markings.TryGetValue(category, out var other)
+                || !markings.SequenceEqual(other))
+                return false;
+        }
+
+        return true;
     }
 
     private void RotatePatient(int offset)

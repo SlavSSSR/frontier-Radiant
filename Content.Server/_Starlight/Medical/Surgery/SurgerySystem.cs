@@ -43,8 +43,10 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     {
         base.Initialize();
         InitializeSteps();
+        InitializeSterility();
 
-        SubscribeLocalEvent<SurgeryToolComponent, AfterInteractEvent>(OnToolAfterInteract);
+        SubscribeLocalEvent<SurgeryToolComponent, AfterInteractEvent>(OnToolAfterInteract,
+            before: new[] { typeof(Content.Shared.Chemistry.EntitySystems.SolutionTransferSystem) });
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
         // Radiant sector: the ported surgery previously allowed a body to live
         // indefinitely after its heart or brain had been physically removed.
@@ -122,6 +124,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             if (IsAdultSurgery(surgeryEnt) && IsErpDenied(body))
                 continue;
 
+            // Anatomically invalid operations must not reappear from older saved progress.
+            if (selectedPart != null && TryComp<SurgeryPartConditionComponent>(surgeryEnt, out var partCondition)
+                && partCondition.Parts.Count > 0 && !partCondition.Parts.Contains(selectedPart.PartType))
+                continue;
+
             // Radiant sector: species never changes while an operation is in
             // progress. Check it even for started/completed surgeries, otherwise
             // stale progress can expose both the normal and slime attachment
@@ -162,6 +169,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnToolAfterInteract(Entity<SurgeryToolComponent> ent, ref AfterInteractEvent args)
     {
+        // Loose surgical items are disinfected directly, not opened as patients.
+        if (HasComp<Content.Shared.Chemistry.Components.DrainableSolutionComponent>(ent)
+            && args.Target is { } item && CanDisinfectItem(item))
+            return;
+
         var user = args.User;
         if (args.Handled ||
             !args.CanReach ||

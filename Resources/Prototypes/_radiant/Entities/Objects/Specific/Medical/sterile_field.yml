@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseToolSurgery
+  id: SurgicalSterileDrape
+  name: disposable sterile surgical drape
+  description: Protects one surgical site. Discarded when removed or when the incision is closed.
+  components:
+  - type: SurgicalDrape
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BaseToolSurgery
+  id: SurgicalLavageBottle
+  name: surgical irrigation solution
+  description: Saline solution for irrigating an open surgical site. Each procedure consumes 10 units.
+  components:
+  - type: SurgicalLavage
+  - type: NonContactSurgicalTool
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Saline
+          Quantity: 100
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Spillable
+    solution: drink
+  - type: ExaminableSolution
+    solution: drink

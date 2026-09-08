@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Cabinet sprites by BlueMoon Station contributors, https://github.com/BlueMoonSS13/BlueMoon-Station; ported from BlueMoon-Station12-master",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "filingcabinet" }, { "name": "filingcabinet-open" },
+    { "name": "chestdrawer" }, { "name": "chestdrawer-open" },
+    { "name": "tallcabinet" }, { "name": "tallcabinet-open" },
+    { "name": "employmentcabinet" }, { "name": "employmentcabinet-open" }
+  ]
+}

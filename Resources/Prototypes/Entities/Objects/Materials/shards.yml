@@ -66,6 +66,8 @@
         acts: [ "Destruction" ]
   - type: StepTrigger
     intersectRatio: 0.2
+    requiredTriggeredSpeed: 0.1
+  - type: GlassShardEmbed
   - type: PreventableStepTrigger
   - type: Slippery
     slipSound:

@@ -45,6 +45,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private StarlightEntitySystem _entitySystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {

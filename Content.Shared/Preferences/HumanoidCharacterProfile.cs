@@ -31,7 +31,7 @@ namespace Content.Shared.Preferences
         // Radiant Sector: these are the playable species that have a selectable native language.
         private static readonly HashSet<string> NativeLanguageSpecies = new()
         {
-            "Reptilian", "Vox", "Diona", "SlimePerson", "Moth", "Arachnid",
+            "Human", "Reptilian", "Vox", "Diona", "SlimePerson", "Moth", "Arachnid",
             "Vulpkanin", "Tajaran", "Resomi", "Feroxi", "Shadowkin", "Dwarf",
             "Oni", "Harpy", "Goblin", "Sheleg", "DemonSpecies", "Felinid", // Radiant Sector
         };

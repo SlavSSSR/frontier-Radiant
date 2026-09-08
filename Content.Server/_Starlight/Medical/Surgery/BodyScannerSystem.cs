@@ -23,6 +23,7 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SurgerySystem _surgery = default!;
 
     private float _updateAccumulator;
 
@@ -153,6 +154,49 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
             {
                 occupiedBodySlots.Add(GetPartIdentity(part));
 
+                if (TryComp<SurgicalSterilityComponent>(partId, out var sterility))
+                {
+                    foreach (var (site, seconds) in sterility.NecrosisSeconds)
+                    {
+                        var siteName = site == SurgicalSite.Surface ? GetPartName(part)
+                            : Loc.GetString($"surgical-site-{site.ToString().ToLowerInvariant()}");
+                        diagnostics.Add(new BodyScannerDiagnosticEntry(
+                            Loc.GetString("surgical-scanner-necrosis", ("part", siteName), ("minutes", (int)(seconds / 60))),
+                            BodyScannerDiagnosticSeverity.Critical));
+                    }
+                    foreach (var site in sterility.Draped.OrderBy(site => site))
+                    {
+                        var siteName = site == SurgicalSite.Surface ? GetPartName(part)
+                            : Loc.GetString($"surgical-site-{site.ToString().ToLowerInvariant()}");
+                        diagnostics.Add(new BodyScannerDiagnosticEntry(
+                            Loc.GetString("surgical-scanner-drape", ("part", siteName)),
+                            BodyScannerDiagnosticSeverity.Anatomy));
+                    }
+                    foreach (var (site, level) in sterility.Contamination.OrderBy(entry => entry.Key))
+                    {
+                        if (level == 0)
+                            continue;
+                        var siteName = site == SurgicalSite.Surface ? GetPartName(part)
+                            : Loc.GetString($"surgical-site-{site.ToString().ToLowerInvariant()}");
+                        diagnostics.Add(new BodyScannerDiagnosticEntry(
+                            Loc.GetString("surgical-scanner-contamination", ("part", siteName), ("level", level)),
+                            BodyScannerDiagnosticSeverity.Warning));
+                    }
+                    foreach (var (site, infection) in sterility.Infection.OrderBy(entry => entry.Key))
+                    {
+                        var stage = SurgicalInfectionRules.Stage(infection);
+                        if (infection <= 0)
+                            continue;
+                        var siteName = site == SurgicalSite.Surface ? GetPartName(part)
+                            : Loc.GetString($"surgical-site-{site.ToString().ToLowerInvariant()}");
+                        diagnostics.Add(new BodyScannerDiagnosticEntry(
+                            Loc.GetString("surgical-scanner-infection", ("part", siteName),
+                                ("stage", Loc.GetString(_surgery.IsSurgicalSlime(patient)
+                                    ? $"surgical-slime-stage-{stage}" : $"surgical-infection-stage-{stage}"))),
+                            stage >= 2 ? BodyScannerDiagnosticSeverity.Critical : BodyScannerDiagnosticSeverity.Warning));
+                    }
+                }
+
                 if (TryComp<SurgicalCavityStateComponent>(partId, out var cavities))
                 {
                     AddCavityDiagnostic(diagnostics, cavities.RibcageOpen, "health-analyzer-cavity-ribcage-open");
@@ -192,6 +236,35 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
                 }
 
                 var metadata = MetaData(partId);
+                if (TryComp<EmbeddedGlassComponent>(partId, out var glass) && glass.Fragments.Count > 0)
+                    diagnostics.Add(new BodyScannerDiagnosticEntry(
+                        Loc.GetString("surgical-scanner-glass", ("part", GetPartName(part)), ("count", glass.Fragments.Count)),
+                        BodyScannerDiagnosticSeverity.Warning));
+                foreach (var organ in _body.GetPartOrgans(partId, part))
+                {
+                    if (TryComp<SurgicalSterilityComponent>(organ.Id, out var organState))
+                    {
+                        var contamination = organState.Contamination.Values.Sum();
+                        if (contamination > 0)
+                            diagnostics.Add(new BodyScannerDiagnosticEntry(
+                                Loc.GetString("surgical-scanner-contamination", ("part", MetaData(organ.Id).EntityName),
+                                    ("level", contamination)), BodyScannerDiagnosticSeverity.Warning));
+                        foreach (var infection in organState.Infection.Values.Where(value => value > 0))
+                        {
+                            var stage = SurgicalInfectionRules.Stage(infection);
+                            diagnostics.Add(new BodyScannerDiagnosticEntry(
+                                Loc.GetString("surgical-scanner-infection", ("part", MetaData(organ.Id).EntityName),
+                                    ("stage", Loc.GetString($"surgical-infection-stage-{stage}"))),
+                                stage >= 2 ? BodyScannerDiagnosticSeverity.Critical : BodyScannerDiagnosticSeverity.Warning));
+                        }
+                    }
+                    if (!TryComp<SurgicalOrganNecrosisComponent>(organ.Id, out var necrosis))
+                        continue;
+                    diagnostics.Add(new BodyScannerDiagnosticEntry(
+                        Loc.GetString(necrosis.Dead ? "surgical-scanner-organ-dead" : "surgical-scanner-organ-necrosis",
+                            ("organ", MetaData(organ.Id).EntityName), ("minutes", (int)(necrosis.Seconds / 60))),
+                        BodyScannerDiagnosticSeverity.Critical));
+                }
                 if (metadata.EntityPrototype?.ID.Contains("Cyber", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     diagnostics.Add(new BodyScannerDiagnosticEntry(
@@ -280,9 +353,12 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
     private bool IsSurgicalImplant(EntityUid organ)
     {
         return HasComp<EyeImplantComponent>(organ)
+               || HasComp<DecorativeCyberEyesComponent>(organ)
                || HasComp<NoseImplantComponent>(organ)
                || HasComp<HandImplantComponent>(organ)
-               || HasComp<BrainImplantComponent>(organ);
+               || HasComp<BrainImplantComponent>(organ)
+               || HasComp<ChestImplantComponent>(organ)
+               || HasComp<HeartImplantComponent>(organ);
     }
 
     private IEnumerable<(string SlotId, EntityUid Organ)> GetInstalledOrgansBySlot(EntityUid partId, BodyPartComponent part)

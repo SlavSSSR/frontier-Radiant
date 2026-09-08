@@ -125,6 +125,8 @@
   name: medical mask
   description: A close-fitting sterile mask that can be connected to an air supply.
   components:
+  - type: SurgicalProtection
+  - type: SurgicalItemSterility
   - type: Item
     size: Tiny
   - type: Sprite
@@ -294,6 +296,8 @@
   name: sterile mask
   description: A sterile mask designed to help prevent the spread of diseases.
   components:
+  - type: SurgicalProtection
+  - type: SurgicalItemSterility
   - type: Sprite
     sprite: Clothing/Mask/sterile.rsi
   - type: Clothing

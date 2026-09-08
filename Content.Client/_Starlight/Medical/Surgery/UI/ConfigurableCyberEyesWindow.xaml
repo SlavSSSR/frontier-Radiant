@@ -1,0 +1,11 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client._Starlight.Medical.Surgery.UI.ConfigurableCyberEyesWindow"
+               Title="Настройка киберглаз"
+               MinSize="420 360" SetSize="460 420">
+    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="10">
+        <Label Text="Цвет радужки" HorizontalAlignment="Center" />
+        <ColorSelectorSliders Name="IrisColorSelector" HorizontalExpand="True" VerticalExpand="True" />
+        <Button Name="SaveButton" Text="Сохранить цвет" HorizontalAlignment="Center" MinWidth="180" />
+    </BoxContainer>
+</DefaultWindow>

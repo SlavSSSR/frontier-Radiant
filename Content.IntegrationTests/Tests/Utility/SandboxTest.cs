@@ -6,11 +6,34 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Robust.UnitTesting;
+using Robust.Shared.GameObjects;
 
 namespace Content.IntegrationTests.Tests.Utility;
 
 public sealed class SandboxTest
 {
+    [Test]
+    public async Task AssembliesWithoutContentStartup()
+    {
+        // Keep assembly safety checks independent of unrelated prototype or sprite failures.
+        var options = new RobustIntegrationTest.ClientIntegrationOptions
+        {
+            // Use content-repository paths, but load neither content assemblies nor content prototypes at startup.
+            ContentStart = true,
+            Options = new GameControllerOptions { LoadConfigAndUserData = false, LoadContentResources = false },
+        };
+        options.BeforeStart += () =>
+        {
+            var factory = IoCManager.Resolve<IComponentFactory>();
+            factory.DoAutoRegistrations();
+            factory.GenerateNetIds();
+        };
+        using var client = new RobustIntegrationTest.ClientIntegrationInstance(options);
+        await client.WaitIdleAsync();
+        await client.CheckSandboxed(typeof(Shared.IoC.SharedContentIoC).Assembly);
+        await client.CheckSandboxed(typeof(Client.Entry.EntryPoint).Assembly);
+    }
+
     [Test]
     public async Task Test()
     {

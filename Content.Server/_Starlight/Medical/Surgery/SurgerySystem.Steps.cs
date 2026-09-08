@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
@@ -15,6 +16,9 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared._radiant.ERP;
 using Content.Shared.Animals;
+using Content.Shared.Popups;
+using Content.Server.Humanoid;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -29,6 +33,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private StarlightEntitySystem _entity = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
 
     public void InitializeSteps()
     {
@@ -48,6 +53,9 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<CustomLimbMarkerComponent, ComponentRemove>(CustomLimbRemoved);
 
         SubscribeLocalEvent<SurgeryRemoveAccentComponent, SurgeryStepEvent>(OnRemoveAccent);
+        SubscribeLocalEvent<SurgeryRemoveTattoosComponent, SurgeryStepEvent>(OnRemoveTattoos);
+        SubscribeLocalEvent<DecorativeCyberEyesComponent, SurgeryOrganImplantationCompleted>(OnDecorativeEyesImplanted);
+        SubscribeLocalEvent<DecorativeCyberEyesComponent, SurgeryOrganExtracted>(OnDecorativeEyesExtracted);
 
     }
 
@@ -130,32 +138,47 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepOrganInsertComplete(Entity<SurgeryStepOrganInsertComponent> ent, ref SurgeryStepEvent args)
     {
         if (!TryGetStepTool(args.StepProto, args.Tools, out var organId)
+            || IsDeadSurgicalItem(organId)
             || !TryComp<BodyPartComponent>(args.Part, out var bodyPart))
         {
             args.IsCancelled = true;
             return;
         }
 
-        var containerId = SharedBodySystem.GetOrganContainerId(ent.Comp.Slot);
+        string? selectedSlot = null;
+        BaseContainer? organContainer = null;
+        var capacityOperation = ent.Comp.AlternateSlots.Count > 0;
+        foreach (var slot in new[] { ent.Comp.Slot }.Concat(ent.Comp.AlternateSlots))
+        {
+            var containerId = SharedBodySystem.GetOrganContainerId(slot);
+            if (!_containers.TryGetContainer(args.Part, containerId, out var candidate))
+            {
+                if (!_body.TryCreateOrganSlot(args.Part, slot, out _, bodyPart)
+                    || !_containers.TryGetContainer(args.Part, containerId, out candidate))
+                    continue;
+            }
 
-        // Frontier species do not all declare Starlight's optional surgical slots
-        // in their body prototypes. Create the requested slot on demand so every
-        // compatible race can receive implants and cavity items.
-        if (!_body.CanInsertOrgan(args.Part, ent.Comp.Slot, bodyPart)
-            && !_body.TryCreateOrganSlot(args.Part, ent.Comp.Slot, out _, bodyPart))
+            if (capacityOperation && candidate.ContainedEntities.Count > 0)
+                continue;
+
+            selectedSlot = slot;
+            organContainer = candidate;
+            break;
+        }
+
+        if (selectedSlot == null || organContainer == null)
         {
             args.IsCancelled = true;
             return;
         }
 
-        if (ent.Comp.Slot == "cavity" && _containers.TryGetContainer(args.Part, containerId, out var container))
+        if (selectedSlot == "cavity")
         {
-            _containers.Insert(organId, container);
+            _containers.Insert(organId, organContainer);
             return;
         }
 
-        if (!TryComp<OrganComponent>(organId, out _)
-            || !_containers.TryGetContainer(args.Part, containerId, out var organContainer))
+        if (!TryComp<OrganComponent>(organId, out _))
         {
             args.IsCancelled = true;
             return;
@@ -361,7 +384,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         foreach (var required in (stepComp.Tools ?? []).Values)
         {
             var component = required.Component.GetType();
-            var candidate = tools.FirstOrDefault(uid => HasComp(uid, component));
+            var candidate = tools.FirstOrDefault(uid => HasComp(uid, component) && !IsDeadSurgicalItem(uid));
             if (candidate == default)
                 continue;
 
@@ -383,11 +406,18 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         var type = ent.Comp.Organ.Values.First().Component.GetType();
 
         var destination = Transform(args.Body).Coordinates;
-        if (ent.Comp.Slot != null && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
+        if (ent.Comp.Slot != null)
         {
-            foreach (var containedEnt in container.ContainedEntities.ToArray())
-                if (HasComp(containedEnt, type))
+            foreach (var slot in new[] { ent.Comp.Slot }.Concat(ent.Comp.AlternateSlots))
+            {
+                if (!_containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+                    continue;
+
+                foreach (var containedEnt in container.ContainedEntities.ToArray())
                 {
+                    if (!HasComp(containedEnt, type))
+                        continue;
+
                     if (!_containers.Remove(containedEnt, container, force: true, destination: destination))
                         return;
 
@@ -396,6 +426,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                     args.IsCancelled = false;
                     return;
                 }
+            }
 
             return;
         }
@@ -423,6 +454,51 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 RemCompDeferred(args.Body, accent);
     }
 
+    private void OnRemoveTattoos(Entity<SurgeryRemoveTattoosComponent> ent, ref SurgeryStepEvent args)
+    {
+        if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoid)
+            || !TryComp<BodyPartComponent>(args.Part, out var part))
+        {
+            args.IsCancelled = true;
+            return;
+        }
+
+        var tattoos = humanoid.MarkingSet.Markings.Values
+            .SelectMany(markings => markings)
+            .Where(marking => SurgicalTattooUtility.IsTattooOnPart(marking, part, _prototypes))
+            .Select(marking => marking.MarkingId)
+            .ToArray();
+
+        if (tattoos.Length == 0)
+        {
+            args.IsCancelled = true;
+            return;
+        }
+
+        foreach (var tattoo in tattoos)
+            _humanoidAppearance.RemoveMarking(args.Body, tattoo, humanoid: humanoid);
+    }
+
+    private void OnDecorativeEyesImplanted(Entity<DecorativeCyberEyesComponent> ent, ref SurgeryOrganImplantationCompleted args)
+    {
+        if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoid))
+            return;
+
+        ent.Comp.PreviousEyeColor = humanoid.EyeColor;
+        humanoid.EyeColor = ent.Comp.IrisColor;
+        Dirty(args.Body, humanoid);
+    }
+
+    private void OnDecorativeEyesExtracted(Entity<DecorativeCyberEyesComponent> ent, ref SurgeryOrganExtracted args)
+    {
+        if (ent.Comp.PreviousEyeColor is not { } previous || !TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoid))
+            return;
+
+        humanoid.EyeColor = previous;
+        ent.Comp.PreviousEyeColor = null;
+        Dirty(args.Body, humanoid);
+    }
+
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
 
@@ -443,9 +519,28 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         // Radiant sector: select the held limb matching the operated slot. The old
         // FirstOrDefault check could choose a tool or the other arm and cancel the step.
         if (!TryGetHeldLimbForSlot(args.Tools, slot, out var limbId, out var limb)
+            || IsDeadSurgicalItem(limbId)
             || !TryComp(args.Part, out BodyPartComponent? part)
-            || !TryResolveBodySlot(part, slot, out var actualSlot)
-            || !_body.AttachPart(args.Part, actualSlot, limbId, part, limb))
+            || !TryResolveBodySlot(part, slot, out var actualSlot))
+        {
+            args.IsCancelled = true;
+            return;
+        }
+
+        // A head carries the patient's identity, physiology and species-specific
+        // body setup.  Allowing a foreign head here creates an invalid mixed body
+        // and has historically caused both wrong sprites and container errors.
+        // Reject it before attaching anything and make the warning unmissable for
+        // the surgeon.
+        if (slot.Replace("_", " ").ToLowerInvariant() == "head" && !IsHeadCompatibleWithBody(args.Body, limbId))
+        {
+            args.IsCancelled = true;
+            _popup.PopupEntity(Loc.GetString("starlight-surgery-popup-incompatible-head"), args.User, args.User,
+                PopupType.LargeCaution);
+            return;
+        }
+
+        if (!_body.AttachPart(args.Part, actualSlot, limbId, part, limb))
             args.IsCancelled = true;
     }
 
@@ -465,6 +560,18 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         actualSlot = string.Empty;
         return false;
+    }
+
+    private bool IsHeadCompatibleWithBody(EntityUid body, EntityUid head)
+    {
+        if (!TryComp<BodyComponent>(body, out var bodyComp)
+            || bodyComp.Prototype is not { } bodyPrototypeId
+            || !_prototypes.TryIndex<BodyPrototype>(bodyPrototypeId, out var bodyPrototype)
+            || !bodyPrototype.Slots.TryGetValue("head", out var headSlot)
+            || headSlot.Part is not { } expectedHead)
+            return false;
+
+        return MetaData(head).EntityPrototype?.ID == expectedHead.Id;
     }
 
     private bool TryGetHeldLimbForSlot(
@@ -495,7 +602,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         foreach (var candidate in held)
         {
-            if (!TryComp<BodyPartComponent>(candidate, out var candidatePart)
+            if (IsDeadSurgicalItem(candidate) || !TryComp<BodyPartComponent>(candidate, out var candidatePart)
                 || candidatePart.PartType != expectedType
                 || expectedSymmetry != BodyPartSymmetry.None && candidatePart.Symmetry != expectedSymmetry)
                 continue;

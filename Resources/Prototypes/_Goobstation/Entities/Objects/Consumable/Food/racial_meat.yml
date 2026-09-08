@@ -1,0 +1,491 @@
+# Racial meat from Goob Station PR #696.  Shared bases keep every variant
+# mechanically identical to the upstream recipe while retaining its own sprite.
+- type: entity
+  abstract: true
+  id: FoodRacialMeatRawBase
+  parent: FoodMeatHuman
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Consumable/Food/meat.rsi
+
+- type: entity
+  abstract: true
+  id: FoodRacialMeatCookedBase
+  parent: FoodMeatCooked
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Consumable/Food/meat.rsi
+
+- type: entity
+  abstract: true
+  id: FoodRacialCutletRawBase
+  parent: FoodMeatBase
+  components:
+  - type: Tag
+    tags: [Raw, Cutlet, Meat]
+  - type: Sprite
+    sprite: _Goobstation/Objects/Consumable/Food/meat.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+
+- type: entity
+  abstract: true
+  id: FoodRacialCutletCookedBase
+  parent: FoodMeatBase
+  components:
+  - type: Tag
+    tags: [Cooked, Cutlet, Meat]
+  - type: Sprite
+    sprite: _Goobstation/Objects/Consumable/Food/meat.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+
+# Vulpkanin
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatVulpkanin
+  name: raw vulpkanin meat
+  components:
+  - type: Sprite
+    state: vulp
+  - type: Construction
+    graph: VulpkaninSteak
+    node: start
+    defaultTarget: steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodVulpkaninCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedVulpkanin
+  name: vulpkanin steak
+  components:
+  - type: Sprite
+    layers:
+    - state: vulp-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodVulpkaninCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodVulpkaninCutlet
+  name: raw vulpkanin cutlet
+  components:
+  - type: Sprite
+    state: vulp_cutlet
+  - type: Construction
+    graph: VulpkaninCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodVulpkaninCutletCooked
+  name: vulpkanin cutlet
+  components:
+  - type: Sprite
+    state: vulp_cutlet-cooked
+  - type: Construction
+    graph: VulpkaninCutlet
+    node: vulpkanin cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: VulpkaninCutlet, Taco: VulpkaninCutlet }
+
+# Arachnid
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatArachnid
+  name: raw arachnid meat
+  components:
+  - type: Sprite
+    state: arachnid
+  - type: Construction
+    graph: ArachnidSteak
+    node: start
+    defaultTarget: steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodArachnidCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedArachnid
+  name: arachnid steak
+  components:
+  - type: Sprite
+    layers:
+    - state: arachnid-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodArachnidCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodArachnidCutlet
+  name: raw arachnid cutlet
+  components:
+  - type: Sprite
+    state: arachnid_cutlet
+  - type: Construction
+    graph: ArachnidCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodArachnidCutletCooked
+  name: arachnid cutlet
+  components:
+  - type: Sprite
+    state: arachnid_cutlet-cooked
+  - type: Construction
+    graph: ArachnidCutlet
+    node: arachnid cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: ArachnidCutlet, Taco: ArachnidCutlet }
+
+# Slime
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatSlimeMeat
+  name: raw slime meat
+  components:
+  - type: Sprite
+    state: slime
+  - type: Construction
+    graph: SlimeSteak
+    node: start
+    defaultTarget: steak
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 6
+  - type: FlavorProfile
+    flavors: [meaty, slimy]
+  - type: SliceableFood
+    count: 3
+    slice: FoodSlimeCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedSlime
+  name: slime steak
+  components:
+  - type: Sprite
+    layers:
+    - state: slime-cooked
+  - type: FlavorProfile
+    flavors: [meaty, slimy]
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 5
+  - type: SliceableFood
+    count: 3
+    slice: FoodSlimeCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodSlimeCutlet
+  name: raw slime cutlet
+  components:
+  - type: Sprite
+    state: slime_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 4
+  - type: Construction
+    graph: SlimeCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodSlimeCutletCooked
+  name: slime cutlet
+  components:
+  - type: Sprite
+    state: slime_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Slime
+          Quantity: 3
+  - type: Construction
+    graph: SlimeCutlet
+    node: slime cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: SlimeCutlet, Taco: SlimeCutlet }
+
+# Tajaran
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatTajaran
+  name: raw tajaran meat
+  components:
+  - type: Sprite
+    state: tajaran
+  - type: Construction
+    graph: TajaranSteak
+    node: start
+    defaultTarget: steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodTajaranCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedTajaran
+  name: tajaran steak
+  components:
+  - type: Sprite
+    layers:
+    - state: tajaran-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodTajaranCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodTajaranCutlet
+  name: raw tajaran cutlet
+  components:
+  - type: Sprite
+    state: tajaran_cutlet
+  - type: Construction
+    graph: TajaranCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodTajaranCutletCooked
+  name: tajaran cutlet
+  components:
+  - type: Sprite
+    state: tajaran_cutlet-cooked
+  - type: Construction
+    graph: TajaranCutlet
+    node: tajaran cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: TajaranCutlet, Taco: TajaranCutlet }
+
+# Vox and Resomi have poultry flavour.
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatVox
+  name: raw vox meat
+  components:
+  - type: Sprite
+    state: vox
+  - type: Construction
+    graph: VoxSteak
+    node: start
+    defaultTarget: steak
+  - type: FlavorProfile
+    flavors: [chicken]
+  - type: SliceableFood
+    count: 3
+    slice: FoodVoxCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedVox
+  name: vox steak
+  components:
+  - type: Sprite
+    layers:
+    - state: vox-cooked
+  - type: FlavorProfile
+    flavors: [chicken]
+  - type: SliceableFood
+    count: 3
+    slice: FoodVoxCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodVoxCutlet
+  name: raw vox cutlet
+  components:
+  - type: Sprite
+    state: vox_cutlet
+  - type: Construction
+    graph: VoxCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodVoxCutletCooked
+  name: vox cutlet
+  components:
+  - type: Sprite
+    state: vox_cutlet-cooked
+  - type: Construction
+    graph: VoxCutlet
+    node: vox cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: VoxCutlet, Taco: VoxCutlet }
+
+# Moth
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatMoth
+  name: raw moth meat
+  components:
+  - type: Sprite
+    state: moth
+  - type: Construction
+    graph: MothSteak
+    node: start
+    defaultTarget: steak
+  - type: FlavorProfile
+    flavors: [meaty, light]
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 3
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 6
+  - type: SliceableFood
+    count: 3
+    slice: FoodMothCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedMoth
+  name: moth steak
+  components:
+  - type: Sprite
+    layers:
+    - state: moth-cooked
+  - type: FlavorProfile
+    flavors: [meaty, light]
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 3
+  - type: SliceableFood
+    count: 3
+    slice: FoodMothCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodMothCutlet
+  name: raw moth cutlet
+  components:
+  - type: Sprite
+    state: moth_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 2
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Construction
+    graph: MothCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodMothCutletCooked
+  name: moth cutlet
+  components:
+  - type: Sprite
+    state: moth_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Construction
+    graph: MothCutlet
+    node: moth cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: MothCutlet, Taco: MothCutlet }
+
+# Resomi
+- type: entity
+  parent: FoodRacialMeatRawBase
+  id: FoodMeatResomi
+  name: raw resomi meat
+  components:
+  - type: Sprite
+    state: resomi
+  - type: Construction
+    graph: ResomiSteak
+    node: start
+    defaultTarget: steak
+  - type: FlavorProfile
+    flavors: [chicken]
+  - type: SliceableFood
+    count: 3
+    slice: FoodResomiCutlet
+- type: entity
+  parent: FoodRacialMeatCookedBase
+  id: FoodMeatCookedResomi
+  name: resomi steak
+  components:
+  - type: Sprite
+    layers:
+    - state: resomi-cooked
+  - type: FlavorProfile
+    flavors: [chicken]
+  - type: SliceableFood
+    count: 3
+    slice: FoodResomiCutletCooked
+- type: entity
+  parent: FoodRacialCutletRawBase
+  id: FoodResomiCutlet
+  name: raw resomi cutlet
+  components:
+  - type: Sprite
+    state: resomi_cutlet
+  - type: Construction
+    graph: ResomiCutlet
+    node: start
+    defaultTarget: cutlet
+- type: entity
+  parent: FoodRacialCutletCookedBase
+  id: FoodResomiCutletCooked
+  name: resomi cutlet
+  components:
+  - type: Sprite
+    state: resomi_cutlet-cooked
+  - type: Construction
+    graph: ResomiCutlet
+    node: resomi cutlet
+  - type: FoodSequenceElement
+    entries: { Burger: ResomiCutlet, Taco: ResomiCutlet }

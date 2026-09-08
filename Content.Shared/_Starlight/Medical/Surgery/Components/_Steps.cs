@@ -16,6 +16,7 @@ namespace Content.Shared._Starlight.Medical.Surgery.Components;
 }
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryStepAmputationEffectComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryRemoveAccentComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryRemoveTattoosComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryClearProgressComponent : Component;
 
 /// <summary>Radiant sector: applies an adult-anatomy operation after a surgery step succeeds.</summary>

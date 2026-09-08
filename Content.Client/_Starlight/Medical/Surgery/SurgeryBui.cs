@@ -327,6 +327,10 @@ public sealed partial class SurgeryBui : BoundUserInterface
             if (priority != 0)
                 return priority;
 
+            var site = _system.GetSurgicalSite(a.Ent.Owner).CompareTo(_system.GetSurgicalSite(b.Ent.Owner));
+            if (site != 0)
+                return site;
+
             return string.Compare(a.Name, b.Name, StringComparison.Ordinal);
         });
 
@@ -415,6 +419,9 @@ public sealed partial class SurgeryBui : BoundUserInterface
                             break;
                         case StepInvalidReason.DisabledTool:
                             stepName.AddMarkupOrThrow(Loc.GetString("starlight-surgery-ui-disabled-tool"));
+                            break;
+                        case StepInvalidReason.DirtyDrape:
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgical-ui-dirty-drape"));
                             break;
                         case StepInvalidReason.TooHigh:
                             stepName.AddMarkupOrThrow(Loc.GetString("starlight-surgery-ui-item-too-large"));

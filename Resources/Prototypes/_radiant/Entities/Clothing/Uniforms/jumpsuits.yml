@@ -432,3 +432,20 @@
     sprite: _radiant/Clothing/Uniforms/Jumpsuit/prosecutor.rsi
   - type: Clothing
     sprite: _radiant/Clothing/Uniforms/Jumpsuit/prosecutor.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformRadiantNtrdrip
+  name: форма корпоративного представителя
+  description: Белая парадная форма для официальных встреч и деловых мероприятий.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Uniforms/formal_attire.rsi
+    state: ntrdrip
+  - type: Clothing
+    sprite: _radiant/Clothing/Uniforms/formal_attire_worn.rsi
+    equippedState: ntrdrip
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable

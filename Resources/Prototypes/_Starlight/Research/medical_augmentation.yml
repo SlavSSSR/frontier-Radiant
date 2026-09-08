@@ -1,0 +1,36 @@
+- type: technology
+  id: StarlightDecorativeEyes
+  name: starlight-research-decorative-eyes
+  entityIcon: DecorativeCyberEyesConfigurable
+  discipline: NFMedical
+  tier: 1
+  cost: 5000
+  recipeUnlocks: [ DecorativeCyberEyesRed, DecorativeCyberEyesCyan, DecorativeCyberEyesViolet, DecorativeCyberEyesGold, DecorativeCyberEyesConfigurable ]
+  technologyPrerequisites: [ StarlightBudgetCyberOrgans ]
+  prerequisiteLineType: LShape
+  position: 4, 14
+
+- type: technology
+  id: StarlightInternalAnalyzer
+  name: starlight-research-internal-analyzer
+  entityIcon: ChestImplantInternalAnalyzer
+  discipline: NFMedical
+  tier: 1
+  cost: 7500
+  recipeUnlocks: [ ChestImplantInternalAnalyzer ]
+  technologyPrerequisites: [ StarlightCommsImplant ]
+  prerequisiteLineType: LShape
+  position: 5, 15
+
+- type: technology
+  id: StarlightHeartImplants
+  name: starlight-research-heart-implants
+  entityIcon: ChestImplantHemostatic
+  discipline: NFMedical
+  tier: 1
+  cost: 10000
+  recipeUnlocks: [ ChestImplantHemostatic, ChestImplantThermal ]
+  technologyPrerequisites: [ StarlightInternalAnalyzer ]
+  prerequisiteLineType: LShape
+  position: 5, 16
+

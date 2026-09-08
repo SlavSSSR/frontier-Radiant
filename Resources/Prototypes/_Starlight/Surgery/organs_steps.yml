@@ -340,6 +340,186 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
 
+# chest implants
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateChestImplant
+  name: Locate Chest Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: brain_implant_nexus
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareChestImplantSite
+  name: Prepare Chest Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertChestImplant
+  name: Insert Chest Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ChestImplant
+  - type: SurgeryStepOrganInsert
+    slot: chest_implant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: brain_implant_nexus
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectChestImplant
+  name: Connect Chest Implant
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveChestImplant
+  name: Remove Chest Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: ChestImplant
+    slot: chest_implant
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+# heart implants
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateHeartImplantSite
+  name: Locate Heart Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 4
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepStabilizeHeartForImplant
+  name: Stabilize Heart
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepOpenPericardium
+  name: Open Pericardium
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertHeartImplant
+  name: Insert Heart Implant
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: HeartImplant
+  - type: SurgeryStepOrganInsert
+    slot: heart_implant_1
+    alternateSlots:
+    - heart_implant_2
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: brain_implant_nexus
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectHeartImplant
+  name: Connect Heart Implant
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepConnectHeartImplant
+  id: SurgeryStepDisconnectHeartImplant
+  name: Disconnect Heart Implant
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSealPericardium
+  name: Seal Pericardium
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Cautery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveHeartImplant
+  name: Remove Heart Implant
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: HeartImplant
+    slot: heart_implant_1
+    alternateSlots:
+    - heart_implant_2
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
 # tongue
 - type: entity
   parent: SurgeryStepBase

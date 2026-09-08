@@ -1,0 +1,113 @@
+- type: constructionGraph
+  id: VulpkaninSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedVulpkanin
+- type: constructionGraph
+  id: ArachnidSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedArachnid
+- type: constructionGraph
+  id: SlimeSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedSlime
+- type: constructionGraph
+  id: TajaranSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedTajaran
+- type: constructionGraph
+  id: VoxSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedVox
+- type: constructionGraph
+  id: MothSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedMoth
+- type: constructionGraph
+  id: ResomiSteak
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: steak, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: steak
+    entity: FoodMeatCookedResomi
+
+- type: constructionGraph
+  id: VulpkaninCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodVulpkaninCutletCooked
+- type: constructionGraph
+  id: ArachnidCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodArachnidCutletCooked
+- type: constructionGraph
+  id: SlimeCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodSlimeCutletCooked
+- type: constructionGraph
+  id: TajaranCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodTajaranCutletCooked
+- type: constructionGraph
+  id: VoxCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodVoxCutletCooked
+- type: constructionGraph
+  id: MothCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodMothCutletCooked
+- type: constructionGraph
+  id: ResomiCutlet
+  start: start
+  graph:
+  - node: start
+    edges: [{ to: cutlet, completed: [!type:PlaySound { sound: /Audio/Effects/sizzle.ogg }], steps: [{ minTemperature: 335 }] }]
+  - node: cutlet
+    entity: FoodResomiCutletCooked

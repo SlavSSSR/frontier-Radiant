@@ -46,6 +46,7 @@ species-lore-category-other = Другие виды
 
 # Radiant Sector - native languages displayed in the species information window.
 species-lore-language-galactic = Общегалактический — доступен всем разумным видам.
+species-lore-language-solar = Общесолнечный — родной язык людей Солнечной системы.
 species-lore-language-draconic = Синта'Унати — общеупотребительный язык унатхов. Незнающим он кажется шипением и дребезжанием.
 species-lore-language-bubblish = Бабблилиш — язык слизней, смесь булькающих звуков и хлюпков; без вспомогательных средств человеку говорить на нём очень сложно.
 species-lore-language-rootspeak = Корневой язык — скрипучая, едва различимая инстинктивная речь дион. Одна фраза может сочетать от одного до двенадцати голосов и нот.
