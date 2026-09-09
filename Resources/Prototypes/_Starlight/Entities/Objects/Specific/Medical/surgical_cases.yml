@@ -29,6 +29,8 @@
   parent: BaseStarlightSurgicalKit
   name: medical surgical kit
   description: A compact medical case for surgical tools.
+  components:
+  - type: SterileSurgicalStorage
 
 - type: entity
   id: SurgicalKitRobotics

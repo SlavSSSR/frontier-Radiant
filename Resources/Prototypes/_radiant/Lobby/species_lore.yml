@@ -11,7 +11,7 @@
   - species-lore-stat-metabolism-standard
   - species-lore-stat-oxygen
   abilities: [species-lore-human-ability-1]
-  languages: [species-lore-language-galactic]
+  languages: [species-lore-language-galactic, species-lore-language-solar]
   features:
   - species-lore-human-feature-1
   interactionTips:

@@ -327,6 +327,10 @@ public sealed partial class SurgeryBui : BoundUserInterface
             if (priority != 0)
                 return priority;
 
+            var site = _system.GetSurgicalSite(a.Ent.Owner).CompareTo(_system.GetSurgicalSite(b.Ent.Owner));
+            if (site != 0)
+                return site;
+
             return string.Compare(a.Name, b.Name, StringComparison.Ordinal);
         });
 
@@ -416,6 +420,9 @@ public sealed partial class SurgeryBui : BoundUserInterface
                         case StepInvalidReason.DisabledTool:
                             stepName.AddMarkupOrThrow(Loc.GetString("starlight-surgery-ui-disabled-tool"));
                             break;
+                        case StepInvalidReason.DirtyDrape:
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgical-ui-dirty-drape"));
+                            break;
                         case StepInvalidReason.TooHigh:
                             stepName.AddMarkupOrThrow(Loc.GetString("starlight-surgery-ui-item-too-large"));
                             break;
@@ -428,7 +435,15 @@ public sealed partial class SurgeryBui : BoundUserInterface
                     }
                 }
                 else
+                {
                     stepButton.TooltipTextSupplier = stepTooltip;
+                    if (_player.LocalEntity is { } surgeon
+                        && _system.CanPerformStep(surgeon, Owner, part.PartType, stepButton.Step, false, out _, out _, out var tools))
+                    {
+                        var chance = _system.GetStepSuccessRate(stepButton.Step, tools);
+                        stepName.AddText(Loc.GetString("surgical-step-success-chance", ("chance", Math.Round(chance * 100))));
+                    }
+                }
             }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;

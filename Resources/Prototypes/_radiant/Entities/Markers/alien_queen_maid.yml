@@ -1,0 +1,15 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobAlienQueenMaid
+  name: спавнер ксено
+  suffix: Ксенокоролева-горничная
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _radiant/Mobs/Aliens/Xenos/queen_maid.rsi
+      state: running
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobAlienQueenMaid

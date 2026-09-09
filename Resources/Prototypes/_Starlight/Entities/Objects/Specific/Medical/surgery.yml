@@ -5,6 +5,7 @@
   parent: BaseToolSurgery
   abstract: true
   components:
+  - type: NonContactSurgicalTool
   - type: BoneGel
     speed: 1.0
     startSound:

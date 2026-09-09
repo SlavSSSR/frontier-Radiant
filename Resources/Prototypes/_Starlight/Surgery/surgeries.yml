@@ -8,6 +8,8 @@
   id: SurgeryOpenIncision
   name: Open Incision
   components:
+  - type: SurgeryPartCondition
+    parts: [Head, Arm, Hand, Leg, Foot, Tail, Other]
   - type: Surgery
     priority: -100
     steps:
@@ -304,6 +306,26 @@
   - type: Sprite
     sprite: Objects/Fun/Instruments/microphone.rsi
     state: icon
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveTattoos
+  name: Remove Tattoos
+  description: Remove surgical-accessible tattoo markings without changing other body features.
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepRemoveTattoos
+    - SurgeryStepSutureIncision
+  - type: SurgeryPartCondition
+    parts: [ Torso, Head, Arm, Hand, Leg, Foot ]
+  - type: SurgeryTattooCondition
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
 
 
 #organs
@@ -701,7 +723,7 @@
     - type: OrganHeart
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: heart-on
+    state: brain-slime
 
 - type: entity
   parent: SurgeryImplantHeart
@@ -727,7 +749,7 @@
     - type: OrganHeart
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: heart-on
+    state: brain-slime
 #
 - type: entity
   parent: SurgeryBase
@@ -945,6 +967,146 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: hand_implant_insulated
+
+# Radiant sector: spawn-only torso implant operations.
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractChestImplant
+  name: Extract Chest Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepLocateChestImplant
+    - SurgeryStepConnectChestImplant
+    - SurgeryStepRemoveChestImplant
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: ChestImplant
+    container: chest_implant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: brain_implant_nexus
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantChestImplant
+  name: Implant Chest Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepPrepareChestImplantSite
+    - SurgeryStepInsertChestImplant
+    - SurgeryStepConnectChestImplant
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: ChestImplant
+    container: chest_implant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: brain_implant_nexus
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractHeartImplant
+  name: Extract Heart Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepLocateHeartImplantSite
+    - SurgeryStepStabilizeHeartForImplant
+    - SurgeryStepOpenPericardium
+    - SurgeryStepDisconnectHeartImplant
+    - SurgeryStepRemoveHeartImplant
+    - SurgeryStepSealPericardium
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: [ SlimePerson, NeoSlimePerson, IPC ]
+  - type: SurgeryOrganCountCondition
+    organ:
+    - type: HeartImplant
+    containers: [ heart_implant_1, heart_implant_2 ]
+    minimum: 1
+    maximum: 2
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantHeartImplant
+  name: Implant Heart Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepLocateHeartImplantSite
+    - SurgeryStepStabilizeHeartForImplant
+    - SurgeryStepOpenPericardium
+    - SurgeryStepInsertHeartImplant
+    - SurgeryStepConnectHeartImplant
+    - SurgeryStepSealPericardium
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: [ SlimePerson, NeoSlimePerson, IPC ]
+  - type: SurgeryOrganCountCondition
+    organ:
+    - type: HeartImplant
+    containers: [ heart_implant_1, heart_implant_2 ]
+    maximum: 1
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+
+- type: entity
+  parent: SurgeryExtractHeartImplant
+  id: SurgeryExtractHeartImplantSlime
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepLocateHeartImplantSite
+    - SurgeryStepStabilizeHeartForImplant
+    - SurgeryStepOpenPericardium
+    - SurgeryStepDisconnectHeartImplant
+    - SurgeryStepRemoveHeartImplant
+    - SurgeryStepSealPericardium
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist: [ SlimePerson, NeoSlimePerson ]
+
+- type: entity
+  parent: SurgeryImplantHeartImplant
+  id: SurgeryImplantHeartImplantSlime
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepLocateHeartImplantSite
+    - SurgeryStepStabilizeHeartForImplant
+    - SurgeryStepOpenPericardium
+    - SurgeryStepInsertHeartImplant
+    - SurgeryStepConnectHeartImplant
+    - SurgeryStepSealPericardium
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist: [ SlimePerson, NeoSlimePerson ]
 
 #
 - type: entity
@@ -1249,7 +1411,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain
+    state: brain-slime
 
 - type: entity
   parent: SurgeryBase
@@ -1280,7 +1442,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain
+    state: brain-slime
 #
 - type: entity
   parent: SurgeryBase

@@ -1,0 +1,11 @@
+- type: reaction
+  id: Surgicillin
+  reactants:
+    Dylovene:
+      amount: 1
+    Carbon:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    Surgicillin: 3

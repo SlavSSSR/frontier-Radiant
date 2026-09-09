@@ -145,3 +145,19 @@
     state: icon
   - type: Clothing
     sprite: _radiant/Clothing/Neck/black_soul_coat.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckSawwrCoat
+  name: плащ «Тёмный янтарь»
+  description: Практичный чёрный плащ с янтарно-золотыми акцентами.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Neck/dark_amber.rsi
+    state: sawwr_coat
+  - type: Clothing
+    sprite: _radiant/Clothing/Neck/dark_amber_worn.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable

@@ -18,6 +18,10 @@ public static class SpeciesLanguageUtility
 
         return humanoid.Species.Id switch
         {
+            // Humans have a selectable native language too.  Keeping it in this
+            // shared lookup automatically covers speech, radio relays, paper and
+            // the language menu rather than creating separate special cases.
+            "Human" => "Общесолнечный",
             "Reptilian" => "Синта'Унати",
             "Vox" => "Вокс-пиджин",
             "Diona" => "Корневой язык",

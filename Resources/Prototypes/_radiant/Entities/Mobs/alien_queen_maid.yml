@@ -1,0 +1,23 @@
+- type: entity
+  name: ксенокоролева-горничная
+  id: MobAlienQueenMaid
+  parent: MobXenoQueen
+  description: Нейтральное тело ксенокоролевы-горничной. Без игрока оно не проявляет агрессии.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AlienQueenMaid
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _radiant/Mobs/Aliens/Xenos/queen_maid.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: running
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead

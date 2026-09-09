@@ -50,6 +50,10 @@
   - Hemostat
   - BoneSetter
   - BoneGel
+  - SurgicalAntiseptic
+  - SurgicalSterileDrape
+  - SurgicalLavageBottle
+  - SurgicalSterilizerMachineCircuitboard
   - SurgicalKitMedical
   - SurgicalKitRobotics
   technologyPrerequisites: [ NFBasicMedicine ] # Radiant sector: separate lower branch; do not stretch it through the syringe gun.

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Uniform sprites by BlueMoon Station contributors, https://github.com/BlueMoonSS13/BlueMoon-Station; ported from BlueMoon-Station12-master",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "equipped-INNERCLOTHING", "directions": 4 },
+    { "name": "folded-equipped-INNERCLOTHING", "directions": 4 },
+    { "name": "ntrdrip", "directions": 4 }
+  ]
+}

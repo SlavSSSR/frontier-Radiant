@@ -289,6 +289,7 @@
   name: hospital gown
   description: Made from the wool of slaughtered baby lambs.  The cruelty makes it softer.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
   - type: Clothing

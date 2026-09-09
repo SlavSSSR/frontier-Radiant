@@ -1,0 +1,12 @@
+ent-SurgeryChangeSexFemale = Surgical sex reassignment - female
+    .desc = Requires open chest and groin cavities. Remove existing reproductive organs and breast tissue first, then prepare donor vaginal and breast tissue. Changes the character's sex and pronouns.
+ent-SurgeryChangeSexMale = Surgical sex reassignment - male
+    .desc = Requires open chest and groin cavities. Remove existing reproductive organs and breast tissue first, then prepare a donor penis. Changes the character's sex and pronouns.
+ent-SurgeryStepFinalizeSexFemale = Complete reconstruction and select voice
+ent-SurgeryStepFinalizeSexMale = Complete reconstruction and select voice
+ent-SurgeryChangeVoice = Change voice
+ent-SurgeryStepChangeVoice = Reconstruct vocal cords and select voice
+surgical-voice-title = Postoperative voice selection
+surgical-voice-hint = Voices are filtered by the patient's sex.
+surgical-voice-preview = Preview
+surgical-voice-save = Save voice

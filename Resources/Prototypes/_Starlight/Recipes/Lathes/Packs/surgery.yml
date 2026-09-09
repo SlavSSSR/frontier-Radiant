@@ -2,6 +2,14 @@
 - type: latheRecipePack
   id: StarlightSurgeryResearch
   recipes:
+  - DecorativeCyberEyesRed
+  - DecorativeCyberEyesCyan
+  - DecorativeCyberEyesViolet
+  - DecorativeCyberEyesGold
+  - DecorativeCyberEyesConfigurable
+  - ChestImplantInternalAnalyzer
+  - ChestImplantHemostatic
+  - ChestImplantThermal
   - Scalpel
   - Retractor
   - Cautery
@@ -10,6 +18,9 @@
   - Hemostat
   - BoneSetter
   - BoneGel
+  - SurgicalAntiseptic
+  - SurgicalSterileDrape
+  - SurgicalLavageBottle
   - SurgicalKitMedical
   - SurgicalKitRobotics
   - ScalpelAdvanced

@@ -1,0 +1,72 @@
+- type: entity
+  id: SurgicalPackageDecorativeCyberEyesRed
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - красные декоративные киберглаза
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DecorativeCyberEyesRed
+
+- type: entity
+  id: SurgicalPackageDecorativeCyberEyesCyan
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - голубые декоративные киберглаза
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DecorativeCyberEyesCyan
+
+- type: entity
+  id: SurgicalPackageDecorativeCyberEyesViolet
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - фиолетовые декоративные киберглаза
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DecorativeCyberEyesViolet
+
+- type: entity
+  id: SurgicalPackageDecorativeCyberEyesGold
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - золотые декоративные киберглаза
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DecorativeCyberEyesGold
+
+- type: entity
+  id: SurgicalPackageDecorativeCyberEyesConfigurable
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - настраиваемые декоративные киберглаза
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DecorativeCyberEyesConfigurable
+
+- type: entity
+  id: SurgicalPackageChestImplantInternalAnalyzer
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - внутренний анализатор состояния
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ChestImplantInternalAnalyzer
+
+- type: entity
+  id: SurgicalPackageChestImplantHemostatic
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - сердечный гемостатический имплант
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ChestImplantHemostatic
+
+- type: entity
+  id: SurgicalPackageChestImplantThermal
+  parent: BaseStarlightSurgicalPackage
+  name: стерильная упаковка - сердечный терморегенерирующий имплант
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ChestImplantThermal
+

@@ -5,6 +5,7 @@
   children:
   - DirectorOfCare # Frontier
   - MedicalDoctor
+  - RadiantSurgery
   - Chemist
   - Cloning
   - Cryogenics # Note: Frontier changes inside

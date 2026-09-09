@@ -13,6 +13,12 @@ public sealed class PlaceableSurfaceSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
+    // TryDrop raises DroppedEvent before the item reaches the surface. Expose the
+    // synchronous placement context so drop handlers can distinguish it from a fall.
+    private readonly HashSet<EntityUid> _placingItems = new();
+
+    public bool IsPlacingItem(EntityUid item) => _placingItems.Contains(item);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -68,13 +74,22 @@ public sealed class PlaceableSurfaceSystem : EntitySystem
         if (HasComp<DumpableComponent>(args.Used))
             return;
 
-        if (!_handsSystem.TryDrop(args.User, args.Used))
-            return;
+        var added = _placingItems.Add(args.Used);
+        try
+        {
+            if (!_handsSystem.TryDrop(args.User, args.Used))
+                return;
 
-        _transformSystem.SetCoordinates(args.Used,
-            surface.PlaceCentered ? Transform(uid).Coordinates.Offset(surface.PositionOffset) : args.ClickLocation);
+            _transformSystem.SetCoordinates(args.Used,
+                surface.PlaceCentered ? Transform(uid).Coordinates.Offset(surface.PositionOffset) : args.ClickLocation);
 
-        args.Handled = true;
+            args.Handled = true;
+        }
+        finally
+        {
+            if (added)
+                _placingItems.Remove(args.Used);
+        }
     }
 
     private void OnStorageInteractUsingAttempt(Entity<PlaceableSurfaceComponent> ent, ref StorageInteractUsingAttemptEvent args)

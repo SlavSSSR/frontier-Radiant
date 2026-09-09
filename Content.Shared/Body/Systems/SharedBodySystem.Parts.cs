@@ -30,7 +30,8 @@ public partial class SharedBodySystem
 
     private void OnLeglessStandAttempt(Entity<BodyComponent> ent, ref StandUpAttemptEvent args)
     {
-        if (ent.Comp.RequiredLegs <= 0 || ent.Comp.LegEntities.Count > 0)
+        if (ent.Comp.RequiredLegs <= 0
+            || ent.Comp.LegEntities.Any(HasComp<MovementBodyPartComponent>))
             return;
 
         args.Cancelled = true;
@@ -479,16 +480,18 @@ public partial class SharedBodySystem
         var walkSpeed = 0f;
         var sprintSpeed = 0f;
         var acceleration = 0f;
+        var functioningLegs = 0;
         foreach (var legEntity in body.LegEntities)
         {
             if (!TryComp<MovementBodyPartComponent>(legEntity, out var legModifier))
                 continue;
 
+            functioningLegs++;
             walkSpeed += legModifier.WalkSpeed;
             sprintSpeed += legModifier.SprintSpeed;
             acceleration += legModifier.Acceleration;
         }
-        if (body.LegEntities.Count == 0)
+        if (functioningLegs == 0)
         {
             // Radiant sector: zero used to make a downed legless player completely
             // immobile. Retain a deliberately slow crawl speed instead.

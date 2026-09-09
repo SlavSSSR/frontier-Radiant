@@ -1,0 +1,48 @@
+- type: latheRecipe
+  parent: StarlightBudgetOrganRecipe
+  id: DecorativeCyberEyesRed
+  result: SurgicalPackageDecorativeCyberEyesRed
+  materials: { Plastic: 200, Steel: 100, Glass: 200 }
+
+- type: latheRecipe
+  parent: StarlightBudgetOrganRecipe
+  id: DecorativeCyberEyesCyan
+  result: SurgicalPackageDecorativeCyberEyesCyan
+  materials: { Plastic: 200, Steel: 100, Glass: 200 }
+
+- type: latheRecipe
+  parent: StarlightBudgetOrganRecipe
+  id: DecorativeCyberEyesViolet
+  result: SurgicalPackageDecorativeCyberEyesViolet
+  materials: { Plastic: 200, Steel: 100, Glass: 200 }
+
+- type: latheRecipe
+  parent: StarlightBudgetOrganRecipe
+  id: DecorativeCyberEyesGold
+  result: SurgicalPackageDecorativeCyberEyesGold
+  materials: { Plastic: 200, Steel: 100, Glass: 200 }
+
+- type: latheRecipe
+  parent: StarlightBudgetOrganRecipe
+  id: DecorativeCyberEyesConfigurable
+  result: SurgicalPackageDecorativeCyberEyesConfigurable
+  materials: { Plastic: 200, Steel: 100, Glass: 200 }
+
+- type: latheRecipe
+  parent: StarlightImplantRecipe
+  id: ChestImplantInternalAnalyzer
+  result: SurgicalPackageChestImplantInternalAnalyzer
+  materials: { Steel: 500, Glass: 300, Gold: 200 }
+
+- type: latheRecipe
+  parent: StarlightImplantRecipe
+  id: ChestImplantHemostatic
+  result: SurgicalPackageChestImplantHemostatic
+  materials: { Steel: 500, Glass: 300, Gold: 300, Plasma: 300 }
+
+- type: latheRecipe
+  parent: StarlightImplantRecipe
+  id: ChestImplantThermal
+  result: SurgicalPackageChestImplantThermal
+  materials: { Steel: 500, Glass: 300, Gold: 300, Plasma: 300 }
+

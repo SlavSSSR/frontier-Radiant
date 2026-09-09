@@ -470,3 +470,15 @@
     sprite: _radiant/Clothing/Uniforms/Jumpskirt/merc.rsi
   - type: Clothing
     sprite: _radiant/Clothing/Uniforms/Jumpskirt/merc.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, ClothingUniformFoldableBase]
+  id: ClothingUniformRadiantBraskirt
+  name: красный бюстгальтер и полосатая юбка
+  description: Полосатая юбка с красным бюстгальтером. Рубашку можно свернуть.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Uniforms/formal_attire.rsi
+    state: braskirt
+  - type: Clothing
+    sprite: _radiant/Clothing/Uniforms/formal_attire_worn.rsi

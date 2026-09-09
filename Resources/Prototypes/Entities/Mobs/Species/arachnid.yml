@@ -26,8 +26,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatSpider
-        amount: 5
+      - id: FoodMeatArachnid
+        amount: 3
   - type: Reactive
     reactions:
     - reagents: [Water]

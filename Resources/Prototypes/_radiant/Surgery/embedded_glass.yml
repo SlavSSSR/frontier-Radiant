@@ -1,0 +1,36 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractEmbeddedGlass
+  name: Extract embedded glass
+  components:
+  - type: Surgery
+    requirement: [SurgeryOpenIncision, SurgeryOpenIncisionSlime]
+    steps: [SurgeryStepExtractEmbeddedGlass]
+  - type: SurgeryExtractGlass
+  - type: SurgeryPartCondition
+    parts: [Foot]
+  - type: Sprite
+    sprite: _radiant/Interface/Alerts/embedded_glass.rsi
+    state: embeddedobject
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractEmbeddedGlass
+  name: Remove the glass fragment with a hemostat
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Hemostat
+  - type: SurgeryExtractGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: alert
+  id: EmbeddedGlass
+  icons:
+  - sprite: /Textures/_radiant/Interface/Alerts/embedded_glass.rsi
+    state: embeddedobject
+  name: alerts-embedded-glass-name
+  description: alerts-embedded-glass-desc

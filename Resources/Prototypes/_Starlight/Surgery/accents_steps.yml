@@ -40,3 +40,17 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveTattoos
+  name: Remove Tattoos
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: Cautery
+  - type: SurgeryRemoveTattoos
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery

@@ -81,6 +81,10 @@
   id: HydroponicsToolHatchet
   description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
   components:
+  - type: SurgeryTool
+  - type: BoneSaw
+    speed: 1.5
+    successRate: 0.9
   - type: Tag
     tags:
     - BotanyHatchet

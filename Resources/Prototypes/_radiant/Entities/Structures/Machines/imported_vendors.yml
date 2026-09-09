@@ -1,0 +1,58 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineRadiantExpedition
+  name: expedition equipment dispenser
+  description: A sturdy dispenser with reinforced panels.
+  components:
+  - type: VendingMachine
+    pack: EmptyVendingMachineInventory
+    offState: off
+    normalState: normal
+    brokenState: broken
+    ejectState: vend
+    denyState: deny
+  - type: Sprite
+    sprite: _radiant/Structures/Machines/expedition_vendor.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+
+- type: entity
+  parent: VendingMachineSovietSoda
+  id: VendingMachineRadiantWater
+  name: water vending machine
+  description: A vending machine for refreshing drinks.
+  components:
+  - type: VendingMachine
+    normalState: normal
+    ejectState: normal
+    denyState: normal
+  - type: Sprite
+    sprite: _radiant/Structures/Machines/water_vendor.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+
+- type: entity
+  parent: SmartFridge
+  id: SmartFridgeRadiant
+  name: smart refrigerator
+  description: A refrigerated dispenser for medicines, produce and other supplies.
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Machines/smart_fridge.rsi
+    layers:
+    - state: normal
+      map: ["enum.StorageVisualLayers.Base"]

@@ -11,4 +11,5 @@ public enum StepInvalidReason
     TooHigh,
     NotEnoughReagent,
     MissingLimb,
+    DirtyDrape,
 }

@@ -1,6 +1,13 @@
 # Radiant sector: Frontier-compatible recipes for ported Starlight surgery content.
 
 - type: latheRecipe
+  id: SurgicalAntiseptic
+  result: SurgicalAntiseptic
+  categories: [ Surgery ]
+  completetime: 3
+  materials: { Plastic: 300, Glass: 200 }
+
+- type: latheRecipe
   abstract: true
   id: StarlightAdvancedSurgeryRecipe
   categories: [ Surgery ]

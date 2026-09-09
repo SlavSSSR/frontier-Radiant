@@ -95,8 +95,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
-      amount: 5
+    - id: FoodMeatTajaran
+      amount: 3
   - type: MeleeWeapon
     soundHit:
       collection: Punch
