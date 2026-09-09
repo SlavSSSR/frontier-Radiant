@@ -256,21 +256,38 @@
   - type: StaticPrice
     price: 350
 
-
 - type: entity
   id: NFWeaponEnergySubMachineGunDisablerBorg
-  parent: NFWeaponEnergySubMachineGunDeltaVBorg
+  parent: [ NFBaseWeaponEncumbranceSubMachineGun, NFBaseGunMeleeAttackMedium, BaseWeaponBattery ]
   name: станнер-пулемёт киборга
   suffix: Frontier
   description: Усовершенствованное оружие, которое изнуряет органические цели, пока они не свалятся с ног. Некоторые называют его автостаннер.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 15
+  - type: Gun
+    projectileSpeed: 30
+    fireRate: 3.8
+    minAngle: 1
+    maxAngle: 2
+    angleIncrease: 0.5
+    angleDecay: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletDisablerLow
     fireCost: 25

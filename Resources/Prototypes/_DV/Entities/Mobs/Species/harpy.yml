@@ -145,6 +145,12 @@
             state: jumpsuit
   - type: HarpyVisuals
   - type: TTS # Radiant sector
+  - type: PseudoItem # Radiant sector
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
   - type: UltraVision
 #  - type: Tag # Frontier
 #    tags: # Frontier

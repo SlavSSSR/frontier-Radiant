@@ -92,6 +92,9 @@
   gameplayStats:
   - species-lore-stat-metabolism-standard
   - species-lore-stat-oxygen
+  - species-lore-stat-dwarf-alcohol
+  - species-lore-stat-dwarf-stomach
+  - species-lore-stat-dwarf-ore
   abilities: [species-lore-dwarf-ability-1]
   languages: [species-lore-language-galactic, species-lore-language-khazdar]
   features:
@@ -271,6 +274,7 @@
   - species-lore-stat-tajaran-cold
   - species-lore-stat-tajaran-heat
   - species-lore-stat-tajaran-melee
+  - species-lore-stat-tajaran-jump
   abilities: [species-lore-tajaran-ability-1]
   languages: [species-lore-language-galactic, species-lore-language-siikmaas]
   features:
@@ -303,10 +307,12 @@
   gameplayStats:
   - species-lore-stat-metabolism-standard
   - species-lore-stat-oxygen
+  - species-lore-stat-oni-weapon
+  - species-lore-stat-oni-melee
+  - species-lore-stat-oni-stamine
   - species-lore-stat-oni-blunt
   - species-lore-stat-oni-slash
   - species-lore-stat-oni-piercing
-  - species-lore-stat-oni-asphyxiation
   abilities: [species-lore-oni-ability-1]
   languages: [species-lore-language-galactic, species-lore-language-kansei]
   features:
@@ -389,6 +395,7 @@
   - species-lore-stat-resomi-blunt
   - species-lore-stat-resomi-slash
   - species-lore-stat-resomi-piercing
+  - species-lore-stat-resomi-agillity
   abilities: [species-lore-resomi-ability-1]
   languages: [species-lore-language-galactic, species-lore-language-schechi]
   features:
@@ -445,8 +452,12 @@
   culture: [species-lore-sheleg-culture]
   loreHeight: species-lore-height-sheleg
   gameplayStats:
-  - species-lore-stat-metabolism-standard
+  - species-lore-stat-metabolism-sheleg
   - species-lore-stat-oxygen
+  - species-lore-stat-sheleg-hardsuit
+  - species-lore-stat-sheleg-chemic
+  - species-lore-stat-sheleg-skin
+  - species-lore-stat-sheleg-regen
   - species-lore-stat-sheleg-cold
   - species-lore-stat-sheleg-blunt
   - species-lore-stat-sheleg-slash
@@ -504,6 +515,9 @@
   gameplayStats:
   - species-lore-stat-metabolism-standard
   - species-lore-stat-oxygen
+  - species-lore-stat-shadowkin-speed
+  - species-lore-stat-shadowkin-heat
+  - species-lore-stat-shadowkin-blunt
   - species-lore-stat-shadowkin
   - species-lore-stat-shadowkin-razg
   abilities: [species-lore-shadowkin-ability-1, species-lore-shadowkin-ability-2, species-lore-shadowkin-ability-3]
@@ -532,6 +546,7 @@
   gameplayStats:
   - species-lore-stat-metabolism-standard
   - species-lore-stat-oxygen
+  - species-lore-stat-demon-heat
   abilities: [species-lore-demon-ability-1]
   languages: [species-lore-language-galactic, species-lore-language-arcanian]
   features:

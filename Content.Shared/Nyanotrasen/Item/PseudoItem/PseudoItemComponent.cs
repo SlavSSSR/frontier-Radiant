@@ -26,6 +26,9 @@ public sealed partial class PseudoItemComponent : Component
     [DataField, AutoNetworkedField] // Frontier
     public float StoredRotation; // Frontier
 
+    [DataField, AutoNetworkedField] // Radiant sector
+    public bool Enabled = false; // Radiant sector
+
     public bool Active = false;
 
     /// <summary>

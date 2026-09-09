@@ -11,6 +11,8 @@
   - type: Hunger
   - type: Thirst
   - type: Carriable
+  - type: Damageable # Radiant sector
+    damageModifierSet: Shadowkin
   - type: Icon
     sprite: _Goobstation/Mobs/Species/Shadowkin/parts.rsi
     state: full
@@ -114,6 +116,9 @@
   - type: Tag
     tags: [CanPilot, FootstepSound, DoorBumpOpener, AnomalyHost, ShadowkinEmotes]
   - type: Perishable
+  - type: MovementSpeedModifier # Radiant sector
+    baseSprintSpeed: 4.28
+    baseWalkSpeed: 2.37
 
 - type: entity
   parent: BaseMobShadowkin

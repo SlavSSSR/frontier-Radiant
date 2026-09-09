@@ -314,6 +314,12 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
+  - type: PseudoItem # Radiant sector
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
 
 - type: entity
   save: false

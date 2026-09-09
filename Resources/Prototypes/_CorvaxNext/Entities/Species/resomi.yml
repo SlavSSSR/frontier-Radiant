@@ -37,7 +37,8 @@
           !type:PhysShapeCircle
           radius: 0.35
         # they r very small
-        density: 60
+#        density: 60 # Radiant sector
+        density: 90 # Radiant sector
         restitution: 0.0
         mask:
         - MobMask

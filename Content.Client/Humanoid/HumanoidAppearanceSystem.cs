@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Content.Client.DisplacementMap;
 using Content.Client.Damage;
@@ -62,12 +63,29 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(humanoidAppearance.Species);
 
-        var height = Math.Clamp(humanoidAppearance.Height, speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
-        var width = Math.Clamp(humanoidAppearance.Width, speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+        var height = Math.Clamp(
+            humanoidAppearance.Height,
+            speciesPrototype.MinHeight,
+            speciesPrototype.MaxHeight);
+
+        var width = Math.Clamp(
+            humanoidAppearance.Width,
+            speciesPrototype.MinWidth,
+            speciesPrototype.MaxWidth);
+
         humanoidAppearance.Height = height;
         humanoidAppearance.Width = width;
 
-        _sprite.SetScale((entity, sprite), new Vector2(width, height));
+        var baseScale = Vector2.One;
+
+        if (_prototypeManager.Index(speciesPrototype.Prototype).TryGetComponent<SpriteComponent>(out var baseSprite))
+            baseScale = baseSprite.Scale;
+
+        _sprite.SetScale(
+            (entity, sprite),
+            new Vector2(
+                baseScale.X * width,
+                baseScale.Y * height));
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 

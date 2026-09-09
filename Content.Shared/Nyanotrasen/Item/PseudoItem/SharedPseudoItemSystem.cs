@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
@@ -29,6 +30,23 @@ public abstract partial class SharedPseudoItemSystem : EntitySystem
     private readonly ProtoId<TagPrototype> _preventTag = "PreventLabel";
     private readonly EntProtoId _sleepActionId = "ActionSleep"; // The action used for sleeping inside bags. Currently uses the default sleep action (same as beds)
 
+    // Radiant height system
+    private const float PseudoItemSizeThreshold = 0.8f;
+
+    public void UpdatePseudoItemState(EntityUid uid)
+    {
+        if (!TryComp<PseudoItemComponent>(uid, out var pseudoItem))
+            return;
+
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            return;
+
+        pseudoItem.Enabled =
+            humanoid.Height <= PseudoItemSizeThreshold &&
+            humanoid.Width <= PseudoItemSizeThreshold;
+    }
+    // Radiant height system
+
     public override void Initialize()
     {
         base.Initialize();
@@ -47,7 +65,7 @@ public abstract partial class SharedPseudoItemSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (component.Active)
+        if (!component.Enabled || component.Active) // Radiant sector add Active
             return;
 
         if (!TryComp<StorageComponent>(args.Target, out var targetStorage))

@@ -313,6 +313,24 @@
     containers:
       board: [ DoorElectronicsSeparatists ]
 
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockShuttleSyndicateSeparatistsLocked
+  suffix: Separatists, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSeparatists ]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockGlassShuttleSyndicateSeparatistsLocked
+  suffix: Separatists, Glass Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSeparatists ]
+
 # Navy
 
 - type: entity

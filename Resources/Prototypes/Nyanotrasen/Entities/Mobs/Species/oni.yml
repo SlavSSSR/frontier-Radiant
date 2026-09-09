@@ -20,6 +20,7 @@
         Slash: 1.2
         Piercing: 1.2
         Asphyxiation: 1.2
+        Bloodloss: 1.2 # Radiant sector
   - type: Damageable
     damageModifierSet: Oni
   - type: Body
@@ -38,9 +39,16 @@
         - MobLayer
   - type: TTS # Radiant sector
   - type: Stamina
+    critThreshold: 110 # Radiant sector
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: PseudoItem # Radiant sector
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
 
 - type: entity
   save: false
