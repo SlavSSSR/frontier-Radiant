@@ -31,7 +31,7 @@
   minPlayers: 0
   stations:
     LanternMk2:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel # Radiant sector
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Lantern Mk2 {1}'

@@ -443,82 +443,124 @@ namespace Content.Client.Lobby.UI
 
             #region Height
 
-            _speciesList = prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart).ToList();
+            _speciesList = prototypeManager
+                .EnumeratePrototypes<SpeciesPrototype>()
+                .Where(o => o.RoundStart)
+                .ToList();
+
             var prototype = _speciesList.Find(x => x.ID == Profile?.Species) ?? _speciesList.First();
+
+            // Height / Size
+
+            HeightContainer.Visible = true;
+            WidthContainer.Visible = !prototype.UseUniformScale;
 
             _heightSlider.MinValue = prototype.MinHeight;
             _heightSlider.MaxValue = prototype.MaxHeight;
             _heightSlider.Value = Profile?.Height ?? prototype.DefaultHeight;
-            var height = MathF.Round(prototype.AverageHeight * _heightSlider.Value);
-            CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", (int) height));
+
+            UpdateHeightLabel(prototype);
 
             _heightSlider.OnValueChanged += args =>
             {
                 if (Profile is null)
                     return;
 
-                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First(); // Just in case
+                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
 
-                var value = Math.Clamp(args.Value, prototype.MinHeight, prototype.MaxHeight);
-                var height = MathF.Round(prototype.AverageHeight * value);
-                CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", (int) height));
+                var value = Math.Clamp(
+                    args.Value,
+                    prototype.MinHeight,
+                    prototype.MaxHeight);
+
                 SetProfileHeight(value);
+
+                if (prototype.UseUniformScale)
+                {
+                    // Единый размер: одновременно меняем Height и Width.
+                    SetProfileWidth(value);
+                }
+
+                UpdateHeightLabel(prototype);
                 UpdateWeight();
                 ReloadProfilePreview();
             };
 
             CHeightReset.OnPressed += _ =>
             {
+                prototype = _speciesList.Find(x => x.ID == Profile?.Species) ?? _speciesList.First();
+
                 _heightSlider.Value = prototype.DefaultHeight;
+
                 SetProfileHeight(prototype.DefaultHeight);
+
+                if (prototype.UseUniformScale)
+                {
+                    SetProfileWidth(prototype.DefaultHeight);
+                }
+
                 UpdateWeight();
                 ReloadProfilePreview();
             };
 
 
+            // Width
+
             _widthSlider.MinValue = prototype.MinWidth;
             _widthSlider.MaxValue = prototype.MaxWidth;
             _widthSlider.Value = Profile?.Width ?? prototype.DefaultWidth;
+
             var width = MathF.Round(prototype.AverageWidth * _widthSlider.Value);
-            CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", width));
+
+            CWidthLabel.Text = Loc.GetString(
+                "humanoid-profile-editor-width-label",
+                ("width", width));
 
             _widthSlider.OnValueChanged += args =>
             {
                 if (Profile is null)
                     return;
 
-                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First(); // Just in case
+                prototype = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
 
-                var value = Math.Clamp(args.Value, prototype.MinWidth, prototype.MaxWidth);
+                // В режиме общего размера Width slider скрыт,
+                // поэтому здесь ничего специального делать не нужно.
+                if (prototype.UseUniformScale)
+                    return;
+
+                var value = Math.Clamp(
+                    args.Value,
+                    prototype.MinWidth,
+                    prototype.MaxWidth);
+
                 var width = MathF.Round(prototype.AverageWidth * value);
-                CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", width));
+
+                CWidthLabel.Text = Loc.GetString(
+                    "humanoid-profile-editor-width-label",
+                    ("width", width));
+
                 SetProfileWidth(value);
+
                 UpdateWeight();
                 ReloadProfilePreview();
             };
 
             CWidthReset.OnPressed += _ =>
             {
+                prototype = _speciesList.Find(x => x.ID == Profile?.Species) ?? _speciesList.First();
+
+                if (prototype.UseUniformScale)
+                    return;
+
                 _widthSlider.Value = prototype.DefaultWidth;
+
                 SetProfileWidth(prototype.DefaultWidth);
+
                 UpdateWeight();
                 ReloadProfilePreview();
             };
 
-            prototypeManager.Index(prototype.Prototype).TryGetComponent<FixturesComponent>(out var fixture);
-            if (fixture != null)
-            {
-                var radius = fixture.Fixtures["fix1"].Shape.Radius;
-                var density = fixture.Fixtures["fix1"].Density;
-                var avg = (_widthSlider.Value + _heightSlider.Value) / 2;
-                var weight = MathF.Round(MathF.PI * MathF.Pow(radius * avg, 2) * density);
-                CWeightLabel.Text = Loc.GetString("humanoid-profile-editor-weight-label", ("weight", (int) weight));
-            }
-            else
-            {
-                // Whelp, the fixture doesn't exist, guesstimate it instead
-                CWeightLabel.Text = Loc.GetString("humanoid-profile-editor-weight-label", ("weight", (int) 71));
-            }
+            UpdateWeight();
 
             #endregion Height
 
@@ -599,6 +641,31 @@ namespace Content.Client.Lobby.UI
 
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
+        }
+
+        private void UpdateHeightLabel(SpeciesPrototype species)
+        {
+            if (Profile is null)
+                return;
+
+            if (species.UseUniformScale)
+            {
+                var size = MathF.Round(
+                    species.AverageHeight * _heightSlider.Value);
+
+                CHeightLabel.Text = Loc.GetString(
+                    "humanoid-profile-editor-size-label",
+                    ("size", (int)size));
+
+                return;
+            }
+
+            var height = MathF.Round(
+                species.AverageHeight * _heightSlider.Value);
+
+            CHeightLabel.Text = Loc.GetString(
+                "humanoid-profile-editor-height-label",
+                ("height", (int)height));
         }
 
         /// <summary>
@@ -1723,12 +1790,14 @@ namespace Content.Client.Lobby.UI
 
             var species = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
 
-            _heightSlider.MinValue = species.MinHeight;
-            _heightSlider.Value = Profile.Height;
-            _heightSlider.MaxValue = species.MaxHeight;
+            HeightContainer.Visible = true;
+            WidthContainer.Visible = !species.UseUniformScale;
 
-            var height = MathF.Round(species.AverageHeight * _heightSlider.Value);
-            CHeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", (int) height));
+            _heightSlider.MinValue = species.MinHeight;
+            _heightSlider.MaxValue = species.MaxHeight;
+            _heightSlider.Value = Profile.Height;
+
+            UpdateHeightLabel(species);
         }
 
         private void UpdateWidthControls()
@@ -1738,12 +1807,21 @@ namespace Content.Client.Lobby.UI
 
             var species = _speciesList.Find(x => x.ID == Profile.Species) ?? _speciesList.First();
 
+            WidthContainer.Visible = !species.UseUniformScale;
+
+            if (species.UseUniformScale)
+                return;
+
             _widthSlider.MinValue = species.MinWidth;
             _widthSlider.Value = Profile.Width;
             _widthSlider.MaxValue = species.MaxWidth;
 
-            var width = MathF.Round(species.AverageWidth * _widthSlider.Value);
-            CWidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", (int) width));
+            var width = MathF.Round(
+                species.AverageWidth * Profile.Width);
+
+            CWidthLabel.Text = Loc.GetString(
+                "humanoid-profile-editor-width-label",
+                ("width", width));
         }
 
         private void UpdateWeight()

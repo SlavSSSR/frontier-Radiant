@@ -11,6 +11,7 @@ species-selection-abilities = Расовые способности
 species-selection-diet = Диета
 species-selection-languages = Языки
 species-selection-wiki-link = Подробнее о расе на Radiant Sector Wiki
+
 species-selection-height-range = Рост: [color=#F2F6FB]от {$min} до {$max} см[/color].
 # Radiant Sector: lore heights are reference information only and never change editor scaling limits.
 species-lore-height-human = В среднем рост мужской особи составляет [color=#F2F6FB]175–185 см[/color], женской — [color=#F2F6FB]165–175 см[/color].
@@ -46,7 +47,6 @@ species-lore-category-other = Другие виды
 
 # Radiant Sector - native languages displayed in the species information window.
 species-lore-language-galactic = Общегалактический — доступен всем разумным видам.
-species-lore-language-solar = Общесолнечный — родной язык людей Солнечной системы.
 species-lore-language-draconic = Синта'Унати — общеупотребительный язык унатхов. Незнающим он кажется шипением и дребезжанием.
 species-lore-language-bubblish = Бабблилиш — язык слизней, смесь булькающих звуков и хлюпков; без вспомогательных средств человеку говорить на нём очень сложно.
 species-lore-language-rootspeak = Корневой язык — скрипучая, едва различимая инстинктивная речь дион. Одна фраза может сочетать от одного до двенадцати голосов и нот.
@@ -68,11 +68,15 @@ species-lore-language-shelar = Шелар — размеренный язык ш
 species-lore-language-arcanian = Арканийский — мелодичный язык аркан с ритуальными оборотами.
 
 species-lore-stat-metabolism-standard = Метаболизм: голод [color=#e6c77a]0.02/с[/color], жажда [color=#e6c77a]0.1/с[/color] — стандартный темп.
+species-lore-stat-metabolism-sheleg = Метаболизм: голод [color=#e6c77a]0.0165/с[/color], жажда [color=#e6c77a]0.15/с[/color] — голодают на четверть медленнее, а испытывают жажду в полтора раза быстрее.
 species-lore-stat-metabolism-diona = Метаболизм: голод и жажда [color=#73d18b]0.0083/с[/color] — примерно на [color=#73d18b]58% медленнее[/color] стандартного.
 species-lore-stat-oxygen = Дыхание: требуется кислород.
 species-lore-stat-nitrogen = Дыхание: требуется азот.
 species-lore-stat-reptilian-cold = [color=#f07878]Получают на 30% больше урона от холода.[/color]
 species-lore-stat-reptilian-melee = Безоружная атака наносит [color=#73d18b]5 режущего[/color] урона.
+species-lore-stat-dwarf-alcohol = [color=#73d18b]Лечение[/color] от алкоголя, взамен получая [color=#f07878]яды.[/color].
+species-lore-stat-dwarf-stomach = Имеют увеличенный желудок.
+species-lore-stat-dwarf-ore = Видят рудные жилы в пяти метрах от себя.
 species-lore-stat-slime-blunt = [color=#73d18b]Получают на 40% меньше дробящего урона.[/color]
 species-lore-stat-slime-poison = [color=#73d18b]Получают на 20% меньше урона ядом.[/color]
 species-lore-stat-slime-slash = [color=#f07878]Получают на 20% больше режущего урона.[/color]
@@ -97,10 +101,13 @@ species-lore-stat-vulpkanin-feral = Способность «одичание»:
 species-lore-stat-tajaran-cold = [color=#73d18b]Получают на 35% меньше урона от холода.[/color]
 species-lore-stat-tajaran-heat = [color=#f07878]Получают на 35% больше урона от ожогов.[/color]
 species-lore-stat-tajaran-melee = Безоружная атака наносит [color=#73d18b]4 режущего[/color] и [color=#73d18b]1 колющего[/color] урона.
+species-lore-stat-tajaran-jump = Способность «прыжок»: быстрый прыжок на небольшое расстояние.
+species-lore-stat-oni-weapon = [color=#f07878]Имеют очень плохую точность при стрельбе с чего либо.[/color]
+species-lore-stat-oni-melee = [color=#73d18b]Наносят на 20% больше урона оружием ближнего боя.[/color]
+species-lore-stat-oni-stamine = [color=#73d18b]Их выносливость на 10% больше, из за чего их сложнее повалить в стаминакрит.[/color]
 species-lore-stat-oni-blunt = [color=#73d18b]Получают на 15% меньше дробящего урона.[/color]
 species-lore-stat-oni-slash = [color=#73d18b]Получают на 15% меньше режущего урона.[/color]
 species-lore-stat-oni-piercing = [color=#73d18b]Получают на 15% меньше колющего урона.[/color]
-species-lore-stat-oni-asphyxiation = [color=#f07878]Получают на 20% больше урона от удушья.[/color]
 species-lore-stat-felinid-blunt = [color=#f07878]Получают на 15% больше дробящего урона.[/color]
 species-lore-stat-felinid-slash = [color=#f07878]Получают на 15% больше режущего урона.[/color]
 species-lore-stat-felinid-piercing = [color=#f07878]Получают на 15% больше колющего урона.[/color]
@@ -112,11 +119,16 @@ species-lore-stat-resomi-heat = [color=#f07878]Получают на 15% бол�
 species-lore-stat-resomi-blunt = [color=#f07878]Получают на 15% больше дробящего урона.[/color]
 species-lore-stat-resomi-slash = [color=#f07878]Получают на 15% больше режущего урона.[/color]
 species-lore-stat-resomi-piercing = [color=#f07878]Получают на 15% больше колющего урона.[/color]
+species-lore-stat-resomi-agillity = Преключаемая способность «ловкость»: [color=#73d18b]+20% скорости[/color] и возможность перепрыгивать такие преграды как столы, расходуя выносливость.
 species-lore-stat-goblin-blunt = [color=#f07878]Получают на 20% больше дробящего урона.[/color]
 species-lore-stat-goblin-slash = [color=#f07878]Получают на 20% больше режущего урона.[/color]
 species-lore-stat-goblin-piercing = [color=#f07878]Получают на 20% больше колющего урона.[/color]
 species-lore-stat-goblin-poison = [color=#73d18b]Получают на 25% меньше урона ядом.[/color]
 species-lore-stat-goblin-caustic = [color=#73d18b]Получают на 10% меньше кислотного урона.[/color]
+species-lore-stat-sheleg-hardsuit = [color=#f07878]Получают урон при температуре 0 °C и выше, нужно всегда носить скафандр.[/color]
+species-lore-stat-sheleg-chemic = [color=#f07878]Обычная лекарственная химия не действуют.[/color] Для лечения нужны криогенные препараты.
+species-lore-stat-sheleg-skin = Их толстую кожу [color=#f07878]нельзя проколоть гипоспреем, шприцами или гиподротиками.[/color]
+species-lore-stat-sheleg-regen = Медленно [color=#73d18b]регенерируют ожоги[/color], вместо крови - [color=#0091ff]Криоксадон[/color].
 species-lore-stat-sheleg-cold = [color=#73d18b]Не получают урон от холода.[/color]
 species-lore-stat-sheleg-blunt = [color=#73d18b]Получают на 20% меньше дробящего урона.[/color]
 species-lore-stat-sheleg-slash = [color=#73d18b]Получают на 20% меньше режущего урона.[/color]
@@ -125,7 +137,11 @@ species-lore-stat-sheleg-heat = [color=#f07878]Получают на 65% бол�
 species-lore-stat-sheleg-shock = [color=#f07878]Получают на 25% больше урона от электричества.[/color]
 species-lore-stat-feroxi = В воде: [color=#73d18b]+15% скорости[/color] и нет поскальзывания; безоружная атака — [color=#73d18b]7 колющего[/color] урона.
 species-lore-stat-shadowkin = Ультрафиолетовое зрение, теневой скачок и безоружная атака [color=#73d18b]5 режущего[/color] урона.
+species-lore-stat-shadowkin-blunt = [color=#73d18b]Получают на 10% меньше дробящего урона.[/color]
+species-lore-stat-shadowkin-speed = [color=#f07878]Двигаются на 5% медленнее.[/color]
+species-lore-stat-shadowkin-heat = [color=#f07878]Получают на 10% больше урона от ожогов.[/color]
 species-lore-stat-shadowkin-razg = Получают генетический урон от разгерметизации.
+species-lore-stat-demon-heat = [color=#73d18b]Получают на 10% меньше урона от ожогов и холода.[/color]
 
 species-lore-human-lore = Люди — мягкокожие гуманоиды с Земли, расселившиеся по колониальным мирам и искусственным объектам глубокого космоса. Земная культура давно перестала быть единой: происхождение персонажа может быть связано с планетой, орбитальной станцией, флотом или смешанной семьёй. Благодаря многочисленности люди часто становятся общим культурным ориентиром, но это не делает их опыт универсальным для остальных видов.
 species-lore-human-feature-1 = Универсальный вид без врождённых экстремальных биологических потребностей. Большая часть стандартной одежды и мебели проектируется под человеческую анатомию.
@@ -397,16 +413,16 @@ species-lore-vox-ability-1 = Пассивное восстановление т�
 species-lore-moth-ability-1 = В невесомости быстрее набирают скорость. Это пассивная особенность движения.
 species-lore-arachnid-ability-1 = Шелкопрядение: арахнид регулярно вырабатывает паутину ценой голода и может использовать её в крафте.
 species-lore-arachnid-ability-2 = Не вязнут в собственной паутине; это пассивная особенность.
-species-lore-vulpkanin-ability-1 = «Одичание»: активируемый рывок на 10 секунд — даёт +12% скорости и добавляет урон в ближнем бою. Повторное применение доступно после перезарядки.
-species-lore-tajaran-ability-1 = Когти: постоянная безоружная атака сочетает режущий и колющий урон.
-species-lore-oni-ability-1 = Нет отдельной кнопки: повышенная физическая стойкость является пассивной особенностью тела.
-species-lore-felinid-ability-1 = Нет отдельного расового активного умения; уши и хвост влияют на внешность и отыгрыш.
+species-lore-vulpkanin-ability-1 = «Одичание»: активируемый рывок на 10 секунд — даёт +12% скорости и удваивает урон в ближнем бою. Повторное применение доступно после перезарядки.
+species-lore-tajaran-ability-1 = «Прыжок»: при активации способности делает прыжок на 5~ метров перед собой, аналогично прыжковым ботинкам.
+species-lore-oni-ability-1 = Их повышенная физическая стойкость и больший урон в ближнем бою делает их идеальными танками, любители бить всех палкой, а не стрелять.
+species-lore-felinid-ability-1 = Могут отрыгивать небольшие комки шерсти после поедания мышей. Шипят если их намочить.
 species-lore-harpy-ability-1 = Нет отдельного расового активного умения; крылья являются частью внешности, а не гарантией полёта.
-species-lore-resomi-ability-1 = Нет отдельного расового активного умения; холодостойкость — пассивная биологическая особенность.
-species-lore-goblin-ability-1 = Нет отдельного расового активного умения; сопротивления и уязвимости работают пассивно.
-species-lore-sheleg-ability-1 = Нет отдельного расового активного умения; холодовой иммунитет и остальные модификаторы действуют пассивно.
+species-lore-resomi-ability-1 = Помимо способности к ускорению, расходующую выносливость пассивно пока включена и за каждое перепрыгнутое препятствие, у них сниженный уровень крови в организме, но быстрое её восстановление.
+species-lore-goblin-ability-1 = Обычно маленькие подлецы могут мастерить из мусора приспособления, рытся в нем чтобы найти ещё больше мусора, а так же проскальзывают в унитазы и почтовые блоки, их ноги всегда активируют мышеловки, не любят чистоту или когда в них брызгают водой или очистителем.
+species-lore-sheleg-ability-1 = Раса с непривычным гемплеем, температура тела составляет -172 °C, из за чего приходится носить скафандр (изолирует от внешней тепловой среды), либо оборудовать сообственную атмосферу. Полная неуязвимость к холоду делает очень уязвимым к огню, калий для шелегов опасен, а из за кожи вкалывать препараты невозможно, но даже если привычная химия попадет вам в кровь - она не сработает.
 species-lore-feroxi-ability-1 = Водная адаптация: в воде и на водных поверхностях ферокси движется на 15% быстрее и не поскальзывается.
-species-lore-shadowkin-ability-1 = «Теневой скачок»: активная способность для короткого перемещения. Она расходует силы; при их нехватке применяется клеточный генетический урон.
+species-lore-shadowkin-ability-1 = «Теневой скачок»: активная способность для короткого перемещения. Она расходует силы..
 species-lore-shadowkin-ability-2 = Ультрафиолетовое зрение: постоянная способность, окрашенная в выбранный цвет глаз.
 species-lore-shadowkin-ability-3 = Эмпатическая связь: общий канал только для шадовкинов через «+э текст», без рации и независимо от расстояния.
 species-lore-demon-ability-1 = «Аура арканы»: включаемая способность. Пока она активна, раз в 18 секунд существа в радиусе 10 клеток получают атмосферное текстовое сообщение; аура не наносит урон и не даёт боевых эффектов.

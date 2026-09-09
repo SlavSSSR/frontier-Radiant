@@ -13,10 +13,12 @@
   skinColoration: Hues
   minHeight: 0.8
   defaultHeight: 1
-  maxHeight: 1.1
+  maxHeight: 1.15
+  averageHeight: 140
+  averageWidth: 32
   minWidth: 0.75
   defaultWidth: 1
-  maxWidth: 1.15
+  maxWidth: 1.1
 
 - type: speciesBaseSprites
   id: MobResomiSprites

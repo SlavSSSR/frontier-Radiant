@@ -319,7 +319,7 @@
     soundGunshot:
       path: /Audio/_radiant/Weapons/Gunshots/shotRifle.ogg
       params:
-        volume: -7
+        volume: -8
   - type: BallisticAmmoProvider
     capacity: 10
     proto: NFCartridgeRifle3006

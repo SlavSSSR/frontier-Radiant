@@ -1,4 +1,4 @@
-﻿using Content.Server.Carrying;
+using Content.Server.Carrying;
 using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
@@ -28,7 +28,10 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (component.Active)
+        if (!component.Enabled || component.Active)
+            return;
+
+        if (args.User == uid)
             return;
 
         if (!TryComp<StorageComponent>(args.Using, out var targetStorage))
@@ -37,18 +40,25 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         if (!CheckItemFits((uid, component), (args.Using.Value, targetStorage)))
             return;
 
-        if (!_hands.TryGetActiveItem(uid, out var item)) // Frontier - hand refactor compliance (wizden #38438)
+        if (!_hands.TryGetActiveItem(args.User, out var item))
+            return;
+
+        if (item.Value != args.Using.Value)
             return;
 
         AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                StartInsertDoAfter(args.User, uid, item.Value, component); // Frontier - hand refactor compliance (wizden #38438)
+                StartInsertDoAfter(args.User, uid, item.Value, component);
             },
-            Text = Loc.GetString("action-name-insert-other", ("target", Identity.Entity(args.Target, EntityManager))),
+            Text = Loc.GetString(
+                "action-name-insert-other",
+                ("target", Identity.Entity(uid, EntityManager))
+            ),
             Priority = 2
         };
+
         args.Verbs.Add(verb);
     }
 

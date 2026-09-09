@@ -172,6 +172,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     public float MaxWidth = 1.3f;
 
     /// <summary>
+    ///     Radiant sector both sliders in one
+    /// </summary>
+    [DataField]
+    public bool UseUniformScale = false;
+
+    /// <summary>
     ///     The average height in centimeters for this species, used to calculate player facing height values in UI elements
     /// </summary>
     [DataField]

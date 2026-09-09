@@ -26,7 +26,8 @@
       Nfsd:
         !type:SectorBankAccountInfo
         balance: 8000
-        increasePerSecond: 25 # 90K per hour, will offset the "Loss" of the vault money
+#        increasePerSecond: 25 # 90K per hour, will offset the "Loss" of the vault money
+        increasePerSecond: 20 # Radiant sector
       Medical:
         !type:SectorBankAccountInfo
         balance: 8000
