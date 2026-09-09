@@ -49,6 +49,7 @@ public abstract partial class SharedSurgerySystem
             args.Handled ||
             args.Target is not { } target ||
             !IsSurgeryValid(ent, target, args.Surgery, args.Step, out var surgery, out var part, out var step) ||
+            IsAdultSurgery(surgery) && (IsErpDenied(args.User) || IsErpDenied(ent)) ||
             !PreviousStepsComplete(ent, part, surgery, args.Step) ||
             !CanPerformStep(args.User, ent, part.Comp.PartType, step, false, out _, out _, out var usedTools))
         {
@@ -60,10 +61,15 @@ public abstract partial class SharedSurgerySystem
             return;
         }
 
-        if (!_random.Prob(args.SuccessRate))
+        // A tool swap must not retain the chance of the original, better instrument.
+        if (args.Used is { } original && !usedTools.Contains(original))
         {
-            if (_net.IsClient) return;
-            _popup.PopupEntity(Loc.GetString("starlight-surgery-popup-failed-tool"), args.User, PopupType.SmallCaution);
+            RefreshUI(ent);
+            return;
+        }
+        if (_net.IsServer && !_random.Prob(Math.Min(args.SuccessRate, GetStepSuccessRate(step, usedTools))))
+        {
+            OnSurgicalFailure(args.User, ent, target, args.SuccessRate);
             RefreshUI(ent);
             return;
         }
@@ -151,6 +157,8 @@ public abstract partial class SharedSurgerySystem
         if (_entitySystem.TryGetSingleton(args.SurgeryProto, out var surgeryEntity)
             && (HasComp<SurgerySiteTreatmentComponent>(surgeryEntity)
                 || HasComp<SurgeryExtractGlassComponent>(surgeryEntity)
+                || HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeSexComponent>(surgeryEntity)
+                || HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeVoiceComponent>(surgeryEntity)
                 || HasComp<SurgeryDisinfectionComponent>(surgeryEntity)
                 || HasComp<SurgeryLimbSlotConditionComponent>(surgeryEntity)
                 || HasComp<SurgeryAdultOrganConditionComponent>(surgeryEntity)
@@ -356,8 +364,14 @@ public abstract partial class SharedSurgerySystem
         if (ent.Comp.Operation != AdultSurgeryOperation.Insert)
             return;
 
-        if (args.Tools.Any(uid => TryComp<AdultOrganItemComponent>(uid, out var item) && item.Organ == ent.Comp.Organ))
+        foreach (var uid in args.Tools)
+        {
+            if (!TryComp<AdultOrganItemComponent>(uid, out var item) || item.Organ != ent.Comp.Organ
+                || IsDeadSurgicalItem(uid))
+                continue;
+            args.ValidTools.Add(uid);
             return;
+        }
 
         args.Invalid = StepInvalidReason.MissingTool;
         args.Popup = Loc.GetString("starlight-surgery-popup-missing-adult-organ");
@@ -394,25 +408,21 @@ public abstract partial class SharedSurgerySystem
 
         WarnSurgicalRisk(user, body, part, step, validTools);
         var duration = stepComp.Duration;
-        float SmallestSuccessRate = 1f;
 
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
                 var toolSpeed = 1f;
-                var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
                 var specificToolComp = EntityManager.GetComponents(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)
                 {
-                    var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
-                    if(requestedTool != null)
-                        if(usedTool.ToolType.Contains(requestedTool))
+                    if (stepComp.Tools != null)
+                        if (stepComp.Tools.ContainsKey(usedTool.ToolType))
                         {
                             toolSpeed = usedTool.Speed;
-                            toolSuccessRate = usedTool.SuccessRate;
                             startSound = usedTool.StartSound;
                         }
                 }
@@ -420,14 +430,12 @@ public abstract partial class SharedSurgerySystem
                 duration *= toolSpeed;
                 if (startSound != null) _audio.PlayPvs(startSound, tool);
 
-                if(toolSuccessRate < SmallestSuccessRate)
-                    SmallestSuccessRate = toolSuccessRate;
             }
 
         if (TryComp(body, out TransformComponent? xform))
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
-        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
+        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, GetStepSuccessRate(step, validTools));
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             BreakOnMove = true,

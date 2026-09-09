@@ -435,7 +435,15 @@ public sealed partial class SurgeryBui : BoundUserInterface
                     }
                 }
                 else
+                {
                     stepButton.TooltipTextSupplier = stepTooltip;
+                    if (_player.LocalEntity is { } surgeon
+                        && _system.CanPerformStep(surgeon, Owner, part.PartType, stepButton.Step, false, out _, out _, out var tools))
+                    {
+                        var chance = _system.GetStepSuccessRate(stepButton.Step, tools);
+                        stepName.AddText(Loc.GetString("surgical-step-success-chance", ("chance", Math.Round(chance * 100))));
+                    }
+                }
             }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;

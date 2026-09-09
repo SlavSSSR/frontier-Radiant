@@ -24,9 +24,14 @@ public abstract partial class SharedSurgerySystem
     protected EntityUid FindSurgeryStepTool(IEnumerable<EntityUid> tools, IComponent requirement, SurgeryStepComponent step)
     {
         var reagent = SurgicalSolutionReagent(requirement);
-        return tools.FirstOrDefault(item => reagent != null
+        return tools.Where(item => reagent != null
             ? HasPureSurgicalSolution(item, reagent, step.ReagentQuantity)
-            : HasComp(item, requirement.GetType()) && !IsDeadSurgicalItem(item));
+            : HasComp(item, requirement.GetType()) && !IsDeadSurgicalItem(item))
+            .OrderByDescending(item => !TryComp<Content.Shared.Item.ItemToggle.Components.ItemToggleComponent>(item, out var toggle)
+                || toggle.Activated)
+            .ThenByDescending(item => EntityManager.GetComponents(item).OfType<ISurgeryToolComponent>()
+                .Where(tool => tool.GetType() == requirement.GetType()).Select(tool => tool.SuccessRate).DefaultIfEmpty(1f).Max())
+            .FirstOrDefault();
     }
 
     public bool IsDeadSurgicalItem(EntityUid item)

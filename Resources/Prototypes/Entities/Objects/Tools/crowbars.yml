@@ -4,6 +4,13 @@
   id: BaseCrowbar
   abstract: true
   components:
+  - type: SurgeryTool
+  - type: Hemostat
+    speed: 1.75
+    successRate: 0.8
+  - type: Retractor
+    speed: 1.5
+    successRate: 0.9
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/crowbar_drop.ogg

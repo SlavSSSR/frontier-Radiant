@@ -44,6 +44,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         base.Initialize();
         InitializeSteps();
         InitializeSterility();
+        InitializeIdentitySteps();
 
         SubscribeLocalEvent<SurgeryToolComponent, AfterInteractEvent>(OnToolAfterInteract,
             before: new[] { typeof(Content.Shared.Chemistry.EntitySystems.SolutionTransferSystem) });

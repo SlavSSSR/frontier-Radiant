@@ -120,7 +120,7 @@ public sealed partial class SurgerySystem
         if (!UsesSurgicalSterility(args.Body, args.Part))
             return;
 
-        var site = GetSurgicalSite(surgery);
+        var site = GetSurgicalSite(surgery, step);
         var containerPenalty = usedTools.Any(item => HasComp<DrainableSolutionComponent>(item)
             && !HasComp<SurgicalAntisepticComponent>(item) && !HasComp<SurgicalLavageComponent>(item))
             ? SurgicalSolutionRules.OrdinaryContainerContamination : 0;

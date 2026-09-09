@@ -4,6 +4,10 @@
   id: Lighter
   description: "A simple plastic cigarette lighter."
   components:
+  - type: SurgeryTool
+  - type: Cautery
+    speed: 1.75
+    successRate: 0.8
   - type: IgnitionSource
     ignited: false
   - type: ItemToggle

@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._radiant.ERP;
 
@@ -57,17 +58,17 @@ public sealed partial class AdultAnatomyComponent : Component
     public bool BreastSizeSurgicallyChanged;
 }
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class AdultOrganItemComponent : Component
 {
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField]
     public AdultOrganType Organ;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public AdultBreastSize BreastSize = AdultBreastSize.Medium;
 
     /// <summary>Radiant sector: preserves denervation across extraction and transplantation.</summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool PenisNervesIntact = true;
 }
 
@@ -82,6 +83,7 @@ public sealed partial class CondomWornComponent : Component
     public string ItemPrototype = "Condom";
 }
 
+[Serializable, NetSerializable]
 public enum AdultOrganType : byte
 {
     Penis,
@@ -89,6 +91,7 @@ public enum AdultOrganType : byte
     Breasts,
 }
 
+[Serializable, NetSerializable]
 public enum AdultBreastSize : byte
 {
     Small,

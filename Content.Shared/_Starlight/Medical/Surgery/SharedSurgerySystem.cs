@@ -53,6 +53,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         InitializeSteps();
         InitializeConditions();
+        InitializeIdentitySurgery();
     }
 
     public bool IsSurgeryValid
@@ -80,6 +81,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return false;
 
         if (IsHandSurgeryBlockedByCuffs(body, targetPart))
+            return false;
+
+        if (HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeSexComponent>(surgeryEnt)
+            && !HasSexSurgeryAccess(body, targetPart))
             return false;
 
         // Radiant sector: ERP opt-out is a live safety condition. Unlike

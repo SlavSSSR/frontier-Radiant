@@ -238,7 +238,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 }
 
                 var heldOrgan = args.Tools.FirstOrDefault(uid =>
-                    TryComp<AdultOrganItemComponent>(uid, out var item) && item.Organ == ent.Comp.Organ);
+                    TryComp<AdultOrganItemComponent>(uid, out var item) && item.Organ == ent.Comp.Organ
+                    && !IsDeadSurgicalItem(uid));
                 if (heldOrgan == default || !TryComp<AdultOrganItemComponent>(heldOrgan, out var organItem))
                 {
                     args.IsCancelled = true;

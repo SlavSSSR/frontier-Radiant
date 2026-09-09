@@ -3,6 +3,10 @@
   id: BaseKnife
   abstract: true
   components:
+  - type: SurgeryTool
+  - type: Scalpel
+    speed: 1.5
+    successRate: 0.9
   - type: Tag
     tags:
     - Knife
@@ -207,6 +211,9 @@
   id: Shiv
   description: A crude weapon fashioned from a piece of cloth and a glass shard.
   components:
+  - type: Scalpel
+    speed: 1.75
+    successRate: 0.8
   - type: Tag
     tags:
     - CombatKnife

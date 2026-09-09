@@ -1,0 +1,81 @@
+# Existing reproductive organs and breast tissue are removed normally before starting.
+# Both chest and groin access remain mandatory throughout the procedure.
+- type: entity
+  parent: SurgeryAdultBase
+  id: SurgeryChangeSexFemale
+  name: Surgical sex reassignment - female
+  components:
+  - type: SurgeryChangeSex
+    sex: Female
+  - type: Surgery
+    steps:
+    - SurgeryStepAdultLocate
+    - SurgeryStepAdultClamp
+    - SurgeryStepInsertVagina
+    - SurgeryStepInsertBreasts
+    - SurgeryStepFinalizeSexFemale
+
+- type: entity
+  parent: SurgeryAdultBase
+  id: SurgeryChangeSexMale
+  name: Surgical sex reassignment - male
+  components:
+  - type: SurgeryChangeSex
+    sex: Male
+  - type: Surgery
+    steps:
+    - SurgeryStepAdultLocate
+    - SurgeryStepAdultClamp
+    - SurgeryStepInsertPenis
+    - SurgeryStepFinalizeSexMale
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepFinalizeSexFemale
+  name: Complete reconstruction and select voice
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+    - type: Cautery
+  - type: SurgeryFinalizeSex
+    sex: Female
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+
+- type: entity
+  parent: SurgeryStepFinalizeSexFemale
+  id: SurgeryStepFinalizeSexMale
+  components:
+  - type: SurgeryFinalizeSex
+    sex: Male
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryChangeVoice
+  name: Change voice
+  components:
+  - type: SurgeryChangeVoice
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepChangeVoice
+  - type: SurgeryPartCondition
+    parts: [Head]
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepChangeVoice
+  name: Reconstruct vocal cords and select voice
+  components:
+  - type: SurgeryChangeVoice
+  - type: SurgeryStep
+    duration: 10
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel

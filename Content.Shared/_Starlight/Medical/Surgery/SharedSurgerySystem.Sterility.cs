@@ -130,6 +130,18 @@ public abstract partial class SharedSurgerySystem
     public SurgicalSite GetSurgicalSite(EntityUid surgery)
         => FindSurgicalSite(surgery, new HashSet<EntityUid>()) ?? SurgicalSite.Surface;
 
+    public SurgicalSite GetSurgicalSite(EntityUid surgery, EntityUid step)
+    {
+        // Reconstruction spans two cavities; its groin prerequisite must not
+        // redirect contamination from a breast transplant into the groin.
+        if (HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeSexComponent>(surgery)
+            && TryComp<SurgeryStepAdultOrganComponent>(step, out var organ)
+            && organ.Organ == Content.Shared._radiant.ERP.AdultOrganType.Breasts)
+            return SurgicalSite.Ribcage;
+
+        return GetSurgicalSite(surgery);
+    }
+
     private SurgicalSite? FindSurgicalSite(EntityUid surgery, HashSet<EntityUid> visited)
     {
         if (!visited.Add(surgery))
@@ -162,4 +174,6 @@ public abstract partial class SharedSurgerySystem
         ref SurgeryStepCompleteEvent args, HashSet<EntityUid> usedTools, List<EntityUid> heldBefore) { }
 
     protected virtual void WarnSurgicalRisk(EntityUid user, EntityUid body, EntityUid part, EntityUid step, HashSet<EntityUid> tools) { }
+
+    protected virtual void OnSurgicalFailure(EntityUid user, EntityUid body, EntityUid part, float successRate) { }
 }
