@@ -1,7 +1,7 @@
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // For more information, visit: https://microsoft.com
     "version": "0.2.0",
     "configurations": [
         {
@@ -18,7 +18,7 @@
             "type": "coreclr",
             "request": "launch",
             "program": "${workspaceFolder}/bin/Content.Client/Content.Client.dll",
-            "args": "--cvar display.compat=true",
+            "args": ["--cvar", "display.compat=true"],
             "console": "internalConsole",
             "stopAtEntry": false
         },
@@ -51,12 +51,28 @@
             ],
             "preLaunchTask": "build"
         },
+        {
+            "name": "Server/Client (Compat)", // ОБЫЧНЫЙ РЕЖИМ С СОВМЕСТИМОСТЬЮ (Файлы обновляются на лету)
+            "configurations": [
+                "Server",
+                "Client (Compatibility renderer)"
+            ],
+            "preLaunchTask": "build"
+        },
         // Frontier begin
         {
             "name": "Server/Client (Release)",
             "configurations": [
                 "Server",
                 "Client"
+            ],
+            "preLaunchTask": "build-release"
+        },
+        {
+            "name": "Server/Client (ReleaseCompat)", // РЕЛИЗНЫЙ РЕЖИМ С СОВМЕСТИМОСТЬЮ (Максимум FPS, без обновления файлов)
+            "configurations": [
+                "Server",
+                "Client (Compatibility renderer)"
             ],
             "preLaunchTask": "build-release"
         },

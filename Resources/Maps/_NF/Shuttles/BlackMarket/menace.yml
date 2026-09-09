@@ -665,6 +665,8 @@ entities:
     - type: Transform
       pos: 6.5,-0.5
       parent: 1
+<<<<<<< HEAD
+=======
 - proto: NFCannonBall
   entities:
   - uid: 101
@@ -682,6 +684,7 @@ entities:
     - type: Transform
       pos: 1.352911,4.131369
       parent: 1
+>>>>>>> 4eb4f98afd9950783b3217095c16833e70134055
 - proto: Catwalk
   entities:
   - uid: 46
