@@ -284,6 +284,10 @@
     organ: Breasts
   - type: SurgeryAdultBreastSizeCondition
     disallowedSize: Large
+  # Their anatomy does not support the enlargement procedure.  Other breast
+  # procedures remain available where the species has the corresponding anatomy.
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: [Moth, Resomi, Vox]
 
 - type: entity
   parent: SurgeryAdultBreastBase

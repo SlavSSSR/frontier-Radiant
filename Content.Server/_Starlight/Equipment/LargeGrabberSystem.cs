@@ -90,15 +90,23 @@ public sealed class LargeGrabberSystem : EntitySystem
 
     private void OnRemovedFromContainer(EntityUid uid, LargeGrabberComponent comp, EntGotRemovedFromContainerMessage args)
     {
-        if (!comp.DropOnContainerChange)
+        if (!comp.DropOnContainerChange || TerminatingOrDeleted(uid))
             return;
         while (comp.ItemContainer.ContainedEntities.TryFirstOrNull(out var item) && item.HasValue)
+        {
+            if (TerminatingOrDeleted(item.Value))
+                break;
+
             RemoveItem(uid, args.Container.Owner, item.Value, comp);
+        }
         UpdateState(uid, comp);
     }
 
     private void RemoveItem(EntityUid uid, EntityUid user, EntityUid item, LargeGrabberComponent comp)
     {
+        if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(user) || TerminatingOrDeleted(item))
+            return;
+
         _container.Remove(item, comp.ItemContainer);
         var userXform = Transform(user);
         _transform.AttachToGridOrMap(item, Transform(item));

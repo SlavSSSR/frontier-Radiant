@@ -8,17 +8,17 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-        tongue: OrganHumanTongue # Radiant sector: Starlight surgery
+        brain: OrganMothBrain
+        eyes: OrganMothEyes
+        tongue: OrganMothTongue
     torso:
       part: TorsoMoth
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
+        heart: OrganMothHeart
+        lungs: OrganMothLungs
         stomach: OrganMothStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        liver: OrganMothLiver
+        kidneys: OrganMothKidneys
       connections:
       - right arm
       - left arm

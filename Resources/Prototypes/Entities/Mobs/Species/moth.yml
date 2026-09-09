@@ -32,8 +32,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeat
-      amount: 5
+    - id: FoodMeatMoth
+      amount: 3
   - type: Bloodstream
     bloodReagent: InsectBlood
   - type: DamageVisuals

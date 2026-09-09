@@ -1,0 +1,73 @@
+# Additional Radiant furniture. It has no recipes and is available only via
+# mapping or entity spawning.
+
+- type: entity
+  id: FilingCabinetRadiant
+  parent: filingCabinet
+  name: картотечный шкаф
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Storage/filing_cabinets.rsi
+    state: filingcabinet
+    layers:
+    - state: filingcabinet
+    - state: filingcabinet-open
+      map: ["openLayer"]
+
+- type: entity
+  id: ChestDrawerRadiant
+  parent: filingCabinetDrawer
+  name: тумба с ящиками
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Storage/filing_cabinets.rsi
+    state: chestdrawer
+    layers:
+    - state: chestdrawer
+    - state: chestdrawer-open
+      map: ["openLayer"]
+
+- type: entity
+  id: TallCabinetRadiant
+  parent: filingCabinetTall
+  name: высокий картотечный шкаф
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Storage/filing_cabinets.rsi
+    state: tallcabinet
+    layers:
+    - state: tallcabinet
+    - state: tallcabinet-open
+      map: ["openLayer"]
+
+- type: entity
+  id: EmploymentCabinet
+  parent: filingCabinet
+  name: шкаф отдела кадров
+  description: Шкаф для личных дел и кадровых документов.
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Storage/filing_cabinets.rsi
+    state: employmentcabinet
+    layers:
+    - state: employmentcabinet
+    - state: employmentcabinet-open
+      map: ["openLayer"]
+
+- type: entity
+  id: ChairOfficeWhiteRadiant
+  parent: ChairOfficeLight
+  name: белое офисное кресло
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Furniture/office_chairs.rsi
+    state: officechair_white
+
+- type: entity
+  id: ChairOfficeDarkRadiant
+  parent: ChairOfficeLight
+  name: тёмное офисное кресло
+  components:
+  - type: Sprite
+    sprite: _radiant/Structures/Furniture/office_chairs.rsi
+    state: officechair_dark

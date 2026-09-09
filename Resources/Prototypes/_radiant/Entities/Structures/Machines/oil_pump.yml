@@ -1,0 +1,100 @@
+- type: entity
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
+  id: OilPump
+  name: нефтяная помпа
+  description: Газовая нефтяная помпа, выработка которой зависит от уровня питания, подаваемого на неё.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Anchorable
+    flags: None
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-0.5,1,0.6"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _radiant/Structures/Machines/oil_pump/32x32.rsi
+    offset: 0,0.5
+    layers:
+    - sprite: _radiant/Structures/Machines/oil_pump/base.rsi
+      state: base
+    - state: fan
+      map: [fan]
+    - state: front-panel-on
+      shader: unshaded
+      map: [front-panel]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        fan:
+          True: { state: fan-animated }
+          False: { state: fan }
+        front-panel:
+          True: { state: front-panel-on }
+          False: { state: front-panel-off }
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon # FIXME: no icon, machine doesn't appear on the power monitor
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: GasSpawnPowerConsumer
+    spawnMixture:
+      moles:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.1
+      - 0.9 # oil
+      temperature: 5273 # ~ 5000 deg C, roughly when plasma turns back into gas
+  - type: GasCanister
+    gasMixture:
+      volume: 10000 # big tank to store backup
+    gasTankSlot:
+      locked: True # cannot be unlocked, unusable
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: GasPortable # for the connector port
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      tank_slot: !type:ContainerSlot {}

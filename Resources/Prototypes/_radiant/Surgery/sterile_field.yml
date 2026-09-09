@@ -1,0 +1,259 @@
+# Site-specific sterile field preparation and irrigation.
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDrapeSurface
+  name: Apply sterile surgical drape (surface)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepDrape]
+  - type: SurgerySiteTreatment
+    site: Surface
+    treatment: Drape
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDrapeRibcage
+  name: Apply sterile surgical drape (ribcage)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepDrape]
+  - type: SurgerySiteTreatment
+    site: Ribcage
+    treatment: Drape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDrapeAbdomen
+  name: Apply sterile surgical drape (abdomen)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepDrape]
+  - type: SurgerySiteTreatment
+    site: Abdomen
+    treatment: Drape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDrapeGroin
+  name: Apply sterile surgical drape (groin)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepDrape]
+  - type: SurgerySiteTreatment
+    site: Groin
+    treatment: Drape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDrape
+  name: Apply sterile surgical drape
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: SurgicalDrape
+  - type: SurgerySiteTreatment
+    treatment: Drape
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#76C9CD"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveDrapeSurface
+  name: Remove and discard surgical drape (surface)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepRemoveDrape]
+  - type: SurgerySiteTreatment
+    site: Surface
+    treatment: RemoveDrape
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#999999"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveDrapeRibcage
+  name: Remove and discard surgical drape (ribcage)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepRemoveDrape]
+  - type: SurgerySiteTreatment
+    site: Ribcage
+    treatment: RemoveDrape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#999999"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveDrapeAbdomen
+  name: Remove and discard surgical drape (abdomen)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepRemoveDrape]
+  - type: SurgerySiteTreatment
+    site: Abdomen
+    treatment: RemoveDrape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#999999"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveDrapeGroin
+  name: Remove and discard surgical drape (groin)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepRemoveDrape]
+  - type: SurgerySiteTreatment
+    site: Groin
+    treatment: RemoveDrape
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#999999"
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveDrape
+  name: Remove and discard surgical drape
+  components:
+  - type: SurgeryStep
+    duration: 2
+  - type: SurgerySiteTreatment
+    treatment: RemoveDrape
+  - type: Sprite
+    sprite: _radiant/Objects/Medical/sterile_drape.rsi
+    state: drape
+    color: "#999999"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryLavageSurface
+  name: Irrigate surgical wound (surface)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepLavage]
+  - type: SurgerySiteTreatment
+    site: Surface
+    treatment: Lavage
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryLavageRibcage
+  name: Irrigate surgical wound (ribcage)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepLavage]
+  - type: SurgerySiteTreatment
+    site: Ribcage
+    treatment: Lavage
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryLavageAbdomen
+  name: Irrigate surgical wound (abdomen)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepLavage]
+  - type: SurgerySiteTreatment
+    site: Abdomen
+    treatment: Lavage
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryLavageGroin
+  name: Irrigate surgical wound (groin)
+  components:
+  - type: Surgery
+    priority: -105
+    steps: [SurgeryStepLavage]
+  - type: SurgerySiteTreatment
+    site: Groin
+    treatment: Lavage
+  - type: SurgeryPartCondition
+    parts: [Torso]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLavage
+  name: Irrigate surgical wound
+  components:
+  - type: SurgeryStep
+    duration: 12
+    tools:
+    - type: SurgicalLavage
+    reagentId: Saline
+    reagentQuantity: 10
+  - type: SurgerySiteTreatment
+    treatment: Lavage
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#AACCEE"

@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Cuffs.Components;
 using Content.Shared._radiant;
 using Content.Shared._radiant.ERP;
 using Content.Shared.DetailExaminable;
@@ -24,9 +25,11 @@ public abstract partial class SharedSurgerySystem
 
         SubscribeLocalEvent<SurgeryPartConditionComponent, SurgeryValidEvent>(OnPartConditionValid);
         SubscribeLocalEvent<SurgeryCavityConditionComponent, SurgeryValidEvent>(OnCavityConditionValid);
+        SubscribeLocalEvent<SurgeryNoOpenCavitiesConditionComponent, SurgeryValidEvent>(OnNoOpenCavitiesConditionValid);
         SubscribeLocalEvent<SurgerySpeciesConditionComponent, SurgeryValidEvent>(OnSpeciesConditionValid);
         SubscribeLocalEvent<SurgeryOrganExistConditionComponent, SurgeryValidEvent>(OnOrganExistConditionValid);
         SubscribeLocalEvent<SurgeryOrganDontExistConditionComponent, SurgeryValidEvent>(OnOrganDontExistConditionValid);
+        SubscribeLocalEvent<SurgeryOrganCountConditionComponent, SurgeryValidEvent>(OnOrganCountConditionValid);
         SubscribeLocalEvent<SurgeryAnyAccentConditionComponent, SurgeryValidEvent>(OnAnyAccentConditionValid);
         SubscribeLocalEvent<SurgeryAnyLimbSlotConditionComponent, SurgeryValidEvent>(OnAnyLimbSlotConditionValid);
         SubscribeLocalEvent<SurgeryLimbSlotConditionComponent, SurgeryValidEvent>(OnLimbSlotConditionValid);
@@ -37,6 +40,25 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryAdultBreastSizeConditionComponent, SurgeryValidEvent>(OnAdultBreastSizeConditionValid);
         SubscribeLocalEvent<SurgeryPenisNerveConditionComponent, SurgeryValidEvent>(OnPenisNerveConditionValid);
         SubscribeLocalEvent<SurgeryPenisInstallationConditionComponent, SurgeryValidEvent>(OnPenisInstallationConditionValid);
+        SubscribeLocalEvent<SurgeryTattooConditionComponent, SurgeryValidEvent>(OnTattooConditionValid);
+    }
+
+    private void OnTattooConditionValid(Entity<SurgeryTattooConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoid)
+            || !TryComp<BodyPartComponent>(args.Part, out var part))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        foreach (var marking in humanoid.MarkingSet.Markings.Values.SelectMany(markings => markings))
+        {
+            if (SurgicalTattooUtility.IsTattooOnPart(marking, part, _prototypeManager))
+                return;
+        }
+
+        args.Cancelled = true;
     }
 
     private void OnCavityConditionValid(Entity<SurgeryCavityConditionComponent> ent, ref SurgeryValidEvent args)
@@ -44,6 +66,13 @@ public abstract partial class SharedSurgerySystem
         var isOpen = TryComp<SurgicalCavityStateComponent>(args.Part, out var cavities)
                      && cavities.IsOpen(ent.Comp.Cavity);
         if (isOpen != ent.Comp.Open)
+            args.Cancelled = true;
+    }
+
+    private void OnNoOpenCavitiesConditionValid(Entity<SurgeryNoOpenCavitiesConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (TryComp<SurgicalCavityStateComponent>(args.Part, out var cavities)
+            && (cavities.RibcageOpen || cavities.AbdomenOpen || cavities.GroinOpen))
             args.Cancelled = true;
     }
 
@@ -128,6 +157,28 @@ public abstract partial class SharedSurgerySystem
                 }
         }
     }
+
+    private void OnOrganCountConditionValid(Entity<SurgeryOrganCountConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (ent.Comp.Organ.Count != 1)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var type = ent.Comp.Organ.Values.First().Component.GetType();
+        var count = 0;
+        foreach (var slot in ent.Comp.Containers)
+        {
+            if (!_containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+                continue;
+
+            count += container.ContainedEntities.Count(entity => HasComp(entity, type));
+        }
+
+        if (count < ent.Comp.Minimum || count > ent.Comp.Maximum)
+            args.Cancelled = true;
+    }
     private void OnOrganExistConditionValid(Entity<SurgeryOrganExistConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (ent.Comp.Organ?.Count != 1) return;
@@ -166,6 +217,12 @@ public abstract partial class SharedSurgerySystem
 
     private void OnPartConditionValid(Entity<SurgeryPartConditionComponent> ent, ref SurgeryValidEvent args)
     {
+        if (IsHandSurgeryBlockedByCuffs(args.Body, args.Part))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
         if (ent.Comp.Parts.Count == 0)
             return;
 
@@ -242,4 +299,15 @@ public abstract partial class SharedSurgerySystem
 
     private static string NormalizeLimbSlot(string slot)
         => slot.Replace('_', ' ').ToLowerInvariant();
+
+    private bool IsHandSurgeryBlockedByCuffs(EntityUid body, EntityUid part)
+    {
+        if (!TryComp<BodyPartComponent>(part, out var bodyPart)
+            || bodyPart.PartType is not (BodyPartType.Arm or BodyPartType.Hand)
+            || !TryComp<CuffableComponent>(body, out var cuffable)
+            || cuffable.Container == null)
+            return false;
+
+        return cuffable.Container.ContainedEntities.Count > 0;
+    }
 }

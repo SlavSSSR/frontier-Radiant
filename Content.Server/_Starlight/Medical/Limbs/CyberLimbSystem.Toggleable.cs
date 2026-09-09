@@ -83,6 +83,9 @@ public sealed partial class CyberLimbSystem
 
     private void OnBodyPartRemoved(Entity<BodyComponent> body, ref BodyPartRemovedEvent args)
     {
+        if (TerminatingOrDeleted(body.Owner) || TerminatingOrDeleted(args.Part.Owner))
+            return;
+
         RemovePartActions(body.Owner, args.Part.Owner);
 
         foreach (var (slot, child) in GetDirectChildParts(args.Part))

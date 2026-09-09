@@ -86,11 +86,27 @@ public sealed class BodySystem : SharedBodySystem
         {
             foreach (var attachedPart in GetBodyPartAdjacentParts(partEnt, partEnt.Comp).Concat([partEnt]))
             {
+                // GetBodyPartAdjacentParts also returns the parent torso. Only
+                // the limb being installed and its bundled child (hand/foot)
+                // belong to this visual update.
+                if (attachedPart != partEnt.Owner && GetParentPartOrNull(attachedPart) != partEnt.Owner)
+                    continue;
+
                 if (!TryComp<BodyPartComponent>(attachedPart, out var attachedBodyPart)
-                    || !TryComp<BaseLayerIdComponent>(attachedPart, out var layerIds)
-                    || attachedBodyPart.ToHumanoidLayers() is not { } visualLayer
-                    || !(layerIds.Layers.TryGetValue(humanoid.Species, out var layerId)
-                         || layerIds.Layers.TryGetValue("Default", out layerId))
+                    || attachedBodyPart.ToHumanoidLayers() is not { } visualLayer)
+                    continue;
+
+                // Replacing a cyberlimb with an organic limb must also remove the
+                // cybernetic base-layer override. Merely making the layer visible
+                // again leaves the old metal sprite on the newly attached limb.
+                if (!TryComp<BaseLayerIdComponent>(attachedPart, out var layerIds))
+                {
+                    humanoid.CustomBaseLayers.Remove(visualLayer);
+                    continue;
+                }
+
+                if (!(layerIds.Layers.TryGetValue(humanoid.Species, out var layerId)
+                      || layerIds.Layers.TryGetValue("Default", out layerId))
                     || layerId is null)
                     continue;
 

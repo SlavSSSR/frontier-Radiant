@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Employment cabinet sprite by BlueMoon Station contributors, https://github.com/BlueMoonSS13/BlueMoon-Station; ported from BlueMoon-Station12-master",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "employmentcabinet" },
+    { "name": "employmentcabinet-open" }
+  ]
+}

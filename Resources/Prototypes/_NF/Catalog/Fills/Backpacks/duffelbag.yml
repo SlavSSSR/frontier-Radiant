@@ -45,6 +45,7 @@
     contents:
       - id: ScalpelAdvanced
       - id: ScalpelLaser
+      - id: SurgicalAntiseptic
       - id: Cautery
       - id: SawElectric
       - id: Drill

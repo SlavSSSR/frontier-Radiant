@@ -14,6 +14,10 @@ namespace Content.Shared._Starlight.Medical.Surgery.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryAnyLimbSlotConditionComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryOperatingTableConditionComponent : Component;
 
+/// <summary>Shows tattoo removal only on a body part which actually has a removable tattoo.</summary>
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+public sealed partial class SurgeryTattooConditionComponent : Component;
+
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryLimbSlotConditionComponent : Component
 {
@@ -45,6 +49,11 @@ public sealed partial class SurgeryCavityConditionComponent : Component
     [DataField]
     public bool Open = true;
 }
+
+/// <summary>Radiant sector: requires every independent torso cavity to be closed.</summary>
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+public sealed partial class SurgeryNoOpenCavitiesConditionComponent : Component;
+
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgerySpeciesConditionComponent : Component
 {
@@ -77,6 +86,23 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
 
     [DataField]
     public string? Container;
+}
+
+/// <summary>Requires a component-bearing organ count across several surgical slots to be within a range.</summary>
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+public sealed partial class SurgeryOrganCountConditionComponent : Component
+{
+    [DataField(required: true)]
+    public ComponentRegistry Organ = new();
+
+    [DataField(required: true)]
+    public List<string> Containers = [];
+
+    [DataField]
+    public int Minimum;
+
+    [DataField]
+    public int Maximum = int.MaxValue;
 }
 
 /// <summary>Radiant sector: hides and rejects adult surgery when the patient opted out of ERP.</summary>

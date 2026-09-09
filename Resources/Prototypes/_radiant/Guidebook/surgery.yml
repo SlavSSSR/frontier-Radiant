@@ -1,0 +1,35 @@
+- type: guideEntry
+  id: RadiantSurgery
+  name: guide-entry-radiant-surgery
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Overview.xml
+  children:
+  - RadiantSurgeryOperations
+  - RadiantSurgeryImplants
+  - RadiantSurgerySterility
+  - RadiantSurgeryComplications
+  - RadiantSurgeryGlass
+
+- type: guideEntry
+  id: RadiantSurgeryOperations
+  name: guide-entry-radiant-surgery-operations
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Operations.xml
+
+- type: guideEntry
+  id: RadiantSurgeryImplants
+  name: guide-entry-radiant-surgery-implants
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Implants.xml
+
+- type: guideEntry
+  id: RadiantSurgerySterility
+  name: guide-entry-radiant-surgery-sterility
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Sterility.xml
+
+- type: guideEntry
+  id: RadiantSurgeryComplications
+  name: guide-entry-radiant-surgery-complications
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Complications.xml
+
+- type: guideEntry
+  id: RadiantSurgeryGlass
+  name: guide-entry-radiant-surgery-glass
+  text: /ServerInfo/_radiant/Guidebook/Surgery/Glass.xml

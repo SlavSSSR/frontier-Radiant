@@ -147,6 +147,7 @@
   name: lab coat
   description: A suit that protects against minor chemical spills.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
   - type: Clothing
@@ -167,6 +168,7 @@
   name: chemist lab coat
   description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
   - type: Clothing
@@ -187,6 +189,7 @@
   name: virologist lab coat
   description: A suit that protects against bacteria and viruses. Has an green stripe on the shoulder.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
   - type: Clothing
@@ -207,6 +210,7 @@
   name: geneticist lab coat
   description: A suit that protects against minor chemical spills. Has an blue stripe on the shoulder.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
   - type: Clothing
@@ -227,6 +231,7 @@
   name: chief medical officer's lab coat
   description: Custom made blue lab coat for the Chief Medical Officer, offers improved protection against chemical spills and minor cuts.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Clothing
@@ -249,6 +254,7 @@
   name: scientist lab coat
   description: A suit that protects against minor chemical spills. Has a purple stripe on the shoulder.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
   - type: Clothing
@@ -269,6 +275,7 @@
   name: roboticist lab coat
   description: More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
   - type: Clothing
@@ -289,6 +296,7 @@
   name: research director lab coat
   description: Woven with top of the line technology, this labcoat helps protect against radiation in similar way to the experimental hardsuit.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
   - type: Clothing
@@ -423,6 +431,7 @@
   name: senior researcher lab coat
   description: A suit that protects against minor chemical spills. Has a purple collar and wrist trims.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
   - type: Clothing
@@ -443,6 +452,7 @@
   name: senior physician lab coat
   description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
   components:
+  - type: SurgicalOuterwear
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
   - type: Clothing

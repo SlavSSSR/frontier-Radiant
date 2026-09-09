@@ -45,6 +45,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private StarlightEntitySystem _entitySystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -52,6 +53,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         InitializeSteps();
         InitializeConditions();
+        InitializeIdentitySurgery();
     }
 
     public bool IsSurgeryValid
@@ -76,6 +78,13 @@ public abstract partial class SharedSurgerySystem : EntitySystem
              || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt)
              || !_entitySystem.TryGetSingleton(stepId, out step)
              || !surgeryEnt.Comp.Steps.Contains(stepId))
+            return false;
+
+        if (IsHandSurgeryBlockedByCuffs(body, targetPart))
+            return false;
+
+        if (HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeSexComponent>(surgeryEnt)
+            && !HasSexSurgeryAccess(body, targetPart))
             return false;
 
         // Radiant sector: ERP opt-out is a live safety condition. Unlike

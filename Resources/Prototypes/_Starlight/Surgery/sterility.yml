@@ -1,0 +1,60 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDisinfectSurface
+  name: Disinfect surgical site
+  components:
+  - type: Surgery
+    priority: -110
+    steps:
+    - SurgeryStepDisinfect
+  - type: SurgeryDisinfection
+    site: Surface
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: [IPC]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#80CCD9"
+
+- type: entity
+  parent: SurgeryDisinfectSurface
+  id: SurgeryDisinfectRibcage
+  name: Disinfect chest incision
+  components:
+  - type: SurgeryDisinfection
+    site: Ribcage
+  - type: SurgeryPartCondition
+    parts: [Torso]
+
+- type: entity
+  parent: SurgeryDisinfectRibcage
+  id: SurgeryDisinfectAbdomen
+  name: Disinfect abdominal incision
+  components:
+  - type: SurgeryDisinfection
+    site: Abdomen
+
+- type: entity
+  parent: SurgeryDisinfectRibcage
+  id: SurgeryDisinfectGroin
+  name: Disinfect groin incision
+  components:
+  - type: SurgeryDisinfection
+    site: Groin
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDisinfect
+  name: Apply surgical antiseptic (5 units)
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: SurgicalAntiseptic
+    reagentId: Ethanol
+    reagentQuantity: 5
+  - type: SurgeryDisinfection
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#80CCD9"

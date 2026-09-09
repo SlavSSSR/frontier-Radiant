@@ -12,6 +12,7 @@
     - state: eyeball-r
   - type: Damageable
     damageContainer: Inorganic
+  - type: CyberneticOrgan
   - type: FunctionalOrgan
     comps:
     - type: NoirOverlay
@@ -33,6 +34,77 @@
     visibility: Subtle
 
 - type: entity
+  id: DecorativeCyberEyesRed
+  name: decorative cyber eyes (red)
+  description: Artificial eyes with a bright red iris. Purely cosmetic.
+  parent: OrganHumanEyes
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: DecorativeCyberEyes
+    irisColor: "#E63946"
+  - type: CyberneticOrgan
+  - type: SurgicalImplantExamine
+    text: starlight-surgery-implant-hint-eye-decorative-red
+    visibility: Subtle
+
+- type: entity
+  id: DecorativeCyberEyesCyan
+  name: decorative cyber eyes (cyan)
+  description: Artificial eyes with a cyan iris. Purely cosmetic.
+  parent: DecorativeCyberEyesRed
+  components:
+  - type: DecorativeCyberEyes
+    irisColor: "#22D3EE"
+  - type: SurgicalImplantExamine
+    text: starlight-surgery-implant-hint-eye-decorative-cyan
+    visibility: Subtle
+
+- type: entity
+  id: DecorativeCyberEyesViolet
+  name: decorative cyber eyes (violet)
+  description: Artificial eyes with a violet iris. Purely cosmetic.
+  parent: DecorativeCyberEyesRed
+  components:
+  - type: DecorativeCyberEyes
+    irisColor: "#A855F7"
+  - type: SurgicalImplantExamine
+    text: starlight-surgery-implant-hint-eye-decorative-violet
+    visibility: Subtle
+
+- type: entity
+  id: DecorativeCyberEyesGold
+  name: decorative cyber eyes (gold)
+  description: Artificial eyes with a gold iris. Purely cosmetic.
+  parent: DecorativeCyberEyesRed
+  components:
+  - type: DecorativeCyberEyes
+    irisColor: "#FACC15"
+  - type: SurgicalImplantExamine
+    text: starlight-surgery-implant-hint-eye-decorative-gold
+    visibility: Subtle
+
+- type: entity
+  id: DecorativeCyberEyesConfigurable
+  name: configurable decorative cyber eyes
+  description: Artificial eyes whose iris colour can be configured before implantation.
+  parent: DecorativeCyberEyesRed
+  components:
+  - type: DecorativeCyberEyes
+    irisColor: "#5BA8FF"
+  - type: ConfigurableCyberEyes
+  - type: UserInterface
+    interfaces:
+      enum.ConfigurableCyberEyesUiKey.Key:
+        type: ConfigurableCyberEyesBoundUserInterface
+  - type: SurgicalImplantExamine
+    text: starlight-surgery-implant-hint-eye-decorative-configurable
+    visibility: Subtle
+
+- type: entity
   id: BudgetCyberTongue
   name: budget cyber tongue
   description: An artificial tongue with full movement but no taste receptors.
@@ -43,6 +115,7 @@
     state: tongue
   - type: Damageable
     damageContainer: Inorganic
+  - type: CyberneticOrgan
   - type: FunctionalOrgan
     comps:
     - type: UnableToTaste
@@ -62,6 +135,9 @@
     state: liver
   - type: Damageable
     damageContainer: Inorganic
+  - type: CyberneticOrgan
+    disableComponents:
+    - type: Metabolizer
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
@@ -84,6 +160,9 @@
     state: stomach
   - type: Damageable
     damageContainer: Inorganic
+  - type: CyberneticOrgan
+    disableComponents:
+    - type: Metabolizer
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -117,6 +196,7 @@
     - state: kidney-r
   - type: Damageable
     damageContainer: Inorganic
+  - type: CyberneticOrgan
   - type: FunctionalOrgan
     comps:
     - type: ThirstRateMultiplier

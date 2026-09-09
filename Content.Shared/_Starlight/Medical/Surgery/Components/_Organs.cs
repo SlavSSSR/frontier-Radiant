@@ -11,6 +11,15 @@ namespace Content.Shared._Starlight.Medical.Surgery.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class NoseImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class BrainImplantComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class ChestImplantComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HeartImplantComponent : Component;
+[RegisterComponent, NetworkedComponent]
+public sealed partial class CyberneticOrganComponent : Component
+{
+    /// <summary>Components located on the organ itself which must be removed while EMP-disabled.</summary>
+    [DataField]
+    public ComponentRegistry DisableComponents = new();
+}
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganBrainComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganAppendixComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganEarsComponent : Component;
@@ -36,6 +45,39 @@ public sealed partial class OrganEyesComponent : Component
     [DataField]
     public int? MinDamage;
 }
+
+/// <summary>Decorative cyber eyes set the patient's visible iris colour while implanted.</summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class DecorativeCyberEyesComponent : Component
+{
+    [DataField(required: true)]
+    public Color IrisColor;
+
+    public Color? PreviousEyeColor;
+}
+
+/// <summary>Allows a loose set of decorative cyber eyes to be configured before surgery.</summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ConfigurableCyberEyesComponent : Component;
+
+/// <summary>
+/// A cybernetic device installed in the torso cavity which periodically repairs
+/// the host.  It has to stay as an organ (rather than an ordinary implant) so
+/// it can be installed and removed through the cavity surgery.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ChestMedicalImplantComponent : Component
+{
+    [DataField(required: true)]
+    public DamageSpecifier Healing = new();
+
+    [DataField]
+    public float Interval = 10f;
+
+    public EntityUid? Body;
+    public TimeSpan NextHealing;
+    public bool EmpDisabled;
+}
 [RegisterComponent, NetworkedComponent]
 public sealed partial class OrganVisualizationComponent : Component
 {
@@ -57,6 +99,7 @@ public sealed partial class FunctionalOrganComponent : Component
     // Populated at install time with the component types this specific organ instance actually
     // added, so extraction only removes what it installed, not whatever's currently present.
     public HashSet<Type> Installed = [];
+
 }
 
 /// <summary>
@@ -70,6 +113,7 @@ public sealed partial class ActionOrganComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;
+
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -96,6 +140,7 @@ public sealed partial class StorageOrganComponent : Component
 
     [DataField]
     public string ActionKey;
+
 }
 
 /// <summary>

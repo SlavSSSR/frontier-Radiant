@@ -8,6 +8,8 @@
   - type: Hunger
   - type: Thirst
   - type: Carriable # Carrying system from nyanotrasen.
+  - type: Sprite # Radiant sector
+    scale: 1, 0.8 # Radiant sector
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -18,8 +20,8 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-  - type: ScaleVisuals
-#    scale: 1, 0.8 # Radiant sector
+#  - type: ScaleVisuals
+#    scale: 1, 0.8
   - type: Body
     prototype: Dwarf
     requiredLegs: 2
@@ -35,7 +37,8 @@
           !type:PhysShapeCircle
           radius: 0.35
         # they r smaller
-        density: 120
+#        density: 120 # Radiant sector
+        density: 150 # Radiant sector
         restitution: 0.0
         mask:
         - MobMask
@@ -73,8 +76,8 @@
   id: MobDwarfDummy
   categories: [ HideSpawnMenu ]
   components:
-  - type: ScaleVisuals
-    scale: 1, 0.8
+#  - type: ScaleVisuals
+#    scale: 1, 0.8
   - type: Inventory
     femaleDisplacements:
       jumpsuit:

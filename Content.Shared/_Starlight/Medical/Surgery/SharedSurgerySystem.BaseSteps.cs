@@ -27,6 +27,10 @@ public abstract partial class SharedSurgerySystem
 
     private void InitializeSteps()
     {
+        SubscribeLocalEvent<SurgeryDisinfectionComponent, SurgeryValidEvent>(OnDisinfectionValid);
+        SubscribeLocalEvent<SurgeryExtractGlassComponent, SurgeryValidEvent>(OnExtractGlassValid);
+        SubscribeLocalEvent<SurgerySiteTreatmentComponent, SurgeryValidEvent>(OnSiteTreatmentValid);
+        SubscribeLocalEvent<SurgerySiteTreatmentComponent, SurgeryCanPerformStepEvent>(OnSiteTreatmentCanPerform);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
@@ -45,8 +49,9 @@ public abstract partial class SharedSurgerySystem
             args.Handled ||
             args.Target is not { } target ||
             !IsSurgeryValid(ent, target, args.Surgery, args.Step, out var surgery, out var part, out var step) ||
+            IsAdultSurgery(surgery) && (IsErpDenied(args.User) || IsErpDenied(ent)) ||
             !PreviousStepsComplete(ent, part, surgery, args.Step) ||
-            !CanPerformStep(args.User, ent, part.Comp.PartType, step, false))
+            !CanPerformStep(args.User, ent, part.Comp.PartType, step, false, out _, out _, out var usedTools))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             Dirty(ent);
@@ -56,15 +61,40 @@ public abstract partial class SharedSurgerySystem
             return;
         }
 
-        if (!_random.Prob(args.SuccessRate))
+        // A tool swap must not retain the chance of the original, better instrument.
+        if (args.Used is { } original && !usedTools.Contains(original))
         {
-            if (_net.IsClient) return;
-            _popup.PopupEntity(Loc.GetString("starlight-surgery-popup-failed-tool"), args.User, PopupType.SmallCaution);
+            RefreshUI(ent);
+            return;
+        }
+        if (_net.IsServer && !_random.Prob(Math.Min(args.SuccessRate, GetStepSuccessRate(step, usedTools))))
+        {
+            OnSurgicalFailure(args.User, ent, target, args.SuccessRate);
             RefreshUI(ent);
             return;
         }
 
-        var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User))
+        var heldBefore = GetTools(args.User);
+        if (TryComp<SurgeryStepComponent>(step, out var solutionStep))
+        {
+            var requiredSolution = solutionStep.Tools?.Values
+                .Select(reg => SurgicalSolutionReagent(reg.Component)).FirstOrDefault(reagent => reagent != null);
+            if (requiredSolution != null)
+            {
+                // Never silently switch to a different bottle if the original was mixed or emptied.
+                if (args.Used is not { } source || !heldBefore.Contains(source)
+                    || !HasPureSurgicalSolution(source, requiredSolution, solutionStep.ReagentQuantity))
+                {
+                    RefreshUI(ent);
+                    return;
+                }
+                // Collection expressions can emit CollectionsMarshal.SetCount, forbidden by the client sandbox.
+                heldBefore = new List<EntityUid> { source };
+                usedTools.Clear();
+                usedTools.Add(source);
+            }
+        }
+        var ev = new SurgeryStepEvent(args.User, ent, part, heldBefore)
         {
             StepProto = args.Step,
             SurgeryProto = args.Surgery,
@@ -83,6 +113,8 @@ public abstract partial class SharedSurgerySystem
             IsFinal = surgery.Comp.Steps[^1] == args.Step,
         };
         RaiseLocalEvent(step, ref evComplete);
+
+        ApplySurgicalContamination(surgery, step, ref evComplete, usedTools, heldBefore);
 
         RefreshUI(ent);
     }
@@ -123,10 +155,19 @@ public abstract partial class SharedSurgerySystem
         // repeatable after that limb is amputated later. Keeping it in the completed
         // set made the second attachment appear completed and therefore unusable.
         if (_entitySystem.TryGetSingleton(args.SurgeryProto, out var surgeryEntity)
-            && (HasComp<SurgeryLimbSlotConditionComponent>(surgeryEntity)
+            && (HasComp<SurgerySiteTreatmentComponent>(surgeryEntity)
+                || HasComp<SurgeryExtractGlassComponent>(surgeryEntity)
+                || HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeSexComponent>(surgeryEntity)
+                || HasComp<Content.Shared._radiant.Medical.Surgery.SurgeryChangeVoiceComponent>(surgeryEntity)
+                || HasComp<SurgeryDisinfectionComponent>(surgeryEntity)
+                || HasComp<SurgeryLimbSlotConditionComponent>(surgeryEntity)
                 || HasComp<SurgeryAdultOrganConditionComponent>(surgeryEntity)
                 || HasComp<SurgeryAdultBreastSizeConditionComponent>(surgeryEntity)
-                || HasComp<SurgeryCavityConditionComponent>(surgeryEntity)))
+                || HasComp<SurgeryCavityConditionComponent>(surgeryEntity)
+                || HasComp<SurgeryOrganExistConditionComponent>(surgeryEntity)
+                || HasComp<SurgeryOrganDontExistConditionComponent>(surgeryEntity)
+                || HasComp<SurgeryOrganCountConditionComponent>(surgeryEntity)
+                || HasComp<SurgeryTattooConditionComponent>(surgeryEntity)))
         {
             if (TryComp<SurgeryComponent>(surgeryEntity, out var surgery))
             {
@@ -148,8 +189,12 @@ public abstract partial class SharedSurgerySystem
 
         foreach (var reg in (ent.Comp.Tools ?? []).Values)
         {
-            var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
-            if (tool == default) return;
+            var tool = FindSurgeryStepTool(args.Tools, reg.Component, ent.Comp);
+            if (tool == default)
+            {
+                args.IsCancelled = true;
+                return;
+            }
 
             var specificToolComp = EntityManager.GetComponents(tool)
                 .OfType<ISurgeryToolComponent>();
@@ -168,7 +213,10 @@ public abstract partial class SharedSurgerySystem
             if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && endSound != null)
                 _audio.PlayPvs(endSound, tool);
 
-            if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
+            if (SurgicalSolutionReagent(reg.Component) is { } reagent
+                && _solutionContainerSystem.TryGetDrainableSolution(tool, out var surgicalSolution, out _))
+                _solutionContainerSystem.RemoveReagent(surgicalSolution.Value, new ReagentQuantity(reagent, ent.Comp.ReagentQuantity));
+            else if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
                 _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
         }
 
@@ -248,10 +296,23 @@ public abstract partial class SharedSurgerySystem
 
         foreach (var reg in ent.Comp.Tools.Values)
         {
-            var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+            var tool = FindSurgeryStepTool(args.Tools, reg.Component, ent.Comp);
             if (tool == default)
             {
                 args.Invalid = StepInvalidReason.MissingTool;
+
+                if (SurgicalSolutionReagent(reg.Component) is { } reagent)
+                {
+                    args.Popup = Loc.GetString("surgical-solution-pure-required",
+                        ("reagent", Loc.GetString(reagent == "Ethanol" ? "reagent-name-ethanol" : "reagent-name-saline")),
+                        ("amount", ent.Comp.ReagentQuantity));
+                    return;
+                }
+                if (args.Tools.Any(item => HasComp(item, reg.Component.GetType()) && IsDeadSurgicalItem(item)))
+                {
+                    args.Popup = Loc.GetString("surgical-dead-item-rejected");
+                    return;
+                }
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
                     // Radiant sector: ToolName stores a locale key so surgery hints follow the client's language.
@@ -290,11 +351,12 @@ public abstract partial class SharedSurgerySystem
     {
         // Radiant sector: hand enumeration order must not hide a valid limb when
         // the surgeon holds an ordinary instrument in the other hand.
-        if (args.Tools.Any(itemId => HasComp<BodyPartComponent>(itemId)))
+        if (args.Tools.Any(itemId => HasComp<BodyPartComponent>(itemId) && !IsDeadSurgicalItem(itemId)))
             return;
 
         args.Invalid = StepInvalidReason.MissingLimb;
-        args.Popup = Loc.GetString("starlight-surgery-popup-missing-limb");
+        args.Popup = Loc.GetString(args.Tools.Any(IsDeadSurgicalItem)
+            ? "surgical-dead-item-rejected" : "starlight-surgery-popup-missing-limb");
     }
 
     private void OnAdultOrganStepCanPerform(Entity<SurgeryStepAdultOrganComponent> ent, ref SurgeryCanPerformStepEvent args)
@@ -302,8 +364,14 @@ public abstract partial class SharedSurgerySystem
         if (ent.Comp.Operation != AdultSurgeryOperation.Insert)
             return;
 
-        if (args.Tools.Any(uid => TryComp<AdultOrganItemComponent>(uid, out var item) && item.Organ == ent.Comp.Organ))
+        foreach (var uid in args.Tools)
+        {
+            if (!TryComp<AdultOrganItemComponent>(uid, out var item) || item.Organ != ent.Comp.Organ
+                || IsDeadSurgicalItem(uid))
+                continue;
+            args.ValidTools.Add(uid);
             return;
+        }
 
         args.Invalid = StepInvalidReason.MissingTool;
         args.Popup = Loc.GetString("starlight-surgery-popup-missing-adult-organ");
@@ -338,26 +406,23 @@ public abstract partial class SharedSurgerySystem
             _popup.PopupEntity(Loc.GetString("starlight-surgery-popup-starts", ("surgeon", surgeonName), ("step", meta.EntityName)), part, PopupType.LargeCaution);
         }
 
+        WarnSurgicalRisk(user, body, part, step, validTools);
         var duration = stepComp.Duration;
-        float SmallestSuccessRate = 1f;
 
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
                 var toolSpeed = 1f;
-                var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
                 var specificToolComp = EntityManager.GetComponents(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)
                 {
-                    var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
-                    if(requestedTool != null)
-                        if(usedTool.ToolType.Contains(requestedTool))
+                    if (stepComp.Tools != null)
+                        if (stepComp.Tools.ContainsKey(usedTool.ToolType))
                         {
                             toolSpeed = usedTool.Speed;
-                            toolSuccessRate = usedTool.SuccessRate;
                             startSound = usedTool.StartSound;
                         }
                 }
@@ -365,14 +430,12 @@ public abstract partial class SharedSurgerySystem
                 duration *= toolSpeed;
                 if (startSound != null) _audio.PlayPvs(startSound, tool);
 
-                if(toolSuccessRate < SmallestSuccessRate)
-                    SmallestSuccessRate = toolSuccessRate;
             }
 
         if (TryComp(body, out TransformComponent? xform))
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
-        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
+        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, GetStepSuccessRate(step, validTools));
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             BreakOnMove = true,

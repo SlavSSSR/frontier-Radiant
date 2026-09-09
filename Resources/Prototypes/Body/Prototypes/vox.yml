@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-        tongue: OrganHumanTongue # Radiant sector: Starlight surgery
+        brain: OrganVoxBrain
+        eyes: OrganVoxEyes
+        tongue: OrganVoxTongue
     torso:
       part: TorsoVox
       connections:
@@ -23,7 +23,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
     right arm:
       part: RightArmVox
       connections:

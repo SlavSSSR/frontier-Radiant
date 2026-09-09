@@ -4,6 +4,10 @@
   id: Wirecutter
   description: This kills the wire.
   components:
+  - type: SurgeryTool
+  - type: Scalpel
+    speed: 2
+    successRate: 0.6
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wirecutter_drop.ogg
@@ -50,6 +54,10 @@
   id: Screwdriver
   description: Industrial grade torque in a small screwdriving package.
   components:
+  - type: SurgeryTool
+  - type: SurgicalDrill
+    speed: 2
+    successRate: 0.6
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
@@ -94,6 +102,10 @@
   id: Wrench
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
+  - type: SurgeryTool
+  - type: BoneSetter
+    speed: 1.5
+    successRate: 0.9
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wrench_drop.ogg
@@ -243,6 +255,10 @@
   id: PowerDrill
   description: A simple powered hand drill.
   components:
+  - type: SurgeryTool
+  - type: SurgicalDrill
+    speed: 1.5
+    successRate: 0.9
   - type: Tag
     tags:
     - Powerdrill

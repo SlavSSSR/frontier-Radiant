@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Extracted from upstream game assets; see source.txt",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "normal",
+      "directions": 1
+    },
+    {
+      "name": "off",
+      "directions": 1
+    },
+    {
+      "name": "broken",
+      "directions": 1
+    },
+    {
+      "name": "panel",
+      "directions": 1
+    }
+  ]
+}
