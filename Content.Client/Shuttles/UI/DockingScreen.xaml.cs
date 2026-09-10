@@ -29,7 +29,7 @@ public sealed partial class DockingScreen : BoxContainer
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
-    public event Action<List<NetEntity>>? UndockAllRequest;
+    public event Action<List<NetEntity>>? UndockAllRequest; // Frontier
 
     public DockingScreen()
     {
@@ -47,9 +47,10 @@ public sealed partial class DockingScreen : BoxContainer
             UndockRequest?.Invoke(entity);
         };
 
-        UndockAllButton.OnPressed += _ => OnUndockAllPressed();
+        UndockAllButton.OnPressed += _ => OnUndockAllPressed(); // Frontier
     }
 
+    // Frontier
     private void OnUndockAllPressed()
     {
         if (UndockAllRequest == null)
@@ -75,6 +76,7 @@ public sealed partial class DockingScreen : BoxContainer
             UndockAllRequest.Invoke(dockedPorts);
         }
     }
+    // End Frontier
 
     private void OnView(NetEntity obj)
     {
@@ -91,6 +93,7 @@ public sealed partial class DockingScreen : BoxContainer
         DockingControl.GridEntity = shuttle;
         BuildDocks(shuttle);
 
+        // Frontier
         // Enable the undock all button only if there are docked ports
         var hasDockedPorts = false;
         if (shuttle != null)
@@ -103,6 +106,7 @@ public sealed partial class DockingScreen : BoxContainer
         }
 
         UndockAllButton.Disabled = !hasDockedPorts;
+        // End Frontier
     }
 
     private void BuildDocks(EntityUid? shuttle)

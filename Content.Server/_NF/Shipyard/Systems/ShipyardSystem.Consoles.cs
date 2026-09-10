@@ -48,6 +48,7 @@ using Robust.Shared.Player;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Log;
 using Robust.Shared.Timing;
+using Content.Shared._NF.Whitelist.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -97,6 +98,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (idCard is null && voucher is null)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-idcard"));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
+        if (TryComp<NFIDChipComponent>(targetId, out var _))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-borg-chip"));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }

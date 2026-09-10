@@ -85,7 +85,8 @@
       - id: ClothingHandsKnuckleDustersQM
       - id: ButchCleaver
       - id: EldritchBlade
-      - id: Katana
+      - id: ClothingBeltKatanaSheathFilled
+      - id: Wakizashi
       - id: Machete
     - !type:NestedSelector
       weight: 0.05
@@ -218,6 +219,7 @@
       - id: WeaponCaseShortRevolverPirate
 #      - id: WeaponCaseLongC20r # Radiant_sector
 #      - id: WeaponCaseLongJackdaw # Radiant_sector
+#      - id: WeaponCaseLongEstoc
       - id: WeaponCaseLongGestioExpedition
       - id: WeaponCaseLongWeaponRifleNovaliteC1Expedition
       - id: WeaponCaseLongSVSExpedition
@@ -274,6 +276,7 @@
       - id: WeaponCaseLongAkRS # Radiant_sector
 #      - id: WeaponCaseLongBulldog # Radiant_sector
       - id: WeaponCaseLongJackdaw # Radiant_sector
+      - id: WeaponCaseLongRomulanExpedition
       - id: WeaponCaseLongEnforcerExpedition
       - id: WeaponCaseLongAdjutant # Radiant_sector
       - id: WeaponCaseShortAntiqueLaserExpedition
@@ -415,6 +418,7 @@
   table: !type:GroupSelector
     children:
     - id: WeaponCaseShortAmmoBoxLethal45
+    - id: WeaponCaseShortAmmoBoxBigLethal45
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethal20
@@ -430,10 +434,12 @@
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethal35
+      - id: WeaponCaseShortAmmoBoxBigLethal35
     - !type:GroupSelector
       children:
       - id: WeaponCaseShortAmmoBoxLethalShotgun
       - id: WeaponCaseShortAmmoBoxSlugShotgun
+      - id: WeaponCaseShortAmmoBoxBigLethalShotgun
     - !type:GroupSelector # Radiant sector
       children:
       - id: WeaponCaseShortAmmoBoxLethalHigh2Rifle
@@ -483,17 +489,16 @@
     - id: WeaponCaseShortAmmoBoxUraniumHigh2Rifle # Radiant sector
 
 # region ammo practice
-- type: entityTable
-  id: TableDungeonLootWeaponsAmmunitionPractice
-  table: !type:GroupSelector
-    children:
-    - id: WeaponCaseShortAmmoBoxPractice20
-    - id: WeaponCaseShortAmmoBoxPractice30
-    - id: WeaponCaseShortAmmoBoxPractice35
-    - id: WeaponCaseShortAmmoBoxPractice25
-    - id: WeaponCaseShortAmmoBoxPracticeShotgun
-    - id: WeaponCaseShortAmmoBoxPractice45
-    - id: WeaponCaseShortAmmoBoxPracticeHigh2Rifle # Radiant sector
+# - type: entityTable
+#   id: TableDungeonLootWeaponsAmmunitionPractice
+#   table: !type:GroupSelector
+#     children:
+#     - id: WeaponCaseShortAmmoBoxPractice20
+#     - id: WeaponCaseShortAmmoBoxPractice30
+#     - id: WeaponCaseShortAmmoBoxPractice35
+#     - id: WeaponCaseShortAmmoBoxPractice25
+#     - id: WeaponCaseShortAmmoBoxPracticeShotgun
+#     - id: WeaponCaseShortAmmoBoxPractice45
 
 # region combined
 - type: entityTable

@@ -536,6 +536,7 @@
       - id: VendingMachineRoboDrobe
       - id: VendingMachineGeneDrobe
       - id: VendingMachineViroDrobe
+      - id: VendingMachineMNKDrobe
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralVendomatsContraband
       weight: 0.05
@@ -573,6 +574,9 @@
       - id: VendingMachineAutoTuneVend
       - id: VendingMachinePottedPlantVend
       - id: WaterCooler
+      - id: VendingMachinePosterPrinter
+      - id: VendingMachinePosterPrinterNanotrasen
+      - id: VendingMachinePaintingPrinter
       # No food vendomats in expeds - buy from food ships or die
 #      - id: VendingMachineChang
 #      - id: VendingMachineDonut
@@ -599,6 +603,7 @@
       - id: VendingMachineClothingPunk
       - id: VendingMachineBountyVendPunk
       - id: VendingMachineSyndieContraband
+      - id: VendingMachinePosterPrinterSyndicate
 
 # region Flatpacks
 - type: entityTable
