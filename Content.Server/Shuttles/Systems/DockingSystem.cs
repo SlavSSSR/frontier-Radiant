@@ -59,7 +59,7 @@ namespace Content.Server.Shuttles.Systems
             // in which case I would also add their subs here.
             SubscribeLocalEvent<ShuttleConsoleComponent, DockRequestMessage>(OnRequestDock);
             SubscribeLocalEvent<ShuttleConsoleComponent, UndockRequestMessage>(OnRequestUndock);
-            SubscribeLocalEvent<ShuttleConsoleComponent, UndockAllRequestMessage>(OnRequestUndockAll);
+            SubscribeLocalEvent<ShuttleConsoleComponent, UndockAllRequestMessage>(OnRequestUndockAll); // Frontier
         }
 
         public void UndockDocks(EntityUid gridUid)
@@ -470,7 +470,7 @@ namespace Content.Server.Shuttles.Systems
             return CanDock(new MapCoordinates(worldPosA, xformA.MapID), worldRotA,
                 new MapCoordinates(worldPosB, xformB.MapID), worldRotB);
         }
-
+        // Frontier
         private void OnRequestUndockAll(EntityUid uid, ShuttleConsoleComponent component, UndockAllRequestMessage args)
         {
             if (args.DockEntities.Count == 0)
@@ -502,5 +502,6 @@ namespace Content.Server.Shuttles.Systems
                 _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
             }
         }
+        // End Frontier
     }
 }

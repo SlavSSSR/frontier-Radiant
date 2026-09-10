@@ -17,9 +17,6 @@
     drawdepth: FloorTiles
   - type: Transform
     anchored: true
-  - type: Construction #radiant sector
-    graph: StairsGraph
-    node: stairs
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -42,6 +39,9 @@
             max: 4
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Construction # Frontier
+    graph: StairsGraph
+    node: stairs
 
 - type: entity
   id: StairStage
@@ -52,9 +52,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_steel
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairStage
+    node: stairsStage
 
 - type: entity
   id: StairWhite
@@ -65,9 +65,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_white
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairWhite
+    node: stairsWhite
 
 - type: entity
   id: StairStageWhite
@@ -78,9 +78,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_white
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairStageWhite
+    node: stairsStageWhite
 
 - type: entity
   id: StairDark
@@ -91,9 +91,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_dark
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairDark
+    node: stairsDark
 
 - type: entity
   id: StairStageDark
@@ -104,9 +104,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_dark
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairStageDark
+    node: stairsStageDark
 
 - type: entity
   id: StairWood
@@ -117,9 +117,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_wood
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairWood
+    node: stairsWood
 
 - type: entity
   id: StairStageWood
@@ -130,6 +130,6 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_wood
     drawdepth: FloorTiles
-  - type: Construction #radiant sector
+  - type: Construction # Frontier
     graph: StairsGraph
-    node: stairStageWood
+    node: stairsStageWood

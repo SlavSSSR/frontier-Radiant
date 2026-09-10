@@ -56,7 +56,6 @@ shuttle-console-docked = Docked Objects
 
 shuttle-console-view = View
 shuttle-console-undock = Undock
-shuttle-console-undock-all = Undock All
 shuttle-console-dock = Dock
 shuttle-console-docks-label = Docks
 

@@ -55,7 +55,7 @@
   equipment:
     head: ClothingHeadHatNfsdBeretCream
     mask: ClothingMaskBreathMedicalSecurity
-    eyes: ClothingEyesHudNfsdMed
+    eyes: ClothingEyesGlassesNfsdMed
     outerClothing: ClothingOuterCoatNfsdBomberBrigmed
     neck: ClothingNeckNfsdBadgeSecurityBrigmedic
     belt: ClothingBeltNfsdWebbingFilledBrigmedic

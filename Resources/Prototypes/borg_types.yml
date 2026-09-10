@@ -17,6 +17,7 @@
   - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
+  - BorgModuleBureaucracy #Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -65,6 +66,7 @@
   - BorgModuleConstruction
 #  - BorgModuleRCDShipyard # Frontier: RCD<RCDShipyard #Radiant Sector
 #  - BorgModuleCable #Radiant Sector
+  - BorgModuleBureaucracy #Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -125,6 +127,7 @@
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
+  - BorgModuleBureaucracy #Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -177,6 +180,7 @@
   - BorgModuleTool
   - BorgModuleCleaning
   - BorgModuleCustodial
+  - BorgModuleBureaucracy #Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -231,6 +235,7 @@
   - BorgModuleRescue
   # - BorgModuleAdvancedTreatment # Frontier
   # - BorgModuleDefibrillator # Frontier
+  - BorgModuleBureaucracy #Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -295,9 +300,9 @@
   - BorgModuleClowning
   - BorgModuleGardening
   - BorgModuleHarvesting
-  - BorgModuleBureaucracy # Frontier: FIXME - stacked as hell
   - BorgModuleNFService # Frontier
   - BorgModuleChef # Frontier
+  - BorgModuleBureaucracy # Frontier: FIXME - stacked as hell, moved in for consistency with other borgs installed order
   - BorgModuleJetpack # Frontier
 
   radioChannels:

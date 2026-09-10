@@ -25,6 +25,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
   - ContractorUnderwearBottomDefault
@@ -56,6 +57,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -85,6 +87,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -112,6 +115,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -134,6 +138,7 @@
   - ContractorImplanter
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -159,6 +164,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -186,6 +192,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -214,6 +221,7 @@
   - ContractorUnderwearTop
   - StationRepBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -241,6 +249,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -271,6 +280,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -300,6 +310,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -328,6 +339,7 @@
   - ContractorUnderwearTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -358,6 +370,7 @@
   - SheriffTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -387,6 +400,7 @@
   - SheriffTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -416,6 +430,7 @@
   - SheriffTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -445,6 +460,7 @@
   - SheriffTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -473,6 +489,7 @@
   - SheriffTop
   - ContractorBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific # Explicitly civilian variant
   - ASSSpecial #Radiant Sector
 
@@ -527,6 +544,7 @@
   - SheriffTop
   - SeniorOfficerBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -556,6 +574,7 @@
   - SheriffTop
   - SeniorOfficerBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -584,6 +603,7 @@
   - SheriffTop
   - SeniorOfficerBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NfsdSpeciesSpecific
   - ASSSpecial #Radiant Sector
 
@@ -610,6 +630,7 @@
   - ASSSpecial #Radiant Sector
   - PirateBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   canCustomizeName: true # pseudonym?
 
@@ -635,6 +656,7 @@
   - PirateBackpackItems
   - ASSSpecial #Radiant Sector
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   canCustomizeName: true # pseudonym?
 
@@ -660,6 +682,7 @@
   - PirateCaptainWallet
   - PirateCaptainBackpackItems
   - ContractorHandItems
+  - ContractorSupportPets
   - NFSpeciesSpecific
   canCustomizeName: true # pseudonym?
 

@@ -47,6 +47,7 @@
   id: BorgModules
   recipes:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedSprayNozzle #Frontier
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical
@@ -57,6 +58,10 @@
   - BorgModuleCombatNonLethal # Radiant sector
   - BorgModuleCombatLethalNovalite # Radiant sector
   - CyborgArmour # Radiant sector
+  - BorgModulePill # Frontier
+  - BorgModuleRCD # Frontier
+  - BorgModuleMutation # Frontier
+  - AdvancedBorgModuleMusique # Frontier
 
 - type: latheRecipePack
   id: MechParts
