@@ -1,0 +1,10 @@
+names-parrot-dataset-1 = Скарлетт
+names-parrot-dataset-2 = Мараскино
+names-parrot-dataset-3 = Скитлз
+names-parrot-dataset-4 = Амариллис
+names-parrot-dataset-5 = Паприка
+names-parrot-dataset-6 = О'Гаррот
+names-parrot-dataset-7 = Руби
+names-parrot-dataset-8 = Эйнштейн
+names-parrot-dataset-9 = Ария
+names-parrot-dataset-10 = Вишенка

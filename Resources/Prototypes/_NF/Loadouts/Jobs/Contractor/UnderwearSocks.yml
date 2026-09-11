@@ -224,3 +224,129 @@
   equipment:
     socks: ClothingUnderwearSocksPolosN13
   groupBy: "SocksPolos"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsBow
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsBow
+  groupBy: "SocksStockingsBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsBowRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsBowRed
+  groupBy: "SocksStockingsBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsBowBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsBowBlack
+  groupBy: "SocksStockingsBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsLace
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsLace
+  groupBy: "SocksStockingsLace"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsLaceRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsLaceRed
+  groupBy: "SocksStockingsLace"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsLaceBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsLaceBlack
+  groupBy: "SocksStockingsLace"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsFrill
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsFrill
+  groupBy: "SocksStockingsFrill"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsFrillRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsFrillRed
+  groupBy: "SocksStockingsFrill"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsFrillBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsFrillBlack
+  groupBy: "SocksStockingsFrill"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsScallop
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsScallop
+  groupBy: "SocksStockingsScallop"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsScallopRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsScallopRed
+  groupBy: "SocksStockingsScallop"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksStockingsScallopBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksStockingsScallopBlack
+  groupBy: "SocksStockingsScallop"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeBow
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeBow
+  groupBy: "SocksKneeBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeBowRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeBowRed
+  groupBy: "SocksKneeBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeBowBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeBowBlack
+  groupBy: "SocksKneeBow"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeCuff
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeCuff
+  groupBy: "SocksKneeCuff"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeCuffRed
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeCuffRed
+  groupBy: "SocksKneeCuff"
+
+- type: loadout
+  id: ContractorClothingUnderwearSocksKneeCuffBlack
+  price: 100
+  equipment:
+    socks: ClothingUnderwearSocksKneeCuffBlack
+  groupBy: "SocksKneeCuff"

@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 05/11/2026 14:14:35
-  entityCount: 5856
+  time: 09/11/2026 00:43:06
+  entityCount: 5858
 maps:
 - 1
 grids:
@@ -4609,11 +4609,11 @@ entities:
           9,13:
             0: 61939
           9,14:
-            0: 28927
+            0: 24831
+          9,15:
+            0: 1639
           8,16:
             1: 5096
-          9,15:
-            0: 1638
           9,16:
             1: 32780
           10,12:
@@ -4754,8 +4754,7 @@ entities:
           4,0:
             0: 3822
           3,0:
-            0: 61943
-            2: 8
+            0: 61951
           4,1:
             0: 45311
           3,1:
@@ -4898,21 +4897,6 @@ entities:
           moles:
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 21.6852
-          - 81.57766
           - 0
           - 0
           - 0
@@ -5196,7 +5180,7 @@ entities:
       pos: 13.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -27293.986
+      secondsUntilStateChange: -31639.234
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5294,7 +5278,7 @@ entities:
     - type: Docking
       name: 6A
     - type: Door
-      secondsUntilStateChange: -123176.305
+      secondsUntilStateChange: -127521.555
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5306,7 +5290,7 @@ entities:
       pos: 52.5,62.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -123175.734
+      secondsUntilStateChange: -127520.984
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5318,7 +5302,7 @@ entities:
       pos: 52.5,60.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -123176.04
+      secondsUntilStateChange: -127521.29
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5370,7 +5354,7 @@ entities:
       pos: 26.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -46246.246
+      secondsUntilStateChange: -50591.492
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5382,7 +5366,7 @@ entities:
       pos: 26.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -61681.99
+      secondsUntilStateChange: -66027.234
       state: Opening
     - type: Docking
       name: 8A
@@ -5419,7 +5403,7 @@ entities:
       pos: 18.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -38295.746
+      secondsUntilStateChange: -42640.992
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5439,7 +5423,7 @@ entities:
       pos: 18.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -46251.246
+      secondsUntilStateChange: -50596.492
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5595,7 +5579,7 @@ entities:
       pos: 35.5,42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -71273.98
+      secondsUntilStateChange: -75619.23
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5632,7 +5616,7 @@ entities:
       pos: 36.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -71272.12
+      secondsUntilStateChange: -75617.37
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7986,6 +7970,15 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,38.5
       parent: 2
+- proto: BarSignRSEvaHumanSpace
+  entities:
+  - uid: 5858
+    components:
+    - type: Transform
+      pos: 22.5,31.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: Bed
   entities:
   - uid: 525
@@ -15497,45 +15490,9 @@ entities:
     - type: Transform
       pos: -1.5,24.5
       parent: 2
-- proto: ChairOfficeDark
+- proto: ChairOfficeDarkRadiant
   entities:
   - uid: 1976
-    components:
-    - type: Transform
-      anchored: True
-      rot: 1.5707963267948966 rad
-      pos: 27.5,69.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
-  - uid: 1977
-    components:
-    - type: Transform
-      anchored: True
-      rot: 1.5707963267948966 rad
-      pos: 25.5,70.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
-  - uid: 1978
-    components:
-    - type: Transform
-      anchored: True
-      rot: 1.5707963267948966 rad
-      pos: 25.5,69.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
-  - uid: 1979
-    components:
-    - type: Transform
-      anchored: True
-      rot: 1.5707963267948966 rad
-      pos: 27.5,70.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
-  - uid: 1980
     components:
     - type: Transform
       anchored: True
@@ -15544,33 +15501,60 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-  - uid: 1981
+  - uid: 1977
     components:
     - type: Transform
-      pos: 22.430481,58.911465
+      rot: 3.141592653589793 rad
+      pos: 22.5,74.5
       parent: 2
-  - uid: 1982
+    - type: Physics
+      bodyType: Dynamic
+  - uid: 1978
     components:
     - type: Transform
-      pos: 24.597153,59.64757
+      rot: 3.141592653589793 rad
+      pos: 23.5,74.5
       parent: 2
+    - type: Physics
+      bodyType: Dynamic
+  - uid: 1979
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 25.5,69.5
+      parent: 2
+    - type: Physics
+      bodyType: Dynamic
+  - uid: 1980
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 25.5,70.5
+      parent: 2
+    - type: Physics
+      bodyType: Dynamic
   - uid: 1983
     components:
     - type: Transform
-      pos: 21.608973,71.50455
+      rot: 1.5707963267948966 rad
+      pos: 21.633013,71.64724
       parent: 2
   - uid: 1984
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 22.576996,74.43771
+      rot: 1.5707963267948966 rad
+      pos: 27.5,70.5
       parent: 2
+    - type: Physics
+      bodyType: Dynamic
   - uid: 1985
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 23.468716,74.45258
+      rot: 1.5707963267948966 rad
+      pos: 27.5,69.5
       parent: 2
+    - type: Physics
+      bodyType: Dynamic
 - proto: ChairOfficeGrey
   entities:
   - uid: 1986
@@ -15593,12 +15577,6 @@ entities:
       parent: 2
 - proto: ChairOfficeLight
   entities:
-  - uid: 1989
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 9.560776,36.621037
-      parent: 2
   - uid: 1990
     components:
     - type: Transform
@@ -15611,11 +15589,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.50386,46.59833
       parent: 2
+- proto: ChairOfficeWhiteRadiant
+  entities:
+  - uid: 1981
+    components:
+    - type: Transform
+      pos: 24.391516,59.63138
+      parent: 2
+  - uid: 1982
+    components:
+    - type: Transform
+      pos: 22.427187,58.843468
+      parent: 2
+  - uid: 1989
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.517593,36.638664
+      parent: 2
   - uid: 1992
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 9.560776,37.551594
+      pos: 9.517593,37.66443
       parent: 2
 - proto: ChairWeb
   entities:
@@ -15651,6 +15647,13 @@ entities:
     components:
     - type: Transform
       pos: 21.534424,2.552536
+      parent: 2
+- proto: ChestDrawerRadiant
+  entities:
+  - uid: 2552
+    components:
+    - type: Transform
+      pos: 28.5,71.5
       parent: 2
 - proto: CigarPlatinumSpent
   entities:
@@ -16646,7 +16649,7 @@ entities:
       pos: 20.5,65.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11062.136
+      secondsUntilStateChange: -15407.383
       state: Opening
 - proto: CurtainsGreenOpen
   entities:
@@ -19430,22 +19433,17 @@ entities:
     - type: Transform
       pos: 40.5,52.5
       parent: 2
+- proto: FilingCabinetRadiant
+  entities:
   - uid: 2550
-    components:
-    - type: Transform
-      pos: 24.5,70.5
-      parent: 2
-  - uid: 2551
     components:
     - type: Transform
       pos: 24.5,69.5
       parent: 2
-- proto: filingCabinetDrawerRandom
-  entities:
-  - uid: 2552
+  - uid: 2551
     components:
     - type: Transform
-      pos: 28.5,71.5
+      pos: 24.5,70.5
       parent: 2
 - proto: FireAlarm
   entities:
@@ -20087,7 +20085,7 @@ entities:
     - type: Firelock
       emergencyCloseCooldown: 8099.1585695
     - type: Door
-      secondsUntilStateChange: -80208.8
+      secondsUntilStateChange: -84554.05
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -30008,6 +30006,14 @@ entities:
     - type: Transform
       pos: 7.5,58.5
       parent: 2
+- proto: MailTrolley
+  entities:
+  - uid: 5857
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,59.5
+      parent: 2
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 3933
@@ -32279,20 +32285,8 @@ entities:
     - type: Transform
       pos: 24.5,-17.5
       parent: 2
-- proto: RandomVending
-  entities:
-  - uid: 4266
-    components:
-    - type: Transform
-      pos: 32.5,10.5
-      parent: 2
 - proto: RandomVendingDrinks
   entities:
-  - uid: 4267
-    components:
-    - type: Transform
-      pos: 33.5,10.5
-      parent: 2
   - uid: 4268
     components:
     - type: Transform
@@ -32304,11 +32298,6 @@ entities:
     components:
     - type: Transform
       pos: 46.5,27.5
-      parent: 2
-  - uid: 4270
-    components:
-    - type: Transform
-      pos: 34.5,10.5
       parent: 2
   - uid: 4271
     components:
@@ -36850,6 +36839,34 @@ entities:
     - type: Transform
       pos: 42.5,49.5
       parent: 2
+- proto: VendingMachineMNKDrobe
+  entities:
+  - uid: 4886
+    components:
+    - type: Transform
+      pos: 27.5,-5.5
+      parent: 2
+- proto: VendingMachinePaintingPrinterPOI
+  entities:
+  - uid: 4267
+    components:
+    - type: Transform
+      pos: 33.5,10.5
+      parent: 2
+- proto: VendingMachinePosterPrinterNanotrasenPOI
+  entities:
+  - uid: 4270
+    components:
+    - type: Transform
+      pos: 32.5,10.5
+      parent: 2
+- proto: VendingMachinePosterPrinterPOI
+  entities:
+  - uid: 4266
+    components:
+    - type: Transform
+      pos: 34.5,10.5
+      parent: 2
 - proto: VendingMachineRadiant
   entities:
   - uid: 4877
@@ -36935,13 +36952,6 @@ entities:
     components:
     - type: Transform
       pos: 40.5,61.5
-      parent: 2
-- proto: VendingMachineWinter
-  entities:
-  - uid: 4886
-    components:
-    - type: Transform
-      pos: 27.5,-5.5
       parent: 2
 - proto: VendingMachineYouToolPOI
   entities:

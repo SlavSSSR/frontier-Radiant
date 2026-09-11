@@ -1245,3 +1245,34 @@
   equipment:
     outerClothing: ClothingOuterCoatSpaceAsshole
   groupBy: "OuterCoats"
+
+# MNK Drobe
+- type: loadout
+  id: ContractorClothingOuterCoatMNKBlackJacket
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 200
+  equipment:
+    outerClothing: ClothingOuterCoatMNKBlackJacket
+  groupBy: "OuterJackets"
+
+- type: loadout
+  id: ContractorClothingOuterCoatMNKWhiteHoodie
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 200
+  equipment:
+    outerClothing: ClothingOuterCoatMNKWhiteHoodie
+  groupBy: "OuterJackets"
+
+- type: loadout
+  id: ContractorClothingOuterCoatMNKBlackTopCoat
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 200
+  equipment:
+    outerClothing: ClothingOuterCoatMNKBlackTopCoat
+  groupBy: "OuterCoats"

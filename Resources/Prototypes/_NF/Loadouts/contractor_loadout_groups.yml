@@ -247,6 +247,13 @@
   - ContractorClothingUniformJumpsuitSetDon #Radiant Sector
   - ContractorClothingUniformJumpsuitSuitrMercRS #Radiant Sector
   - ContractorClothingUniformJumpskirtSetDonMerc #Radiant Sector
+  - ContractorClothingUniformMNKOfficeSkirt
+  - ContractorClothingUniformMNKUnderGarment
+  - ContractorClothingUniformMNKGymBra
+  - ContractorClothingUniformMNKDressBlack
+  - ContractorClothingUniformMNKBlackOveralls
+  - ContractorClothingUniformMNKBlackShoulder
+  - ContractorClothingUniformMNKTracksuitBlack
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
@@ -450,6 +457,9 @@
   - ContractorClothingOuterTailcoat # Radiant Sector
   - ContractorClothingOuterGothicCoat # Radiant Sector
   - ContractorClothingOuterWinterVSR93 # Radiant Sector
+  - ContractorClothingOuterCoatMNKBlackJacket
+  - ContractorClothingOuterCoatMNKWhiteHoodie
+  - ContractorClothingOuterCoatMNKBlackTopCoat
 
 - type: loadoutGroup
   id: ContractorBelt
@@ -1162,6 +1172,24 @@
   - ContractorClothingUnderwearSocksPolosN12
   - ContractorClothingUnderwearSocksPolosN13
   - ContractorClothingUnderwearSocksTroubleneko # Radiant Sector
+  - ContractorClothingUnderwearSocksStockingsBow
+  - ContractorClothingUnderwearSocksStockingsBowRed
+  - ContractorClothingUnderwearSocksStockingsBowBlack
+  - ContractorClothingUnderwearSocksStockingsLace
+  - ContractorClothingUnderwearSocksStockingsLaceRed
+  - ContractorClothingUnderwearSocksStockingsLaceBlack
+  - ContractorClothingUnderwearSocksStockingsFrill
+  - ContractorClothingUnderwearSocksStockingsFrillRed
+  - ContractorClothingUnderwearSocksStockingsFrillBlack
+  - ContractorClothingUnderwearSocksStockingsScallop
+  - ContractorClothingUnderwearSocksStockingsScallopRed
+  - ContractorClothingUnderwearSocksStockingsScallopBlack
+  - ContractorClothingUnderwearSocksKneeBow
+  - ContractorClothingUnderwearSocksKneeBowRed
+  - ContractorClothingUnderwearSocksKneeBowBlack
+  - ContractorClothingUnderwearSocksKneeCuff
+  - ContractorClothingUnderwearSocksKneeCuffRed
+  - ContractorClothingUnderwearSocksKneeCuffBlack
 
 - type: loadoutGroup
   id: ContractorUnderwearTop

@@ -1,0 +1,20 @@
+advertisement-posterpressvend-1 = Говорят, искусство бесценно. Позвольте не согласиться.
+advertisement-posterpressvend-2 = Деньги временны. Искусство вечно.
+advertisement-posterpressvend-3 = Лучший способ спрятать настоящее богатство.
+advertisement-posterpressvend-4 = Голые стены — признак депрессии.
+advertisement-posterpressvend-5 = Самовыражение не запретишь!
+advertisement-posterpressvend-6 = Лучшее искусство в секторе!
+advertisement-posterpressvend-7 = Плакаты отлично связывают отсеки шаттла воедино.
+advertisement-posterpressvend-8 = Я не понимаю современное искусство. Ошибка в моей программе.
+advertisement-posterpressvend-9 = Отличный способ прикрыть вашу секретную дверь!
+advertisement-posterpressvend-10 = Говорят, искусство — лучший способ самовыражения. Если вы не мим.
+advertisement-posterpressvend-11 = У меня нет рук, а я должен рисовать.
+advertisement-posterpressvend-12 = Чтобы по-настоящему оценить это, нужно наклонить голову и прищуриться.
+
+goodbye-posterpressvend-1 = Ого. Вы правда это купили?
+goodbye-posterpressvend-2 = *цокает языком* Неплохо!
+goodbye-posterpressvend-3 = Ну да, это... выбор.
+goodbye-posterpressvend-4 = Хороший выбор!
+goodbye-posterpressvend-5 = Знаете, что лучше одной картины? Две картины!
+goodbye-posterpressvend-6 = Ладно.
+goodbye-posterpressvend-7 = Возврату не подлежит.
