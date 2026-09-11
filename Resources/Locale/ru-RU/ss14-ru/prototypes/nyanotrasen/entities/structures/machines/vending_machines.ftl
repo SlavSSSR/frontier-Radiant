@@ -4,3 +4,5 @@ ent-VendingMachineBoxingDrobe = БоксВенд
     .desc = Всегда имеет шорты в наличии.
 ent-VendingMachineMailDrobe = ПочтоМаг
     .desc = Ни солнечные вспышки, ни метеоры, ни плазменный огонь, ни пустота космоса не останавливают этих курьеров от быстрого завершения назначенного им обхода.
+ent-VendingMachineMNKDrobe = МНКШкаф
+    .desc = Качественная одежда от MoNoKrome.

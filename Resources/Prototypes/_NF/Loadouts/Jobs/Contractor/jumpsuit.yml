@@ -2270,3 +2270,53 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSetDonMerc
   groupBy: "DonJumpsuits"
+
+# MNK Drobe
+- type: loadout
+  id: ContractorClothingUniformMNKOfficeSkirt
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKOfficeSkirt
+  groupBy: "FormalJumpskirts"
+
+- type: loadout
+  id: ContractorClothingUniformMNKUnderGarment
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKUnderGarment
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKGymBra
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKGymBra
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKDressBlack
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKDressBlack
+  groupBy: "dresses"
+
+- type: loadout
+  id: ContractorClothingUniformMNKBlackOveralls
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKBlackOveralls
+  groupBy: "UniformJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKBlackShoulder
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKBlackShoulder
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKTracksuitBlack
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKTracksuitBlack
+  groupBy: "CasualJumpsuits"

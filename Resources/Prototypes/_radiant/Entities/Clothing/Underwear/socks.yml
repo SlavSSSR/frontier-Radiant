@@ -358,3 +358,162 @@
   components:
   - type: Sprite
     sprite: _radiant/Clothing/Underwear/socks/troubleneko_socks.rsi
+
+# BlueMoon colorable stockings. White uses the source sprite as-is;
+# red/black tint the same RSI from the prototype.
+
+- type: entity
+  abstract: true
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksBColorRed
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#eb0c07"
+  - type: Clothing
+    clothingVisuals:
+      socks:
+      - state: equipped-SOCKS
+        color: "#eb0c07"
+
+- type: entity
+  abstract: true
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksBColorBlack
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#3f3f3f"
+  - type: Clothing
+    clothingVisuals:
+      socks:
+      - state: equipped-SOCKS
+        color: "#3f3f3f"
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockingsBow
+  name: чулки с бантиком
+  description: Белые чулки с небольшим бантиком.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/stockingsbow.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsBow, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksStockingsBowRed
+  name: красные чулки с бантиком
+  description: Красные чулки с небольшим бантиком.
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsBow, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksStockingsBowBlack
+  name: чёрные чулки с бантиком
+  description: Чёрные чулки с небольшим бантиком.
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockingsLace
+  name: кружевные чулки
+  description: Белые чулки с кружевной каймой и бантиком.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/stockingslace.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsLace, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksStockingsLaceRed
+  name: красные кружевные чулки
+  description: Красные чулки с кружевной каймой и бантиком.
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsLace, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksStockingsLaceBlack
+  name: чёрные кружевные чулки
+  description: Чёрные чулки с кружевной каймой и бантиком.
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockingsFrill
+  name: чулки с оборками
+  description: Белые чулки с пышной оборкой.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/stockingsfrill.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsFrill, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksStockingsFrillRed
+  name: красные чулки с оборками
+  description: Красные чулки с пышной оборкой.
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsFrill, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksStockingsFrillBlack
+  name: чёрные чулки с оборками
+  description: Чёрные чулки с пышной оборкой.
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockingsScallop
+  name: чулки с фестонами
+  description: Белые чулки с волнистым краем.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/stockingsscallop.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsScallop, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksStockingsScallopRed
+  name: красные чулки с фестонами
+  description: Красные чулки с волнистым краем.
+
+- type: entity
+  parent: [ClothingUnderwearSocksStockingsScallop, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksStockingsScallopBlack
+  name: чёрные чулки с фестонами
+  description: Чёрные чулки с волнистым краем.
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksKneeBow
+  name: белые чулки с поясом
+  description: Белые чулки с поясом.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/sockskneebow.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksKneeBow, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksKneeBowRed
+  name: красные чулки с поясом
+  description: Красные чулки с поясом.
+
+- type: entity
+  parent: [ClothingUnderwearSocksKneeBow, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksKneeBowBlack
+  name: чёрные чулки с поясом
+  description: Чёрные чулки с поясом.
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksKneeCuff
+  name: гольфы с отворотом
+  description: Белые гольфы с отворотом.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Underwear/socks/sockskneecuff.rsi
+
+- type: entity
+  parent: [ClothingUnderwearSocksKneeCuff, ClothingUnderwearSocksBColorRed]
+  id: ClothingUnderwearSocksKneeCuffRed
+  name: красные гольфы с отворотом
+  description: Красные гольфы с отворотом.
+
+- type: entity
+  parent: [ClothingUnderwearSocksKneeCuff, ClothingUnderwearSocksBColorBlack]
+  id: ClothingUnderwearSocksKneeCuffBlack
+  name: чёрные гольфы с отворотом
+  description: Чёрные гольфы с отворотом.

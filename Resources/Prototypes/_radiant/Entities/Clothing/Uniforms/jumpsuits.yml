@@ -449,3 +449,25 @@
     tags:
     - ClothMade
     - Recyclable
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasRedStripe
+  name: пижама
+  description: В этой пижаме даже ночной поход к холодильнику выглядит как побег из тюрьмы.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Uniforms/Jumpsuit/pajamas_r.rsi
+  - type: Clothing
+    sprite: _radiant/Clothing/Uniforms/Jumpsuit/pajamas_r.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasBlueStripe
+  name: пижама
+  description: Голубые полоски обещают спокойный сон.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Uniforms/Jumpsuit/pajamas_b.rsi
+  - type: Clothing
+    sprite: _radiant/Clothing/Uniforms/Jumpsuit/pajamas_b.rsi

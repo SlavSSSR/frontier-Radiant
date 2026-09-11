@@ -31,6 +31,9 @@ ghost-role-information-elcapo-description = Оказался в тюрьме п�
 ghost-role-information-curie-name = Кюри
 ghost-role-information-curie-description = Ходячая слизь в форме кошки.
 
+ghost-role-information-caddy-name = Кэдди
+ghost-role-information-caddy-description = Кошка, которая забрела в медицинскую школу в день выпуска.
+
 ghost-role-information-crispy-name = Подгорелыш
 ghost-role-information-crispy-description = Допустил ошибку.
 

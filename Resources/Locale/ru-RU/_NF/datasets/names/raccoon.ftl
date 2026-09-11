@@ -1,0 +1,10 @@
+names-raccoon-dataset-1 = Бандит
+names-raccoon-dataset-2 = Плут
+names-raccoon-dataset-3 = Зорро
+names-raccoon-dataset-4 = Смоки
+names-raccoon-dataset-5 = Скаут
+names-raccoon-dataset-6 = Бургл
+names-raccoon-dataset-7 = Шалтай
+names-raccoon-dataset-8 = Пакость
+names-raccoon-dataset-9 = Беда
+names-raccoon-dataset-10 = Кэрри
