@@ -46,6 +46,11 @@
   - type: Body
     prototype: Vulpkanin
     requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatVulpkanin
+      amount: 3
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin

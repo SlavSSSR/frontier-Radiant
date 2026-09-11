@@ -1,0 +1,11 @@
+names-hamster-dataset-1 = Хамела
+names-hamster-dataset-2 = Мешочек
+names-hamster-dataset-3 = Пухляш
+names-hamster-dataset-4 = Крампет
+names-hamster-dataset-5 = Мелочь
+names-hamster-dataset-6 = Моти
+names-hamster-dataset-7 = Пищикун
+names-hamster-dataset-8 = Хэм Соло
+names-hamster-dataset-9 = Вареник
+names-hamster-dataset-10 = Пушок
+names-hamster-dataset-11 = Сойер

@@ -1,0 +1,14 @@
+- type: entity
+  id: ChemistryBottleSurgicillin
+  parent: BaseChemistryBottleFilled
+  suffix: Surgicillin
+  components:
+  - type: Label
+    currentLabel: reagent-name-surgicillin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Surgicillin
+          Quantity: 30

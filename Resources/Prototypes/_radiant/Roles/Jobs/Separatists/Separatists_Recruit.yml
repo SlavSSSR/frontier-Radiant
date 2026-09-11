@@ -37,6 +37,7 @@
   id: SeparatistsRecruitGear
   equipment:
     pocket1: WeaponPistolWhisper
+    pocket2: BlackMoney5
   storage:
     back:
     - ClothingMaskGasSeparatist

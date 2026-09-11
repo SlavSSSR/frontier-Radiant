@@ -157,7 +157,7 @@
     sound:
       path: /Audio/_radiant/Weapons/Melee/whip.ogg
       params:
-        volume: -4
+        volume: -5
   - type: Appearance
   - type: StaticPrice
     price: 100

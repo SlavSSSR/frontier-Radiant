@@ -1,0 +1,5 @@
+- type: damageModifierSet
+  id: Shadowkin
+  coefficients:
+    Heat: 1.1
+    Blunt: 0.9

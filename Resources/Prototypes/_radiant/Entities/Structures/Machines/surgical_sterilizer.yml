@@ -1,0 +1,41 @@
+- type: entity
+  id: SurgicalSterilizer
+  parent: [BaseMachinePowered, SmallConstructibleMachine]
+  name: surgical instrument sterilizer
+  description: Load surgical instruments and start the cycle from the context menu. Changing the load or losing power aborts the cycle.
+  components:
+  - type: SurgicalSterilizer
+    cycleSeconds: 10
+  - type: SterileSurgicalStorage
+  - type: Sprite
+    sprite: _radiant/Structures/Machines/surgical_sterilizer.rsi
+    state: sterilizer
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    maxItemSize: Normal
+    whitelist:
+      components: [SurgeryTool]
+    blacklist:
+      components: [Organ, BodyPart, NonContactSurgicalTool, SurgicalDrape]
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: Machine
+    board: SurgicalSterilizerMachineCircuitboard
+
+- type: entity
+  id: SurgicalSterilizerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: surgical sterilizer machine board
+  components:
+  - type: MachineBoard
+    prototype: SurgicalSterilizer
+    stackRequirements:
+      Steel: 5
+      Glass: 2

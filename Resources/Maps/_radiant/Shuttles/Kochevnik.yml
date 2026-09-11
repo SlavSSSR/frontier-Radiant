@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 08/03/2026 11:44:40
-  entityCount: 4681
+  time: 09/06/2026 10:49:02
+  entityCount: 4683
 maps: []
 grids:
 - 1
@@ -4011,7 +4011,7 @@ entities:
       pos: 19.5,-44.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11524.09
+      secondsUntilStateChange: -12948.564
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4227,7 +4227,7 @@ entities:
       pos: 2.5,-36.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -71466.68
+      secondsUntilStateChange: -72891.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5447,11 +5447,6 @@ entities:
     components:
     - type: Transform
       pos: 2.4342082,-45.575687
-      parent: 1
-  - uid: 240
-    components:
-    - type: Transform
-      pos: 2.5,-47.5
       parent: 1
   - uid: 241
     components:
@@ -13011,6 +13006,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-0.5
+      parent: 1
+- proto: computerBodyScanner
+  entities:
+  - uid: 240
+    components:
+    - type: Transform
+      pos: 1.5,-46.5
       parent: 1
 - proto: ComputerCloningConsole
   entities:
@@ -23387,7 +23389,7 @@ entities:
       pos: 14.5,-45.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -116321.055
+      secondsUntilStateChange: -117745.53
       state: Closing
   - uid: 3070
     components:
@@ -23432,7 +23434,7 @@ entities:
       pos: 1.5,-48.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -84840.66
+      secondsUntilStateChange: -86265.13
       state: Closing
 - proto: hydroponicsTray
   entities:
@@ -23986,11 +23988,6 @@ entities:
     - type: Transform
       pos: 14.5,-45.5
       parent: 1
-  - uid: 3135
-    components:
-    - type: Transform
-      pos: 2.5,-47.5
-      parent: 1
 - proto: MedicalScanner
   entities:
   - uid: 3136
@@ -24069,6 +24066,13 @@ entities:
         - 0
         - 0
         - 0
+- proto: Multitool
+  entities:
+  - uid: 4682
+    components:
+    - type: Transform
+      pos: 2.4759521,-46.52463
+      parent: 1
 - proto: NapkinDrum5
   entities:
   - uid: 4591
@@ -24515,6 +24519,13 @@ entities:
           - 3179
     - type: Fixtures
       fixtures: {}
+- proto: OperatingTable
+  entities:
+  - uid: 3135
+    components:
+    - type: Transform
+      pos: 2.5,-47.5
+      parent: 1
 - proto: OreProcessor
   entities:
   - uid: 3625
@@ -28081,6 +28092,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-6.5
+      parent: 1
+- proto: SurgicalKitMedicalFilled
+  entities:
+  - uid: 4683
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.533943,-47.55806
       parent: 1
 - proto: SurveillanceCameraGeneral
   entities:

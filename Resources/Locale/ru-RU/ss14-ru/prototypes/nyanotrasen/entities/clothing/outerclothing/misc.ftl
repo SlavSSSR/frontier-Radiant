@@ -1,0 +1,14 @@
+ent-ClothingOuterCoatLettermanBlue = синяя университетская куртка Nyano
+    .desc = Синяя школьная куртка с большой «14» на спине.
+    .suffix = Nyanotrasen
+ent-ClothingOuterCoatLettermanRed = красная университетская куртка Nyano
+    .desc = Красная школьная куртка с большой «14» на спине.
+    .suffix = Nyanotrasen
+ent-ClothingOuterCoatMNKBlackHoodie = чёрное худи MNK
+    .desc = Классическое чёрное худи от MNK.
+ent-ClothingOuterCoatMNKWhiteHoodie = белое худи MNK
+    .desc = Классическое белое худи от MNK.
+ent-ClothingOuterCoatMNKBlackTopCoat = чёрное пальто MNK
+    .desc = Плотное чёрное пальто от MNK.
+ent-ClothingOuterCoatMNKBlackJacket = чёрная куртка MNK
+    .desc = Лёгкая чёрная куртка от MNK.

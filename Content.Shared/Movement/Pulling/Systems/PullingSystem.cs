@@ -31,6 +31,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Physics;
 
 namespace Content.Shared.Movement.Pulling.Systems;
 
@@ -84,6 +85,7 @@ public sealed class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, BuckledEvent>(OnGotBuckled);
 
         SubscribeLocalEvent<PullableComponent, PreventCollideEvent>(OnPreventCollision);
+
         SubscribeLocalEvent<StrapComponent, StrappedEvent>(OnVehicleDriverStrapped);
         SubscribeLocalEvent<StrapComponent, UnstrappedEvent>(OnVehicleDriverUnstrapped);
 

@@ -28,6 +28,8 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Interaction.Panel; // RS
 using Content.Client._Harmony.JoinQueue; // Harmony Queue
+using Content.Client._NF.Whitelist; //Frontier
+using Content.Shared._NF.Whitelist; //Frontier
 
 namespace Content.Client.IoC
 {
@@ -69,6 +71,7 @@ namespace Content.Client.IoC
             // Harmony Queue End
             collection.Register<ClientsidePlaytimeTrackingManager>();
             collection.Register<InteractionPanelManager>(); // RS
+            collection.Register<IGlobalWhitelistCheck, GlobalWhitelistCheck>(); //Frontier
         }
     }
 }

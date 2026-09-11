@@ -4,6 +4,10 @@
   id: Pen
   description: A dark ink pen.
   components:
+  - type: SurgeryTool
+  - type: SurgicalDrill
+    speed: 1.75
+    successRate: 0.8
   - type: Sprite
     sprite: Objects/Misc/pens.rsi
     state: pen

@@ -92,6 +92,24 @@
     ClothingUnderwearSocksPolosN11: 4294967295 # Infinite
     ClothingUnderwearSocksPolosN12: 4294967295 # Infinite
     ClothingUnderwearSocksPolosN13: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsBow: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsBowRed: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsBowBlack: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsLace: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsLaceRed: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsLaceBlack: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsFrill: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsFrillRed: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsFrillBlack: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsScallop: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsScallopRed: 4294967295 # Infinite
+    ClothingUnderwearSocksStockingsScallopBlack: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeBow: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeBowRed: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeBowBlack: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeCuff: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeCuffRed: 4294967295 # Infinite
+    ClothingUnderwearSocksKneeCuffBlack: 4294967295 # Infinite
 # Special
     ClothingUnderwearTopSpaceNinja: 3
     ClothingUnderwearBottomBoxersSpaceNinja: 3

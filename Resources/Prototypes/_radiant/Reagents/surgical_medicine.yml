@@ -1,0 +1,12 @@
+- type: reagent
+  id: Surgicillin
+  name: reagent-name-surgicillin
+  group: Medicine
+  desc: reagent-desc-surgicillin
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: medicine
+  color: "#68BCA5"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1
+      effects: [] # SurgicalInfectionSystem handles the effect on individual surgical sites.

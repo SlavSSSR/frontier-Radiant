@@ -3,6 +3,11 @@
   parent: VehicleATV
   id: NFVehicleATV
   components:
+  # --- ДОБАВЛЕНО ДЛЯ ПРИЦЕПОВ ---
+  - type: Puller
+    needsHands: false
+  - type: ActivePuller
+  # ------------------------------
   - type: Sprite
     sprite: _NF/Objects/Vehicles/atv.rsi
     layers:
@@ -71,6 +76,9 @@
   name: skeleton motorcycle
   description: Bad to the Bone.
   components:
+    - type: Puller
+      needsHands: false
+    - type: ActivePuller
     - type: Vehicle
       renderOver: North, East, South, West
       southOffset: 0, -0.1
@@ -206,6 +214,9 @@
   - type: MovementIgnoreGravity
   - type: MovementAlwaysTouching
   - type: CanMoveInAir
+  - type: Puller
+    needsHands: false
+  - type: ActivePuller # Добавлено для полной совместимости расчета скорости
   - type: AmbientSound
     sound: /Audio/Effects/shuttle_thruster.ogg
     range: 8
@@ -270,6 +281,7 @@
   parent: NFVehicleHoverbike
   id: NFVehicleHoverbikeKeys
   suffix: With key
+  # Компоненты пуллера наследуются автоматически от родительского NFVehicleHoverbike
   components:
   - type: ItemSlots
     slots:
@@ -303,6 +315,9 @@
   id: NFVehicleJanicart
   parent: VehicleJanicart
   components:
+  - type: Puller
+    needsHands: false
+  - type: ActivePuller # Добавлено для корректной работы системных событий
   - type: ItemSlots
     slots:
       key_slot:
@@ -320,7 +335,8 @@
       mop_slot: &mopSlot
         name: janitorial-trolley-slot-component-slot-name-mop
         whitelist:
-          tags:
+
+        tags:
             - Mop
         insertOnInteract: false # or it conflicts with bucket logic
         priority: 9 # Higher than bucket slot
@@ -391,8 +407,10 @@
     tags:
       - Wringer
       - DoorBumpOpener
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: bucket
+    utensil: Spoon
   - type: ContainerContainer
     containers:
       storagebase: !type:Container

@@ -13,6 +13,7 @@ humanoid-profile-editor-skin-color-label = Цвет кожи:
 humanoid-profile-editor-height-label = Рост: {$height}см
 humanoid-profile-editor-width-label = Ширина: {$width}см
 humanoid-profile-editor-weight-label = Вес: {$weight}кг
+humanoid-profile-editor-size-label = Размер: {$size}см
 humanoid-profile-editor-species-label = Вид:
 humanoid-profile-editor-pronouns-label = Личное местоимение:
 humanoid-profile-editor-pronouns-male-text = Он / Его

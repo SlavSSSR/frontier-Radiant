@@ -97,6 +97,7 @@
     - NFServiceToolsStatic
     - NFServiceEvaPackStatic
     - NFServiceKitchenStatic
+    - NFServiceToysStatic
     - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
@@ -361,6 +362,10 @@
     dynamicPacks:
     - EnergyWeaponsMercenary # Radiant Sector
     - EnergyWeaponsShuttle # Radiant Sector
+
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - NFMercenaryTechfabEmag
   - type: BlueprintReceiver
     whitelist:
       tags:

@@ -9,7 +9,8 @@
   - type: StaticPrice 
     price: 100
     vendPrice: 1500 
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: fleshlight
     ignoreEmpty: true
   - type: SolutionContainerManager

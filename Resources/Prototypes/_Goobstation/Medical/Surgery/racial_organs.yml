@@ -1,0 +1,378 @@
+# Racial organ identities for surgery and diagnostic scanners.
+# Parents preserve each species' existing physiology; these entities only make
+# the implanted organ traceable to its donor species.
+
+- type: entity
+  id: OrganMothBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    state: brain
+- type: entity
+  id: OrganMothEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+- type: entity
+  id: OrganMothTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    state: tongue
+- type: entity
+  id: OrganMothHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    state: heart-on
+- type: entity
+  id: OrganMothLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    layers:
+    - state: lung-l
+    - state: lung-r
+- type: entity
+  id: OrganMothLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    state: liver
+- type: entity
+  id: OrganMothKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Moth/organs.rsi
+    layers:
+    - state: kidney-l
+    - state: kidney-r
+
+- type: entity
+  id: OrganVulpkaninBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    state: brain
+- type: entity
+  id: OrganVulpkaninEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    layers: [{ state: eyeball-l }, { state: eyeball-r }]
+- type: entity
+  id: OrganVulpkaninTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    state: tongue
+- type: entity
+  id: OrganVulpkaninHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    state: heart-on
+- type: entity
+  id: OrganVulpkaninLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    layers: [{ state: lung-l }, { state: lung-r }]
+- type: entity
+  id: OrganVulpkaninLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    state: liver
+- type: entity
+  id: OrganVulpkaninKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vulp/organs.rsi
+    layers: [{ state: kidney-l }, { state: kidney-r }]
+
+- type: entity
+  id: OrganTajaranBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    state: brain
+- type: entity
+  id: OrganTajaranEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    layers: [{ state: eyeball-l }, { state: eyeball-r }]
+- type: entity
+  id: OrganTajaranTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    state: tongue
+- type: entity
+  id: OrganTajaranHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    state: heart-on
+- type: entity
+  id: OrganTajaranLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    layers: [{ state: lung-l }, { state: lung-r }]
+- type: entity
+  id: OrganTajaranStomach
+  parent: OrganVulpkaninStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    state: stomach
+- type: entity
+  id: OrganTajaranLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    state: liver
+- type: entity
+  id: OrganTajaranKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Tajaran/organs.rsi
+    layers: [{ state: kidney-l }, { state: kidney-r }]
+
+- type: entity
+  id: OrganResomiBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    state: brain
+- type: entity
+  id: OrganResomiEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    layers: [{ state: eyeball-l }, { state: eyeball-r }]
+- type: entity
+  id: OrganResomiTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    state: tongue
+- type: entity
+  id: OrganResomiHeart
+  parent: OrganHumanHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    state: heart-on
+- type: entity
+  id: OrganResomiLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    layers: [{ state: lung-l }, { state: lung-r }]
+- type: entity
+  id: OrganResomiStomach
+  parent: OrganAnimalStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    state: stomach
+- type: entity
+  id: OrganResomiLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    state: liver
+- type: entity
+  id: OrganResomiKidneys
+  parent: OrganAnimalKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Resomi/organs.rsi
+    layers: [{ state: kidney-l }, { state: kidney-r }]
+
+- type: entity
+  id: OrganVoxBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vox/organs.rsi
+    state: brain
+- type: entity
+  id: OrganVoxEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vox/organs.rsi
+    layers: [{ state: eyeball-l }, { state: eyeball-r }]
+- type: entity
+  id: OrganVoxTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vox/organs.rsi
+    state: tongue
+- type: entity
+  id: OrganVoxKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/Species/Vox/organs.rsi
+    layers: [{ state: kidney-l }, { state: kidney-r }]
+
+# Audit follow-up: these playable species also used generic organs.
+- type: entity
+  id: OrganFelinidBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidStomach
+  parent: OrganVulpkaninStomach
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganFelinidKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: OrganReptilianBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganReptilianKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: OrganHarpyBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyTongue
+  parent: OrganHumanTongue
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyStomach
+  parent: OrganAnimalStomach
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+- type: entity
+  id: OrganHarpyKidneys
+  parent: OrganAnimalKidneys
+  categories: [ HideSpawnMenu ]

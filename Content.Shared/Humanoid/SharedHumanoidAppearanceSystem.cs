@@ -12,6 +12,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.HeightAdjust;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -45,6 +46,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
     [Dependency] private readonly HeightAdjustSystem _heightAdjust = default!;
+    [Dependency] private readonly SharedPseudoItemSystem _pseudoItem = default!;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
     // Corvax-TTS-Start
@@ -544,6 +546,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Age = profile.Age;
 
         _heightAdjust.SetScale(uid, new Vector2(profile.Width, profile.Height));
+
+        _pseudoItem.UpdatePseudoItemState(uid);
 
         humanoid.LastProfileLoaded = profile; // DeltaV - let paradox anomaly be cloned
 

@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseToolSurgery
+  id: SurgicalAntiseptic
+  name: surgical antiseptic
+  description: For preparing surgical sites and disinfecting instruments, loose organs and medical protection. Each treatment uses 5 units. Refillable with ethanol.
+  components:
+  - type: SurgicalAntiseptic
+  - type: NonContactSurgicalTool
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+    color: "#80CCD9"
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Ethanol
+          Quantity: 100
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Spillable
+    solution: drink
+  - type: ExaminableSolution
+    solution: drink
+  - type: StaticPrice
+    price: 100

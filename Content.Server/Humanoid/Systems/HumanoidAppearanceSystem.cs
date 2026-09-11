@@ -2,6 +2,7 @@ using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
 using Content.Shared.Verbs;
@@ -14,6 +15,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 {
     [Dependency] private readonly MarkingManager _markingManager = default!;
 	[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedPseudoItemSystem _pseudoItem = default!;
 
     public override void Initialize()
     {
@@ -63,6 +65,8 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
+
+        _pseudoItem.UpdatePseudoItemState(target);
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
         if (TryComp<GrammarComponent>(target, out var grammar))

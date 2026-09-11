@@ -8,8 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganTajaranBrain
+        eyes: OrganTajaranEyes
+        tongue: OrganTajaranTongue
     torso:
       part: TorsoTajaran
       connections:
@@ -19,11 +20,11 @@
       - left leg
       - head # Shitmed Change
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
-        stomach: OrganVulpkaninStomach
-        liver:  OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        heart: OrganTajaranHeart
+        lungs: OrganTajaranLungs
+        stomach: OrganTajaranStomach
+        liver: OrganTajaranLiver
+        kidneys: OrganTajaranKidneys
     right arm:
       part: RightArmTajaran
       connections:

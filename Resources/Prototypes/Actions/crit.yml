@@ -57,7 +57,7 @@
   components:
   - type: Action
     icon:
-      sprite: Interface/Actions/actions_crit.rsi
-      state: fakedeath
+      sprite: _radiant/Interface/Actions/actions_crit.rsi
+      state: fightforlife
   - type: InstantAction
     event: !type:FightForLifeEvent

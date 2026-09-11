@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: 
+# Discord: 
+
+# Maintainer Info
+# GitHub: 
+# Discord: 
+
+# Notes:
+# Deep player interest point POI.
+- type: pointOfInterest
+  id: Oil_NPZ
+  parent: BasePOI
+  name: 'Нефтезавод'
+  minimumDistance: 11000
+  maximumDistance: 12000
+  # minimumClearance: 8000 # To make sure it doesn't pop in next to the Cove. Offline for now.
+  spawnGroup: Required
+  gridPath: /Maps/_radiant/POI/NPZ.yml
+  addComponents:
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: Oil_NPZ
+  mapName: 'Нефтезавод'
+  mapPath: /Maps/_radiant/POI/NPZ.yml
+  minPlayers: 0
+  stations:
+    Oil_NPZ:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Нефтезавод'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

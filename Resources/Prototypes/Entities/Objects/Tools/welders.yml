@@ -4,6 +4,10 @@
   id: Welder
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
+  - type: SurgeryTool
+  - type: Cautery
+    speed: 2
+    successRate: 0.7
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/welder_drop.ogg
@@ -200,6 +204,14 @@
     enabled: false
     radius: 1.0
     color: orange
+  # Radiant sector start - Starlight surgery
+  - type: SurgeryTool
+  - type: Cautery
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  # Radiant sector end
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]

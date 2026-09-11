@@ -74,6 +74,9 @@
     modifiers:
       coefficients:
         Heat: 0.90 # Frontier 0.80<0.90
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskGasAtmos # Frontier: removed BaseCommandContraband
@@ -118,6 +121,9 @@
         Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -125,6 +131,8 @@
   name: medical mask
   description: A close-fitting sterile mask that can be connected to an air supply.
   components:
+  - type: SurgicalProtection
+  - type: SurgicalItemSterility
   - type: Item
     size: Tiny
   - type: Sprite
@@ -137,6 +145,7 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+    - HamsterWearable
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
@@ -294,6 +303,8 @@
   name: sterile mask
   description: A sterile mask designed to help prevent the spread of diseases.
   components:
+  - type: SurgicalProtection
+  - type: SurgicalItemSterility
   - type: Sprite
     sprite: Clothing/Mask/sterile.rsi
   - type: Clothing
@@ -308,6 +319,9 @@
       Plastic: 25
   - type: StaticPrice
     price: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskBase
@@ -350,6 +364,9 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -650,6 +667,9 @@
     sprite: Clothing/Mask/scaredmime.rsi
   - type: Clothing
     sprite: Clothing/Mask/scaredmime.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: [ClothingMaskMime, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
@@ -723,6 +743,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HamsterWearable
 
 # Entity tables
 - type: entityTable

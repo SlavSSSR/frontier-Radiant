@@ -12,7 +12,7 @@ public sealed partial class HeavyWoundedComponent : Component
     public float DamageThreshold = 100f;
 
     [DataField]
-    public float CriticalThreshold = 115f;
+    public float CriticalThreshold = 110f;
 
     [AutoNetworkedField]
     public bool Active;

@@ -1,0 +1,12 @@
+ent-FilingCabinetRadiant = картотечный шкаф
+ent-ChestDrawerRadiant = тумба с ящиками
+ent-TallCabinetRadiant = высокий картотечный шкаф
+ent-EmploymentCabinet = шкаф отдела кадров
+    .desc = Шкаф для личных дел и кадровых документов.
+ent-ChairOfficeWhiteRadiant = белое офисное кресло
+ent-ChairOfficeDarkRadiant = тёмное офисное кресло
+ent-MobAlienQueenMaid = ксенокоролева-горничная
+    .desc = Нейтральное тело ксенокоролевы-горничной. Без игрока не проявляет агрессии.
+ent-SpawnMobAlienQueenMaid = спавнер ксено
+    .suffix = Ксенокоролева-горничная
+    .desc = { ent-MarkerBase.desc }

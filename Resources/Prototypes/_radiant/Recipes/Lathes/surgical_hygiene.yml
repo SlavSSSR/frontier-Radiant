@@ -1,0 +1,20 @@
+- type: latheRecipe
+  id: SurgicalSterileDrape
+  result: SurgicalSterileDrape
+  categories: [Surgery]
+  completetime: 2
+  materials: {Cloth: 200, Plastic: 100}
+
+- type: latheRecipe
+  id: SurgicalLavageBottle
+  result: SurgicalLavageBottle
+  categories: [Surgery]
+  completetime: 3
+  materials: {Plastic: 300, Glass: 200}
+
+- type: latheRecipe
+  id: SurgicalSterilizerMachineCircuitboard
+  parent: BaseMedicalMachineRecipeCategory
+  result: SurgicalSterilizerMachineCircuitboard
+  completetime: 4
+  materials: {Steel: 100, Glass: 200, Gold: 100}

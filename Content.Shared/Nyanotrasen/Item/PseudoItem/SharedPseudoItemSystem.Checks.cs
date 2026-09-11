@@ -14,7 +14,10 @@ public partial class SharedPseudoItemSystem
     public bool CheckItemFits(Entity<PseudoItemComponent?> itemEnt, Entity<StorageComponent?> storageEnt)
     {
         if (!Resolve(itemEnt, ref itemEnt.Comp) || !Resolve(storageEnt, ref storageEnt.Comp))
-            return false;
+        return false;
+
+        if (!itemEnt.Comp.Enabled) // Radiant sector add Active
+        return false;
 
         if (!HasComp<MetaDataComponent>(itemEnt))
             return false;

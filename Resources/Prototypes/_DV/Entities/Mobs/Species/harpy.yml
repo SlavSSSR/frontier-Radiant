@@ -25,6 +25,11 @@
     onlySetBySelf: true
   - type: UserInterface
     interfaces:
+      # Radiant sector start - Starlight surgery: this species overrides the
+      # inherited UI registry, so keep the surgery interface available.
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      # Radiant sector end
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
       enum.HumanoidMarkingModifierKey.Key:
@@ -140,6 +145,12 @@
             state: jumpsuit
   - type: HarpyVisuals
   - type: TTS # Radiant sector
+  - type: PseudoItem # Radiant sector
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
   - type: UltraVision
 #  - type: Tag # Frontier
 #    tags: # Frontier

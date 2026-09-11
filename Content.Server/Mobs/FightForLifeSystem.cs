@@ -50,7 +50,7 @@ public sealed class FightForLifeSystem : EntitySystem
         // The adrenaline surge relieves a small amount of suffocation damage.
         _damageable.TryChangeDamage(uid, new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2> { ["Asphyxiation"] = -10 }
+            DamageDict = new Dictionary<string, FixedPoint2> { ["Asphyxiation"] = -5 }
         }, ignoreResistances: true, interruptsDoAfters: false, origin: uid);
 
         args.Handled = true;
@@ -115,7 +115,7 @@ public sealed class FightForLifeSystem : EntitySystem
                 continue;
 
             // Radiant Sector: extended fight-for-life recovery cooldown.
-            _actions.SetCooldown((action, (ActionComponent?) action.Comp), TimeSpan.FromSeconds(_random.Next(25, 121)));
+            _actions.SetCooldown((action, (ActionComponent?) action.Comp), TimeSpan.FromSeconds(_random.Next(35, 150)));
             break;
         }
     }

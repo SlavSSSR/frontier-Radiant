@@ -4,6 +4,10 @@
   id: FireAxe
   description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
   components:
+  - type: SurgeryTool
+  - type: BoneSaw
+    speed: 1.75
+    successRate: 0.8
   - type: Tag
     tags:
     - FireAxe

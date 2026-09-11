@@ -8,8 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganResomiBrain
+        eyes: OrganResomiEyes
+        tongue: OrganResomiTongue
     torso:
       part: TorsoResomi
       connections:
@@ -19,11 +20,11 @@
       - left leg
       - head
       organs:
-        heart: OrganHumanHeart
-        lungs: OrganHumanLungs
-        stomach: OrganAnimalStomach
-        liver:  OrganAnimalLiver
-        kidneys: OrganAnimalKidneys
+        heart: OrganResomiHeart
+        lungs: OrganResomiLungs
+        stomach: OrganResomiStomach
+        liver: OrganResomiLiver
+        kidneys: OrganResomiKidneys
     right arm:
       part: RightArmResomi
       connections:

@@ -44,6 +44,7 @@
       - id: CommsComputerCircuitboard # Frontier
       - id: MedalCase # Frontier
       - id: Demag # Frontier
+      - id: GovernorBountyFlatpack # Radiant
 
 - type: entity
   id: LockerNfsdSheriffFilled
@@ -52,7 +53,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ShriffIDCard
+      - id: SheriffIDCard # Frontier
       - id: BoxHandcuff # Frontier
       - id: CommsComputerCircuitboard # Frontier
       - id: MedalCaseNfsd # Frontier

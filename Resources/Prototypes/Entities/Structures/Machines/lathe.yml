@@ -221,7 +221,7 @@
     unlitRunningState: unlit-building
     staticPacks:
     - NFChemistryBasicStatic # Frontier
-    - NFSurgeryBasicStatic # Frontier
+    # - NFSurgeryBasicStatic # Radiant sector: moved behind StarlightBasicSurgery research.
     dynamicPacks:
     - AdvancedTools
     - ScienceEquipment
@@ -243,6 +243,7 @@
     - NFService # Frontier
     - NFScience # Frontier
     - NFPouches # Frontier
+    - StarlightSurgeryResearch # Radiant sector
     - NFProtolathe # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks:
@@ -370,11 +371,15 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
+    - NFBorgChip # Frontier
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+  - type: EmagLatheRecipes # Frontier begin
+    emagStaticPacks:
+      - NFBorgChipEmag # Frontier end
   - type: MaterialStorage
     whitelist:
       tags:

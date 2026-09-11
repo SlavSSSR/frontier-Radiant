@@ -8,16 +8,17 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganVulpkaninBrain
+        eyes: OrganVulpkaninEyes
+        tongue: OrganVulpkaninTongue
     torso:
       part: TorsoVulpkanin
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
+        heart: OrganVulpkaninHeart
+        lungs: OrganVulpkaninLungs
         stomach: OrganVulpkaninStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        liver: OrganVulpkaninLiver
+        kidneys: OrganVulpkaninKidneys
       connections:
       - right arm
       - left arm

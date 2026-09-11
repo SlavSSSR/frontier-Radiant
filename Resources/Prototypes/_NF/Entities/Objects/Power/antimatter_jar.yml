@@ -12,7 +12,7 @@
   - type: AmeFuelContainer
 #    fuelAmount: 1500
 #    fuelCapacity: 1500 # ~ 900 MJ
-    fuelAmount: 5000 # Radiant sector
-    fuelCapacity: 5000 # Radiant sector
+    fuelAmount: 2000 # Radiant sector
+    fuelCapacity: 2000 # Radiant sector
   - type: StaticPrice
     price: 800 # 1k at 1.25

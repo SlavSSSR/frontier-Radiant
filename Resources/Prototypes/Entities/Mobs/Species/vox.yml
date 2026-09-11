@@ -26,8 +26,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatChicken
-      amount: 5
+    - id: FoodMeatVox
+      amount: 3
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vox

@@ -118,6 +118,9 @@
   - type: BankAccount # Frontier
   - type: ExplosionResistance
     damageCoefficient: 0
+  - type: MovementSpeedModifier # Radiant sector
+    baseSprintSpeed: 12
+    baseWalkSpeed: 75
 
 - type: entity
   abstract: true

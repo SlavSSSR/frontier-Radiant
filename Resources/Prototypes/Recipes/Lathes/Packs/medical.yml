@@ -101,6 +101,7 @@
 - type: latheRecipePack
   id: MedicalBoards
   recipes:
+  - SurgicalSterilizerMachineCircuitboard # Radiant: unlocked by basic surgery.
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard

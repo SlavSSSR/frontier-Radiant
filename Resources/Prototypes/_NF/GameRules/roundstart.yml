@@ -148,15 +148,15 @@
       # no whitelist, catchall
       briefing: *pirateBriefing
 #Radiant start
-# Loads the CentComm (Central Command) grid as its own map at round start.
-# Useful for admin testing / emergency shuttle destinations.
+# Loads the CentComm (Central Command) map at round start.
+# Uses a dedicated Map file so FTL access can be restricted via FTLDestination on the map entity.
 - type: entity
   parent: BaseGameRule
   id: LoadCentComm
   categories: [ HideSpawnMenu ]
   components:
   - type: LoadMapRule
-    gameMap: CentComm
+    mapPath: /Maps/_radiant/CentComm/centcomm_map.yml
 #Radiant end
 # Concrete ignored upstream definitions
 - type: entity

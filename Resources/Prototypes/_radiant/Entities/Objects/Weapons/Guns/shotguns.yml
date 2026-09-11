@@ -11,7 +11,7 @@
   - type: Item
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/Adjutant.rsi
   - type: Gun
-    fireRate: 1.2
+    fireRate: 1.4
   - type: BallisticAmmoProvider
     capacity: 8
 

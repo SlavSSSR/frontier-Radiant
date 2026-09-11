@@ -59,5 +59,6 @@ bounty-contracts-ui-create-error-invalid-price = Ошибка: Неправил�
 bounty-contracts-ui-create-error-no-name = Ошибка: Неправильное название награды!
 bounty-contracts-ui-create-error-name-too-long = Ошибка: Слишком длинное имя!
 bounty-contracts-ui-create-error-vessel-too-long = Ошибка: Название шаттл слишком длинное!
+bounty-contracts-ui-create-error-vessel-name-too-long = Ошибка: Слишком длинное название судна!
 bounty-contracts-ui-create-error-description-too-long = Ошибка: Описание слишком длинное!
 bounty-contracts-ui-create-ready = Ваш контракт готов к публикации!

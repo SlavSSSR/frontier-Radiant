@@ -1593,6 +1593,36 @@
   groupBy: "CasualJumpsuits"
 
 - type: loadout
+  id: ContractorClothingKimonoPurple
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingKimonoPurple
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingKimonoSky
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingKimonoSky
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingKimonoGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingKimonoGreen
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
   id: ContractorClothingUniformJumpsuitGladiator
   effects:
   - !type:GroupLoadoutEffect
@@ -1661,6 +1691,16 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
   groupBy: "UniformJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformJumpskirtClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtClown
+  groupBy: "UniformJumpskirts"
 
 - type: loadout
   id: ContractorClothingUniformJumpsuitMime
@@ -2230,3 +2270,53 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSetDonMerc
   groupBy: "DonJumpsuits"
+
+# MNK Drobe
+- type: loadout
+  id: ContractorClothingUniformMNKOfficeSkirt
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKOfficeSkirt
+  groupBy: "FormalJumpskirts"
+
+- type: loadout
+  id: ContractorClothingUniformMNKUnderGarment
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKUnderGarment
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKGymBra
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKGymBra
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKDressBlack
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKDressBlack
+  groupBy: "dresses"
+
+- type: loadout
+  id: ContractorClothingUniformMNKBlackOveralls
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKBlackOveralls
+  groupBy: "UniformJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKBlackShoulder
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKBlackShoulder
+  groupBy: "CasualJumpsuits"
+
+- type: loadout
+  id: ContractorClothingUniformMNKTracksuitBlack
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformMNKTracksuitBlack
+  groupBy: "CasualJumpsuits"
