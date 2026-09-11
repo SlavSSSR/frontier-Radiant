@@ -479,8 +479,8 @@
 - type: entity
   parent: ClothingUnderwearSocksBase
   id: ClothingUnderwearSocksKneeBow
-  name: гольфы с бантиком
-  description: Белые гольфы с бантиком.
+  name: белые чулки с поясом
+  description: Белые чулки с поясом.
   components:
   - type: Sprite
     sprite: _radiant/Clothing/Underwear/socks/sockskneebow.rsi
@@ -488,14 +488,14 @@
 - type: entity
   parent: [ClothingUnderwearSocksKneeBow, ClothingUnderwearSocksBColorRed]
   id: ClothingUnderwearSocksKneeBowRed
-  name: красные гольфы с бантиком
-  description: Красные гольфы с бантиком.
+  name: красные чулки с поясом
+  description: Красные чулки с поясом.
 
 - type: entity
   parent: [ClothingUnderwearSocksKneeBow, ClothingUnderwearSocksBColorBlack]
   id: ClothingUnderwearSocksKneeBowBlack
-  name: чёрные гольфы с бантиком
-  description: Чёрные гольфы с бантиком.
+  name: чёрные чулки с поясом
+  description: Чёрные чулки с поясом.
 
 - type: entity
   parent: ClothingUnderwearSocksBase
